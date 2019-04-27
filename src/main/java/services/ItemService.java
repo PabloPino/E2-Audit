@@ -19,8 +19,10 @@ public class ItemService {
 	@Autowired
 	private ItemRepository	itemRepository;
 
-
 	//Services------------------------------------------------------------------
+	@Autowired
+	ServiceUtils			serviceUtils;
+
 
 	//CRUD----------------------------------------------------------------------
 
@@ -28,22 +30,27 @@ public class ItemService {
 
 	//DASHBOARD QUERIES--------------------------------------------------------------
 	public Double queryRookiesB1AVG() {
+		this.serviceUtils.checkAuthority("ADMIN");
 		return this.itemRepository.queryRookiesB1AVG();
 	}
 
 	public Double queryRookiesB1MAX() {
+		this.serviceUtils.checkAuthority("ADMIN");
 		return this.itemRepository.queryRookiesB1MAX();
 	}
 
 	public Double queryRookiesB1MIN() {
+		this.serviceUtils.checkAuthority("ADMIN");
 		return this.itemRepository.queryRookiesB1MIN();
 	}
 
 	public Double queryRookiesB1STDDEV() {
+		this.serviceUtils.checkAuthority("ADMIN");
 		return this.itemRepository.queryRookiesB1STDDEV();
 	}
 
 	public List<String> queryRookiesB2() {
+		this.serviceUtils.checkAuthority("ADMIN");
 		return this.itemRepository.queryRookiesB2();
 	}
 
