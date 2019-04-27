@@ -12,7 +12,7 @@
 	<!-- Artifact identification and properties -->
 
 	<groupId>Acme.com</groupId>
-	<artifactId>Acme-HackerRank</artifactId>
+	<artifactId>Acme-Rookies</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
@@ -22,8 +22,8 @@
 
 	<!-- Indexing information -->
 
-	<name>Acme-HackerRank</name>
-	<url>http://www.acme-hackerRank.com</url>
+	<name>Acme-Rookies</name>
+	<url>http://www.acme-rookies.com</url>
 
 	<!-- Build commands -->
 
