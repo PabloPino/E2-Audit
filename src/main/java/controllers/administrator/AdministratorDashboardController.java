@@ -12,6 +12,7 @@ package controllers.administrator;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ApplicationService;
+import services.AuditService;
 import services.ConfigurationService;
 import services.CurriculaService;
 import services.FinderService;
+import services.ItemService;
 import services.PositionService;
+import services.SponsorshipService;
 import controllers.AbstractController;
+import domain.Provider;
 
 @Controller
 @RequestMapping("/administrator")
@@ -45,6 +50,15 @@ public class AdministratorDashboardController extends AbstractController {
 
 	@Autowired
 	private FinderService			finderService;
+
+	@Autowired
+	private AuditService			auditService;
+
+	@Autowired
+	private ItemService				itemService;
+
+	@Autowired
+	private SponsorshipService		sponsorshipService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -221,6 +235,159 @@ public class AdministratorDashboardController extends AbstractController {
 			result.addObject("queryB3", df.format(queryB3));
 		else
 			result.addObject("queryB3", 0.0);
+
+		//DASHBOARD ACME-ROOKIES
+		//QUERY C1
+		final Double queryRookiesC1AVG = this.auditService.queryRookiesC1AVG();
+		final Double queryRookiesC1MAX = this.auditService.queryRookiesC1MAX();
+		final Double queryRookiesC1MIN = this.auditService.queryRookiesC1MIN();
+		final Double queryRookiesC1STDDEV = this.auditService.queryRookiesC1STDDEV();
+
+		if (queryRookiesC1AVG != null)
+			result.addObject("queryRookiesC1AVG", df.format(queryRookiesC1AVG));
+		else
+			result.addObject("queryRookiesC1AVG", 0.0);
+
+		if (queryRookiesC1MAX != null)
+			result.addObject("queryRookiesC1MAX", df.format(queryRookiesC1MAX));
+		else
+			result.addObject("queryRookiesC1MAX", 0.0);
+
+		if (queryRookiesC1MIN != null)
+			result.addObject("queryRookiesC1MIN", df.format(queryRookiesC1MIN));
+		else
+			result.addObject("queryRookiesC1MIN", 0.0);
+
+		if (queryRookiesC1STDDEV != null)
+			result.addObject("queryRookiesC1STDDEV", df.format(queryRookiesC1STDDEV));
+		else
+			result.addObject("queryRookiesC1STDDEV", 0.0);
+
+		//QUERY C2
+		final Double queryRookiesC2AVG = this.auditService.queryRookiesC2AVG();
+		final Double queryRookiesC2MAX = this.auditService.queryRookiesC2MAX();
+		final Double queryRookiesC2MIN = this.auditService.queryRookiesC2MIN();
+		final Double queryRookiesC2STDDEV = this.auditService.queryRookiesC2STDDEV();
+
+		if (queryRookiesC2AVG != null)
+			result.addObject("queryRookiesC2AVG", df.format(queryRookiesC2AVG));
+		else
+			result.addObject("queryRookiesC2AVG", 0.0);
+
+		if (queryRookiesC2MAX != null)
+			result.addObject("queryRookiesC2MAX", df.format(queryRookiesC2MAX));
+		else
+			result.addObject("queryRookiesC2MAX", 0.0);
+
+		if (queryRookiesC2MIN != null)
+			result.addObject("queryRookiesC2MIN", df.format(queryRookiesC2MIN));
+		else
+			result.addObject("queryRookiesC2MIN", 0.0);
+
+		if (queryRookiesC2STDDEV != null)
+			result.addObject("queryRookiesC2STDDEV", df.format(queryRookiesC2STDDEV));
+		else
+			result.addObject("queryRookiesC2STDDEV", 0.0);
+
+		//QUERY C3
+		final List<String> queryRookiesC3 = this.auditService.queryRookiesC3();
+		if (!queryRookiesC3.isEmpty())
+			result.addObject("queryRookiesC3", queryRookiesC3);
+
+		//QUERY C4
+		final Double queryRookiesC4 = this.auditService.queryRookiesC4();
+		if (queryRookiesC4 != null)
+			result.addObject("queryRookiesC4", df.format(queryRookiesC4));
+		else
+			result.addObject("queryRookiesC4", 0.0);
+
+		//QUERY B1
+		final Double queryRookiesB1AVG = this.itemService.queryRookiesB1AVG();
+		final Double queryRookiesB1MAX = this.itemService.queryRookiesB1MAX();
+		final Double queryRookiesB1MIN = this.itemService.queryRookiesB1MIN();
+		final Double queryRookiesB1STDDEV = this.itemService.queryRookiesB1STDDEV();
+
+		if (queryRookiesB1AVG != null)
+			result.addObject("queryRookiesB1AVG", df.format(queryRookiesB1AVG));
+		else
+			result.addObject("queryRookiesB1AVG", 0.0);
+
+		if (queryRookiesB1MAX != null)
+			result.addObject("queryRookiesB1MAX", df.format(queryRookiesB1MAX));
+		else
+			result.addObject("queryRookiesB1MAX", 0.0);
+
+		if (queryRookiesB1MIN != null)
+			result.addObject("queryRookiesB1MIN", df.format(queryRookiesB1MIN));
+		else
+			result.addObject("queryRookiesB1MIN", 0.0);
+
+		if (queryRookiesB1STDDEV != null)
+			result.addObject("queryRookiesB1STDDEV", df.format(queryRookiesB1STDDEV));
+		else
+			result.addObject("queryRookiesB1STDDEV", 0.0);
+
+		//QUERY B2
+		final List<String> queryRookiesB2 = this.itemService.queryRookiesB2();
+		if (!queryRookiesB2.isEmpty())
+			result.addObject("queryRookiesB2", queryRookiesB2);
+
+		//QUERY A1
+		final Double queryRookiesA1AVG = this.sponsorshipService.queryRookiesA1AVG();
+		final Double queryRookiesA1MAX = this.sponsorshipService.queryRookiesA1MAX();
+		final Double queryRookiesA1MIN = this.sponsorshipService.queryRookiesA1MIN();
+		final Double queryRookiesA1STDDEV = this.sponsorshipService.queryRookiesA1STDDEV();
+
+		if (queryRookiesA1AVG != null)
+			result.addObject("queryRookiesA1AVG", df.format(queryRookiesA1AVG));
+		else
+			result.addObject("queryRookiesA1AVG", 0.0);
+
+		if (queryRookiesA1MAX != null)
+			result.addObject("queryRookiesA1MAX", df.format(queryRookiesA1MAX));
+		else
+			result.addObject("queryRookiesA1MAX", 0.0);
+
+		if (queryRookiesA1MIN != null)
+			result.addObject("queryRookiesA1MIN", df.format(queryRookiesA1MIN));
+		else
+			result.addObject("queryRookiesA1MIN", 0.0);
+
+		if (queryRookiesA1STDDEV != null)
+			result.addObject("queryRookiesA1STDDEV", df.format(queryRookiesA1STDDEV));
+		else
+			result.addObject("queryRookiesA1STDDEV", 0.0);
+
+		//QUERY A2
+		final Double queryRookiesA2AVG = this.sponsorshipService.queryRookiesA2AVG();
+		final Double queryRookiesA2MAX = this.sponsorshipService.queryRookiesA2MAX();
+		final Double queryRookiesA2MIN = this.sponsorshipService.queryRookiesA2MIN();
+		final Double queryRookiesA2STDDEV = this.sponsorshipService.queryRookiesA2STDDEV();
+
+		if (queryRookiesA2AVG != null)
+			result.addObject("queryRookiesA2AVG", df.format(queryRookiesA2AVG));
+		else
+			result.addObject("queryRookiesA2AVG", 0.0);
+
+		if (queryRookiesA2MAX != null)
+			result.addObject("queryRookiesA2MAX", df.format(queryRookiesA2MAX));
+		else
+			result.addObject("queryRookiesA2MAX", 0.0);
+
+		if (queryRookiesA2MIN != null)
+			result.addObject("queryRookiesA2MIN", df.format(queryRookiesA2MIN));
+		else
+			result.addObject("queryRookiesA2MIN", 0.0);
+
+		if (queryRookiesA2STDDEV != null)
+			result.addObject("queryRookiesA2STDDEV", df.format(queryRookiesA2STDDEV));
+		else
+			result.addObject("queryRookiesA2STDDEV", 0.0);
+
+		//QUERY A3
+		final Collection<Provider> queryRookiesA3 = this.sponsorshipService.queryRookiesA3();
+		if (!queryRookiesA3.isEmpty())
+			result.addObject("queryRookiesA3", queryRookiesA3);
 
 		return result;
 	}
