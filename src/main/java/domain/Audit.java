@@ -27,7 +27,7 @@ public class Audit extends DomainEntity {
 	private Date	moment;
 	private String	text;
 	private double	score;
-	private boolean	finalModel;
+	private boolean	finalMode;
 
 
 	@NotNull
@@ -59,12 +59,12 @@ public class Audit extends DomainEntity {
 		this.score = score;
 	}
 
-	public boolean isFinalModel() {
-		return this.finalModel;
+	public boolean isFinalMode() {
+		return this.finalMode;
 	}
 
-	public void setFinalModel(final boolean finalModel) {
-		this.finalModel = finalModel;
+	public void setFinalMode(final boolean finalMode) {
+		this.finalMode = finalMode;
 	}
 
 

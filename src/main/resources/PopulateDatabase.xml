@@ -224,66 +224,6 @@
 			</list>
 		</property>
 	</bean>
-
-	<bean id="userAccount14" class="security.UserAccount">
-		<property name="username" value="audit1" />
-		<property name="password" value="380cb582c134c9609f453a132d1e18b8" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="AUDIT" />
-				</bean>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="userAccount15" class="security.UserAccount">
-		<property name="username" value="audit2" />
-		<property name="password" value="4a0e4b4e2e426e8be38549cf1f00ae48" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="AUDIT" />
-				</bean>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="userAccount16" class="security.UserAccount">
-		<property name="username" value="audit3" />
-		<property name="password" value="a74f868abacbd19770cf6ad8f083e5a6" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="AUDIT" />
-				</bean>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="userAccount17" class="security.UserAccount">
-		<property name="username" value="audit4" />
-		<property name="password" value="e8e39085475c91be117f6a1db6f97ecb" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="AUDIT" />
-				</bean>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="userAccount18" class="security.UserAccount">
-		<property name="username" value="audit5" />
-		<property name="password" value="b7e008e4e079796c6af41cd634f0f6b9" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="AUDIT" />
-				</bean>
-			</list>
-		</property>
-	</bean>
 	
 	<bean id="userAccount19" class="security.UserAccount">
 		<property name="username" value="provider1" />
@@ -490,123 +430,49 @@
 
 	<!-- &Auditors -->
 
-	<bean id="audit1" class="domain.Audit">
-		<property name="name" value="Juan Manuel" />
-		<property name="surname" value="De la Oliva Aguilar" />
-		<property name="photo"
-			value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-KUF1F8Y8PcSonTUCchWrDQhFFAr3FtkTNX7tCV5G4DeCptp6_A" />
-		<property name="phone" value="+34(655)123456789" />
-		<property name="email" value="juandelaoliva@gmail.com" />
-		<property name="spammer" value="false" />
-		<property name="banned" value="false" />
-		<property name="address" value="Avenida Italia 12" />
-		<property name="VATNumber" value="75860389Y" />
-		
+	<bean id="audit1" class="domain.Audit">		
 		<property name="moment" value="June 28, 2018" />
 		<property name="text" value="Volunario de la semana solidaria" />
 		<property name="score" value="1.0" />
 		<property name="finalMode" value="true" />
 		<property name="auditor" ref="auditor1" />
 		<property name="position" ref="position1" />
-
-		<property name="userAccount" ref="userAccount14" />
-		<property name="creditCard" ref="creditcard1" />
-
 	</bean>
 
 	<bean id="audit2" class="domain.Audit">
-		<property name="name" value="Alfonso" />
-		<property name="surname" value="Alarcon" />
-		<property name="photo"
-			value="https://www.w3schools.com/howto/img_avatar.png" />
-		<property name="phone" value="658227452" />
-		<property name="email" value="alfonsom@gmail.com" />
-		<property name="spammer" value="false" />
-		<property name="banned" value="false" />
-		<property name="address" value="Avenida republica argentina" />
-		<property name="VATNumber" value="658554658Z" />
-		
 		<property name="moment" value="March 8, 2017" />
 		<property name="text" value="She alfonsito" />
 		<property name="score" value="2.0" />
 		<property name="finalMode" value="true" />
 		<property name="auditor" ref="auditor2" />
 		<property name="position" ref="position2" />
-
-		<property name="userAccount" ref="userAccount15" />
-		<property name="creditCard" ref="creditcard3" />
-
 	</bean>
 
 	<bean id="audit3" class="domain.Audit">
-		<property name="name" value="Pepe" />
-		<property name="surname" value="Fernández Gómez" />
-		<property name="photo" value="" />
-		<property name="phone" value="" />
-		<property name="email" value="pepefg@gmail.com" />
-		<property name="spammer" value="false" />
-		<property name="banned" value="false" />
-		<property name="address" value="Avenida reina mercedes" />
-		<property name="VATNumber" value="758603890" />
-		
 		<property name="moment" value="April 25, 2014" />
 		<property name="text" value="Hola pepe" />
 		<property name="score" value="3.0" />
 		<property name="finalMode" value="true" />
 		<property name="auditor" ref="auditor3" />
 		<property name="position" ref="position3" />
-
-		<property name="userAccount" ref="userAccount16" />
-		<property name="creditCard" ref="creditcard2" />
-
 	</bean>
 
 	<bean id="audit4" class="domain.Audit">
-		<property name="name" value="Jose" />
-		<property name="surname" value="Hernández Jiménez" />
-		<property name="photo"
-			value="https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg" />
-		<property name="phone" value="725614293" />
-		<property name="email" value="josehjg@gmail.com" />
-		<property name="spammer" value="false" />
-		<property name="banned" value="false" />
-		<property name="address" value="Avenida false 123" />
-		<property name="VATNumber" value="758603890" />
-		
 		<property name="moment" value="December 28, 2018" />
 		<property name="text" value="Trabajador de tienda" />
 		<property name="score" value="4.0" />
 		<property name="finalMode" value="false" />
 		<property name="auditor" ref="auditor4" />
 		<property name="position" ref="position4" />
-
-		<property name="userAccount" ref="userAccount17" />
-		<property name="creditCard" ref="creditcard4" />
-
 	</bean>
 
 	<bean id="audit5" class="domain.Audit">
-		<property name="name" value="Jesús" />
-		<property name="surname" value="Gil Maestre" />
-		<property name="photo"
-			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
-		<property name="phone" value="624192532" />
-		<property name="email" value="jesusgm@gmail.com" />
-		<property name="spammer" value="false" />
-		<property name="banned" value="false" />
-		<property name="address" value="Avenida de los pirralos" />
-		<property name="VATNumber" value="758603890" />
-		
 		<property name="moment" value="March 4, 2016" />
 		<property name="text" value="Relaciones públicas" />
 		<property name="score" value="5.0" />
 		<property name="finalMode" value="false" />
 		<property name="auditor" ref="auditor5" />
 		<property name="position" ref="position5" />
-
-		<property name="userAccount" ref="userAccount18" />
-		<property name="creditCard" ref="creditcard6" />
-
 	</bean>
 	
 	<!-- &Provider -->
