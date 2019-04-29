@@ -224,7 +224,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="userAccount19" class="security.UserAccount">
 		<property name="username" value="provider1" />
 		<property name="password" value="cdb82d56473901641525fbbd1d5dab56" />
@@ -236,7 +236,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="userAccount20" class="security.UserAccount">
 		<property name="username" value="provider2" />
 		<property name="password" value="ebfc815ee2cc6a16225105bb7b3e1e53" />
@@ -248,7 +248,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="userAccount21" class="security.UserAccount">
 		<property name="username" value="provider3" />
 		<property name="password" value="a575bf1b9ca7d068cef7bbc8fa7f43e1" />
@@ -260,7 +260,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="userAccount22" class="security.UserAccount">
 		<property name="username" value="provider4" />
 		<property name="password" value="5d35a7d891c4aae477f56ebf807fbd0a" />
@@ -272,10 +272,22 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="userAccount23" class="security.UserAccount">
 		<property name="username" value="provider5" />
 		<property name="password" value="bd19ee25be71cfc77f532c4b26b4a54e" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount24" class="security.UserAccount">
+		<property name="username" value="provider6" />
+		<property name="password" value="85202849e05dc23e4b80f2af8be3650c" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -430,7 +442,7 @@
 
 	<!-- &Auditors -->
 
-	<bean id="audit1" class="domain.Audit">		
+	<bean id="audit1" class="domain.Audit">
 		<property name="moment" value="June 28, 2018" />
 		<property name="text" value="Volunario de la semana solidaria" />
 		<property name="score" value="1.0" />
@@ -474,7 +486,7 @@
 		<property name="auditor" ref="auditor5" />
 		<property name="position" ref="position5" />
 	</bean>
-	
+
 	<!-- &Provider -->
 
 	<bean id="provider1" class="domain.Provider">
@@ -488,14 +500,14 @@
 		<property name="banned" value="false" />
 		<property name="address" value="Avenida Italia 12" />
 		<property name="VATNumber" value="75860389Y" />
-		
+
 		<property name="make" value="marca1" />
-		
+
 		<property name="userAccount" ref="userAccount19" />
 		<property name="creditCard" ref="creditcard1" />
 
 	</bean>
-	
+
 	<bean id="provider2" class="domain.Provider">
 		<property name="name" value="Alfonso" />
 		<property name="surname" value="Alarcon" />
@@ -507,7 +519,7 @@
 		<property name="banned" value="false" />
 		<property name="address" value="Avenida republica argentina" />
 		<property name="VATNumber" value="658554658Z" />
-		
+
 		<property name="make" value="marca2" />
 
 		<property name="userAccount" ref="userAccount20" />
@@ -525,7 +537,7 @@
 		<property name="banned" value="false" />
 		<property name="address" value="Avenida reina mercedes" />
 		<property name="VATNumber" value="758603890" />
-		
+
 		<property name="make" value="marca3" />
 
 		<property name="userAccount" ref="userAccount21" />
@@ -544,7 +556,7 @@
 		<property name="banned" value="false" />
 		<property name="address" value="Avenida false 123" />
 		<property name="VATNumber" value="758603890" />
-		
+
 		<property name="make" value="marca4" />
 
 		<property name="userAccount" ref="userAccount22" />
@@ -563,14 +575,32 @@
 		<property name="banned" value="false" />
 		<property name="address" value="Avenida de los pirralos" />
 		<property name="VATNumber" value="758603890" />
-		
+
 		<property name="make" value="marca5" />
 
 		<property name="userAccount" ref="userAccount23" />
 		<property name="creditCard" ref="creditcard6" />
 
 	</bean>
-	
+
+	<bean id="provider6" class="domain.Provider">
+		<property name="name" value="Jesús" />
+		<property name="surname" value="Gil Maestre" />
+		<property name="photo"
+			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
+		<property name="phone" value="624192532" />
+		<property name="email" value="jesusgm@gmail.com" />
+		<property name="spammer" value="false" />
+		<property name="banned" value="false" />
+		<property name="address" value="Avenida de los pirralos" />
+		<property name="VATNumber" value="758603890" />
+
+		<property name="make" value="marca5" />
+
+		<property name="userAccount" ref="userAccount24" />
+		<property name="creditCard" ref="creditcard6" />
+
+	</bean>
 
 	<!-- &Hackers -->
 
@@ -1400,7 +1430,7 @@
 		<property name="curricula" ref="curricula1" />
 		<property name="original" value="true" />
 	</bean>
-	
+
 	<bean id="educationData2" class="domain.EducationData">
 		<property name="degree" value="Grado en Filología Hispánica" />
 		<property name="institution" value="Universidad de Sevilla" />
@@ -1409,41 +1439,78 @@
 		<property name="curricula" ref="curricula1" />
 		<property name="original" value="true" />
 	</bean>
-	
+
 	<!-- Item -->
 
 	<bean id="item1" class="domain.Item">
 		<property name="name" value="Item1" />
 		<property name="description" value="Colegio Claret" />
 		<property name="link" value="https://link1.com" />
-		<property name="pictures" value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
-		<property name="provider" value="provider1" />
+		<property name="pictures"
+			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
+		<property name="provider" ref="provider1" />
 	</bean>
-	
+
 	<bean id="item2" class="domain.Item">
 		<property name="name" value="Item2" />
 		<property name="description" value="" />
 		<property name="link" value="https://link2.com" />
-		<property name="pictures" value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
-		<property name="provider" value="provider2" />
+		<property name="pictures"
+			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
+		<property name="provider" ref="provider2" />
 	</bean>
-	
+
+	<bean id="item3" class="domain.Item">
+		<property name="name" value="Item2" />
+		<property name="description" value="" />
+		<property name="link" value="https://link2.com" />
+		<property name="pictures"
+			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
+		<property name="provider" ref="provider3" />
+	</bean>
+
+	<bean id="item4" class="domain.Item">
+		<property name="name" value="Item2" />
+		<property name="description" value="" />
+		<property name="link" value="https://link2.com" />
+		<property name="pictures"
+			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
+		<property name="provider" ref="provider4" />
+	</bean>
+
+	<bean id="item5" class="domain.Item">
+		<property name="name" value="Item2" />
+		<property name="description" value="" />
+		<property name="link" value="https://link2.com" />
+		<property name="pictures"
+			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
+		<property name="provider" ref="provider5" />
+	</bean>
+
+	<bean id="item6" class="domain.Item">
+		<property name="name" value="Item2" />
+		<property name="description" value="" />
+		<property name="link" value="https://link2.com" />
+		<property name="pictures"
+			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
+		<property name="provider" ref="provider6" />
+	</bean>
 	<!-- Sponsorship -->
 
 	<bean id="sponsorship1" class="domain.Sponsorship">
 		<property name="banner" value="sponsorshipsito" />
 		<property name="target" value="learn a lot" />
-		<property name="position" value="position1" />
-		<property name="creditCard" value="creditCard1" />
-		<property name="provider" value="provider1" />
+		<property name="position" ref="position1" />
+		<property name="creditCard" ref="creditcard1" />
+		<property name="provider" ref="provider1" />
 	</bean>
-	
+
 	<bean id="sponsorship2" class="domain.Sponsorship">
 		<property name="banner" value="BEBESITAA" />
 		<property name="target" value="lo de nosotros es un secreto" />
-		<property name="position" value="position2" />
-		<property name="creditCard" value="creditCard2" />
-		<property name="provider" value="provider2" />
+		<property name="position" ref="position2" />
+		<property name="creditCard" ref="creditcard2" />
+		<property name="provider" ref="provider2" />
 	</bean>
 
 	<!-- MiscellaneousData -->

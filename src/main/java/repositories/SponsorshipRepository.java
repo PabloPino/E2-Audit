@@ -37,7 +37,7 @@ public interface SponsorshipRepository extends JpaRepository<Sponsorship, Intege
 	@Query("select stddev(1.0 * (select count(*) from Sponsorship s where s.position = p.id)) from Position p")
 	Double queryRookiesA2STDDEV();
 
-	@Query("select p from Sponsorship s join s.provider p group by  p having count(s)>1.1*(select avg(1.0*(select count(t) from Sponsorship t where t.provider.id=x.id))from Provider x)")
+	@Query("select p.name from Sponsorship s join s.provider p group by  p having count(s)>1.1*(select avg(1.0*(select count(t) from Sponsorship t where t.provider.id=x.id))from Provider x)")
 	Collection<domain.Provider> queryRookiesA3();
 
 }

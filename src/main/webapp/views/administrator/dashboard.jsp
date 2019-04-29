@@ -146,17 +146,9 @@
 			</spring:message>
 		</legend>
 		<display:table name="queryRookiesC3" id="row"
-			requestURI="${requestURI}" pagesize="5" class="displaytag">
+			requestURI="${requestURI}" pagesize="3" class="displaytag">
 			<acme:column code="dashboard.queryRookiesC3Company" value="${row}" />
 		</display:table>
-	</fieldset>
-
-	<fieldset>
-		<legend>
-			<spring:message code="dashboard.queryRookiesC4">
-			</spring:message>
-		</legend>
-		<acme:out code="dashboard.queryRookiesC4Salary" value="${queryRookiesC4}" />
 	</fieldset>
 
 	<fieldset>
