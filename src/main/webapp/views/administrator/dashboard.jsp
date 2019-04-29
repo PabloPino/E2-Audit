@@ -150,6 +150,16 @@
 			<acme:column code="dashboard.queryRookiesC3Company" value="${row}" />
 		</display:table>
 	</fieldset>
+	
+	<fieldset>
+		<legend>
+			<spring:message code="dashboard.queryRookiesC4">
+			</spring:message>
+		</legend>
+		<acme:out code="dashboard.queryRookiesC4Salary"
+			value="${queryRookiesC4}" />
+			
+	</fieldset>
 
 	<fieldset>
 		<legend>
