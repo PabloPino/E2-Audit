@@ -295,11 +295,11 @@ public class AdministratorDashboardController extends AbstractController {
 			result.addObject("queryRookiesC3", queryRookiesC3);
 
 		//QUERY C4
-		//		final Double queryRookiesC4 = this.auditService.queryRookiesC4();
-		//		if (queryRookiesC4 != null)
-		//			result.addObject("queryRookiesC4", df.format(queryRookiesC4));
-		//		else
-		//			result.addObject("queryRookiesC4", 0.0);
+		final Double queryRookiesC4 = this.auditService.queryRookiesC4();
+		if (queryRookiesC4 != null)
+			result.addObject("queryRookiesC4", df.format(queryRookiesC4));
+		else
+			result.addObject("queryRookiesC4", 0.0);
 
 		//QUERY B1
 		final Double queryRookiesB1AVG = this.itemService.queryRookiesB1AVG();

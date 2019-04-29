@@ -1,5 +1,5 @@
 
-package services;
+package servicesHackerRank;
 
 import java.util.List;
 
@@ -11,9 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import services.FinderService;
+import utilities.AbstractTest;
 import domain.Finder;
 import domain.Position;
-import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -29,7 +30,7 @@ public class UseCase17_2 extends AbstractTest {
 	//Service----------------------------------------------------------------------
 
 	@Autowired
-	private FinderService finderService;
+	private FinderService	finderService;
 
 
 	//Driver-----------------------------------------------------------------------

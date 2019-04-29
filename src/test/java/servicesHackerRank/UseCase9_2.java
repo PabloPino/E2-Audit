@@ -1,5 +1,5 @@
 
-package services;
+package servicesHackerRank;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,6 +14,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
+import services.ActorService;
+import services.ProblemService;
 import utilities.AbstractTest;
 import domain.Company;
 import domain.Problem;

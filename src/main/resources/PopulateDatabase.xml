@@ -528,7 +528,7 @@
 	</bean>
 
 	<bean id="provider3" class="domain.Provider">
-		<property name="name" value="Pepe" />
+		<property name="name" value="Felipe" />
 		<property name="surname" value="Fernández Gómez" />
 		<property name="photo" value="" />
 		<property name="phone" value="" />
@@ -565,7 +565,7 @@
 	</bean>
 
 	<bean id="provider5" class="domain.Provider">
-		<property name="name" value="Jesús" />
+		<property name="name" value="Pepe" />
 		<property name="surname" value="Gil Maestre" />
 		<property name="photo"
 			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
@@ -1450,6 +1450,15 @@
 			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
 		<property name="provider" ref="provider1" />
 	</bean>
+	
+	<bean id="item7" class="domain.Item">
+		<property name="name" value="Item1" />
+		<property name="description" value="Colegio Claret" />
+		<property name="link" value="https://link1.com" />
+		<property name="pictures"
+			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
+		<property name="provider" ref="provider1" />
+	</bean>
 
 	<bean id="item2" class="domain.Item">
 		<property name="name" value="Item2" />
@@ -1508,9 +1517,49 @@
 	<bean id="sponsorship2" class="domain.Sponsorship">
 		<property name="banner" value="BEBESITAA" />
 		<property name="target" value="lo de nosotros es un secreto" />
-		<property name="position" ref="position2" />
+		<property name="position" ref="position4" />
 		<property name="creditCard" ref="creditcard2" />
 		<property name="provider" ref="provider2" />
+	</bean>
+	
+	<bean id="sponsorship3" class="domain.Sponsorship">
+		<property name="banner" value="BEBESITAA" />
+		<property name="target" value="lo de nosotros es un secreto" />
+		<property name="position" ref="position1" />
+		<property name="creditCard" ref="creditcard3" />
+		<property name="provider" ref="provider3" />
+	</bean>
+	
+	<bean id="sponsorship4" class="domain.Sponsorship">
+		<property name="banner" value="BEBESITAA" />
+		<property name="target" value="lo de nosotros es un secreto" />
+		<property name="position" ref="position4" />
+		<property name="creditCard" ref="creditcard4" />
+		<property name="provider" ref="provider4" />
+	</bean>
+	
+	<bean id="sponsorship5" class="domain.Sponsorship">
+		<property name="banner" value="BEBESITAA" />
+		<property name="target" value="lo de nosotros es un secreto" />
+		<property name="position" ref="position1" />
+		<property name="creditCard" ref="creditcard5" />
+		<property name="provider" ref="provider5" />
+	</bean>
+	
+	<bean id="sponsorship6" class="domain.Sponsorship">
+		<property name="banner" value="BEBESITAA" />
+		<property name="target" value="lo de nosotros es un secreto" />
+		<property name="position" ref="position4" />
+		<property name="creditCard" ref="creditcard7" />
+		<property name="provider" ref="provider6" />
+	</bean>
+	
+	<bean id="sponsorship7" class="domain.Sponsorship">
+		<property name="banner" value="BEBESITAA" />
+		<property name="target" value="lo de nosotros es un secreto" />
+		<property name="position" ref="position4" />
+		<property name="creditCard" ref="creditcard9" />
+		<property name="provider" ref="provider6" />
 	</bean>
 
 	<!-- MiscellaneousData -->

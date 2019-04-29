@@ -1,5 +1,5 @@
 
-package services;
+package servicesHackerRank;
 
 import javax.transaction.Transactional;
 
@@ -11,6 +11,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
 import repositories.DomainEntityRepository;
+import services.ActorService;
+import services.CompanyService;
+import services.CreditCardService;
+import services.HackerService;
 import utilities.AbstractTest;
 import domain.Company;
 import domain.CreditCard;

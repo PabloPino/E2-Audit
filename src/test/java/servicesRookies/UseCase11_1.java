@@ -1,5 +1,5 @@
 
-package services;
+package servicesRookies;
 
 import javax.transaction.Transactional;
 
@@ -9,6 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import services.ApplicationService;
+import services.AuditService;
+import services.CurriculaService;
+import services.FinderService;
+import services.ItemService;
+import services.PositionService;
 import utilities.AbstractTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -16,9 +22,9 @@ import utilities.AbstractTest;
 	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
 })
 @Transactional
-public class UseCase18_1 extends AbstractTest {
+public class UseCase11_1 extends AbstractTest {
 
-	//	18. An actor who is authenticated as an administrator must be able to:
+	//	11. An actor who is authenticated as an administrator must be able to:
 	//		1. Display a dashboard  
 
 	//Service----------------------------------------------------------------------
@@ -35,6 +41,12 @@ public class UseCase18_1 extends AbstractTest {
 	@Autowired
 	private CurriculaService	curriculaService;
 
+	@Autowired
+	private AuditService		auditService;
+
+	@Autowired
+	private ItemService			itemService;
+
 
 	//Driver-----------------------------------------------------------------------
 
@@ -46,13 +58,13 @@ public class UseCase18_1 extends AbstractTest {
 				"hacker1", IllegalArgumentException.class
 			//Probamos con un usuario que no es un admin(CASO NEGATIVO)
 			//b) Negative test
-			//c) analysis of sentence coverage: 100%
+			//c) analysis of sentence coverage: 
 			//d) This user isn´t a admin, so it cannot manage the dashboard
 			}, {
 				"admin1", null
 			//Este admin si esta registrado en el sistema y puede ver el dashboard(CASO POSITIVO)
 			//b) Positive test
-			//c) analysis of sentence coverage: 100%
+			//c) analysis of sentence coverage: 
 			//d) This user is a admin, so it can manage the dashboard
 			},
 
@@ -95,6 +107,25 @@ public class UseCase18_1 extends AbstractTest {
 			System.out.println(this.finderService.queryB2MIN() + "\n");
 			System.out.println(this.finderService.queryB2STDDEV() + "\n");
 			System.out.println(this.finderService.queryB3() + "\n");
+
+			//Mostramos las queries del dashboard de Acme-Rookies apartado C
+			System.out.println(this.auditService.queryRookiesC1AVG() + "\n");
+			System.out.println(this.auditService.queryRookiesC1MAX() + "\n");
+			System.out.println(this.auditService.queryRookiesC1MIN() + "\n");
+			System.out.println(this.auditService.queryRookiesC1STDDEV() + "\n");
+			System.out.println(this.auditService.queryRookiesC2AVG() + "\n");
+			System.out.println(this.auditService.queryRookiesC1MAX() + "\n");
+			System.out.println(this.auditService.queryRookiesC2MIN() + "\n");
+			System.out.println(this.auditService.queryRookiesC2STDDEV() + "\n");
+			System.out.println(this.auditService.queryRookiesC3() + "\n");
+			System.out.println(this.auditService.queryRookiesC4() + "\n");
+
+			//Mostramos las queries del dashboard de Acme-Rookies apartado B
+			System.out.println(this.itemService.queryRookiesB1AVG() + "\n");
+			System.out.println(this.itemService.queryRookiesB1MAX() + "\n");
+			System.out.println(this.itemService.queryRookiesB1MIN() + "\n");
+			System.out.println(this.itemService.queryRookiesB1STDDEV() + "\n");
+			System.out.println(this.itemService.queryRookiesB2() + "\n");
 			//Nos desautenticamos
 			this.unauthenticate();
 

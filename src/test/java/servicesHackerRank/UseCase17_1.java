@@ -1,5 +1,5 @@
 
-package services;
+package servicesHackerRank;
 
 import java.util.List;
 
@@ -13,6 +13,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import security.LoginService;
 import security.UserAccount;
+import services.ActorService;
+import services.CurriculaService;
+import services.EducationDataService;
+import services.HackerService;
+import services.MiscellaneousDataService;
+import services.PersonalDataService;
+import services.PositionDataService;
+import services.ProblemService;
 import utilities.AbstractTest;
 import domain.Actor;
 import domain.Curricula;
