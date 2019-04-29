@@ -1,5 +1,5 @@
 
-package services;
+package servicesHackerRank;
 
 import java.util.List;
 
@@ -11,8 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import domain.Position;
+import services.PositionService;
 import utilities.AbstractTest;
+import domain.Position;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -29,7 +30,7 @@ public class UseCase7_4 extends AbstractTest {
 	//Service----------------------------------------------------------------------
 
 	@Autowired
-	private PositionService positionService;
+	private PositionService	positionService;
 
 
 	//Driver-----------------------------------------------------------------------

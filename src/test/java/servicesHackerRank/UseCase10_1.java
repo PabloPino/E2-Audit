@@ -1,5 +1,5 @@
 
-package services;
+package servicesHackerRank;
 
 import java.util.List;
 
@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import services.ActorService;
+import services.ApplicationService;
+import services.CompanyService;
+import services.PositionService;
 import utilities.AbstractTest;
 import domain.Application;
 import domain.Company;
