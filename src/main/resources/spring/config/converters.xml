@@ -61,6 +61,12 @@
 		
 		<bean class="converters.MiscellaneousDataToStringConverter" />
 		<bean class="converters.StringToMiscellaneousDataConverter" />
+		
+		<bean class="converters.AuditToStringConverter" />
+		<bean class="converters.StringToAuditConverter" />
+		
+		<bean class="converters.AuditorToStringConverter" />
+		<bean class="converters.StringToAuditorConverter" />
 
 	</util:list>
 

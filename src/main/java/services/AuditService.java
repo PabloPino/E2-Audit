@@ -1,14 +1,21 @@
 
 package services;
 
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import repositories.AuditRepository;
+import security.LoginService;
+import domain.Audit;
+import domain.Auditor;
+import domain.Position;
 
 @Service
 @Transactional
@@ -23,8 +30,59 @@ public class AuditService {
 	@Autowired
 	ServiceUtils			serviceUtils;
 
+	@Autowired
+	private CompanyService	companyService;
+
+	@Autowired
+	private AuditorService	auditorService;
+
 
 	//CRUD----------------------------------------------------------------------
+
+	public Audit create() {
+		final Audit audit = new Audit();
+		final Auditor auditor = this.auditorService.findAuditorByUserAcountId(LoginService.getPrincipal().getId());
+		this.serviceUtils.checkAuthority("AUDITOR");
+		audit.setAuditor(auditor);
+		audit.setFinalMode(false);
+		audit.setMoment(new Date(System.currentTimeMillis() - 1000));
+
+		return audit;
+	}
+
+	public Audit save(Audit audit) {
+		Assert.notNull(audit);
+		final Auditor comp = audit.getAuditor();
+		final Position pos = audit.getPosition();
+
+		//		if (audit.isFinalMode() == true)
+		//			throw new IllegalAccessError("No se puede editar si no esta en borrador");
+
+		final Audit auditDB = (Audit) this.serviceUtils.checkObjectSave(audit);
+		this.serviceUtils.checkIdSave(audit);
+
+		if (auditDB.isFinalMode() == false)
+			audit = this.auditRepository.save(audit);
+		return audit;
+	}
+
+	public void delete(final Audit audit) {
+		audit.setFinalMode(false);
+		Assert.notNull(audit);
+		this.serviceUtils.checkActor(audit.getAuditor());
+		Assert.isTrue(audit.isFinalMode() == false);
+
+		this.auditRepository.delete(audit);
+
+	}
+
+	public Audit findOne(final int auditId) {
+		return this.auditRepository.findOne(auditId);
+	}
+
+	public Collection<Audit> findAll() {
+		return this.auditRepository.findAll();
+	}
 
 	//Others------------------------------------------------------------------------
 
@@ -77,6 +135,35 @@ public class AuditService {
 	public Double queryRookiesC4() {
 		this.serviceUtils.checkAuthority("ADMIN");
 		return this.auditRepository.queryRookiesC4();
+	}
+
+	//metodos útiles
+
+	public Audit findAuditById(final int auditId) {
+		final Audit res = this.auditRepository.findAuditById(auditId);
+
+		return res;
+
+	}
+
+	public List<Audit> findAuditsByAuditor(final Auditor auditor) {
+		final List<Audit> res = this.auditRepository.findAuditsByAuditor(auditor);
+		return res;
+
+	}
+	public Audit findAuditByPositionId(final int positionId) {
+		final Audit res = this.auditRepository.findAuditByPositionId(positionId);
+		return res;
+	}
+	public Collection<Audit> findAuditsFinalByAuditorId(final int auditorId) {
+		final Collection<Audit> res = this.auditRepository.findAuditsFinalByAuditorId(auditorId);
+		return res;
+
+	}
+	public Collection<Audit> findAuditsByAuditorId(final int auditorId) {
+		final Collection<Audit> res = this.auditRepository.findAuditsByAuditorId(auditorId);
+		return res;
+
 	}
 
 }

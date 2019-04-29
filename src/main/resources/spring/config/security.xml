@@ -52,6 +52,16 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/actor/edit.do"
 			access="isAuthenticated()" />
+			
+			
+			
+			
+			
+		<security:intercept-url pattern="/audit/**"
+			access="hasRole('AUDITOR')" />
+			
+			
+			
 
 
 		<security:intercept-url pattern="/company/company/**"

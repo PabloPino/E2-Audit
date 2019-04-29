@@ -111,6 +111,15 @@
 
 		</security:authorize>
 
+		
+				<security:authorize access="hasRole('AUDITOR')">
+			<li><a class="fNiv" href="audit/list.do"><spring:message
+						code="master.page.audit" /></a></li>
+			
+
+
+		</security:authorize>
+
 		<security:authorize access="hasRole('HACKER')">
 			<li><a href="application/hacker/list.do"><spring:message
 						code="master.page.applications" /></a></li>

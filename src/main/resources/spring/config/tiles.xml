@@ -37,6 +37,10 @@
 		<value>/views/positionData/tiles.xml</value>
 		<value>/views/educationData/tiles.xml</value>
 		<value>/views/miscellaneousData/tiles.xml</value>
+		
+		<value>/views/audit/tiles.xml</value>
+		
+		
 
 
 
