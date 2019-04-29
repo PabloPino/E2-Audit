@@ -74,7 +74,7 @@
 
 <div align="center">
 	<a href="#"><img src="${banner}" alt="Acme Hacker Rank Co., Inc."
-		width="25%" height="25%" /></a>
+		width="20%" height="20%" /></a>
 </div>
 <form:form action="${requestURI}" modelAttribute="warning">
 	<security:authorize access="isAuthenticated()">
