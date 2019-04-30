@@ -102,6 +102,8 @@
 						code="master.page.dashboard" /></a>
 			<li><a href="actor/administrator/listToBan.do"><spring:message
 						code="master.page.administrator.listToBan" /></a></li>
+			<li><a href="actor/administrator/companiesScores.do"><spring:message
+						code="master.page.administrator.companiesScores" /></a></li>			
 			<li><a href="register/administrator/newActor.do?authority=ADMIN"><spring:message
 						code="master.page.register.admin" /></a></li>
 			<li><a class="fNiv" href="position/list.do"><spring:message

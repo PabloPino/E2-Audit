@@ -135,6 +135,13 @@ public class CompanyService {
 		 */
 		return res;
 	}
+
+	public Company saveForAdmins(final Company c) {
+
+		final Company res = this.repository.save(c);
+
+		return res;
+	}
 	public void delete(final Company b) {
 		final Company company = (Company) this.serviceUtils.checkObject(b);
 		this.serviceUtils.checkActor(company);

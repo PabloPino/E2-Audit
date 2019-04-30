@@ -18,9 +18,11 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Actor;
 import domain.Administrator;
+import domain.Company;
 import domain.Configuration;
 import domain.CreditCard;
 import domain.Message;
+import domain.Position;
 import domain.SocialProfile;
 
 @Service
@@ -44,6 +46,9 @@ public class AdministratorService {
 	private CreditCardService		creditCardService;
 
 	@Autowired
+	private CompanyService			companyService;
+
+	@Autowired
 	private ServiceUtils			serviceUtils;
 
 	@Autowired(required = false)
@@ -54,6 +59,9 @@ public class AdministratorService {
 
 	@Autowired
 	private SocialProfileService	socialProfileService;
+
+	@Autowired
+	private PositionService			positionService;
 
 
 	// --------------------------Constructor-----------------------
@@ -250,7 +258,32 @@ public class AdministratorService {
 			}
 		return res;
 	}
+	public void generateCompanyScores() {
+		this.serviceUtils.checkAuthority(Authority.ADMIN);
+		final Collection<Company> allCompanies = this.companyService.findAll();
+		for (final Company c : allCompanies) {
+			final Double finalValue;
+			int i = 0;
+			Double value = 0.0;
+			final Collection<Position> positionFinish = this.positionService.findPositionsByCompanyIdFinals(c.getId());
+			for (final Position p : positionFinish)
+				if (p.getAudit() != null) {
+					i++;
+					value += p.getAudit().getScore();
+				}
+			if (i == 0)
+				finalValue = null;
+			else {
+				value = value / i;
 
+				//reescalamos al rango -1,1
+				finalValue = ((value / 10) * 2) - 1;
+			}
+			c.setScore(finalValue);
+			this.companyService.saveForAdmins(c);
+		}
+
+	}
 	//		public boolean containsSpam(final String s) {
 	//			boolean res = false;
 	//			final List<String> negativeWords = new ArrayList<>();

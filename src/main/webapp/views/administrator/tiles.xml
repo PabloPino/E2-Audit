@@ -25,5 +25,10 @@
 		<put-attribute name="title" value="Register as a administrator" /> 
 		<put-attribute name="body" value="/views/administrator/register.jsp" /> 
 	</definition>
+	
+	<definition name="administrator/companiesScores" extends="master.page">
+		<put-attribute name="title" value="List all the companies' scores" />
+		<put-attribute name="body" value="/views/administrator/listCompaniesScores.jsp" />
+	</definition>
 
 </tiles-definitions>

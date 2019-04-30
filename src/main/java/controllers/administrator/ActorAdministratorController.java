@@ -16,9 +16,11 @@ import security.LoginService;
 import security.UserAccount;
 import services.ActorService;
 import services.AdministratorService;
+import services.CompanyService;
 import services.ConfigurationService;
 import controllers.AbstractController;
 import domain.Actor;
+import domain.Company;
 
 @Controller
 @RequestMapping("/actor/administrator")
@@ -34,6 +36,9 @@ public class ActorAdministratorController extends AbstractController {
 
 	@Autowired
 	private AdministratorService	administratorService;
+
+	@Autowired
+	private CompanyService			companyService;
 
 
 	// Constructor-----------------------------------------------------
@@ -173,6 +178,20 @@ public class ActorAdministratorController extends AbstractController {
 		ua.setBanned(true);
 
 		result = this.createEditModelAndView2(actor);
+		result.addObject("banner", this.configurationService.findOne().getBanner());
+
+		return result;
+
+	}
+	//	//------------------COMPANIES SCORES---------------------------------------------
+
+	@RequestMapping(value = "/companiesScores", method = RequestMethod.GET)
+	public ModelAndView companiesScores() {
+		ModelAndView result;
+		this.administratorService.generateCompanyScores();
+		final Collection<Company> companys = this.companyService.findAll();
+		result = new ModelAndView("administrator/companiesScores");
+		result.addObject("companys", companys);
 		result.addObject("banner", this.configurationService.findOne().getBanner());
 
 		return result;
