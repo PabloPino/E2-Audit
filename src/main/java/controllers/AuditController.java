@@ -21,10 +21,12 @@ import services.CompanyService;
 import services.ConfigurationService;
 import services.HackerService;
 import services.MessageService;
+import services.PositionService;
 import services.ProblemService;
 import services.ServiceUtils;
 import domain.Audit;
 import domain.Auditor;
+import domain.Position;
 
 @Controller
 @RequestMapping("/audit")
@@ -46,6 +48,9 @@ public class AuditController extends AbstractController {
 
 	@Autowired
 	ProblemService			problemService;
+
+	@Autowired
+	PositionService			positionService;
 
 	@Autowired
 	MessageService			messageService;
@@ -128,11 +133,17 @@ public class AuditController extends AbstractController {
 
 	//	//------------------------------------------
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create() {
+	public ModelAndView create(final int positionId) {
 		ModelAndView result;
 		Audit audit;
-		audit = this.auditService.create();
+		audit = this.auditService.create(positionId);
+		final Auditor auditor = this.auditorService.findAuditorByUserAcountId(LoginService.getPrincipal().getId());
+		final Position position = this.positionService.findOne(positionId);
+
 		result = this.createEditModelAndView(audit);
+		//		result.addObject("position", position);
+		//		result.addObject("auditor", auditor);
+
 		return result;
 
 	}
@@ -186,6 +197,7 @@ public class AuditController extends AbstractController {
 
 		result = new ModelAndView("audit/edit");
 		result.addObject("audit", audit);
+
 		result.addObject("banner", this.configurationService.findOne().getBanner());
 		result.addObject("message", message);
 		result.addObject("readonly", readonly);
@@ -213,9 +225,25 @@ public class AuditController extends AbstractController {
 			result = new ModelAndView("redirect:list.do");
 		} catch (final Throwable oops) {
 			result = this.createEditModelAndView(audit, "audit.commit.error");
-			System.out.println("El error es  --->" + binding.hasErrors());
+			System.out.println("El error en el delete de audit es por --->" + binding.hasErrors());
+			System.out.println(binding.getAllErrors());
 
 		}
 		return result;
+	}
+
+	@RequestMapping(value = "/assign", method = RequestMethod.GET)
+	public ModelAndView assign(final int positionId) {
+		ModelAndView result;
+		final Audit audit = this.auditService.create(positionId);
+		final Position position = this.positionService.findOne(positionId);
+		position.setAudit(audit);
+		this.positionService.saveForAudits(position);
+
+		result = this.createEditModelAndView(audit);
+		//result.addObject("auditor", auditor);
+
+		return result;
+
 	}
 }

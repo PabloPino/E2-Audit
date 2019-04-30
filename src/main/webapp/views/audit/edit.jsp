@@ -64,7 +64,7 @@
 
 					<%-- 					<acme:textbox code="audit.ticker" path="ticker" />
  --%>
-					<acme:textbox code="audit.text" path="text" />
+					<acme:textarea code="audit.text" path="text" />
 					<acme:textbox code="audit.score" path="score" />
 					
 <%-- 					<acme:textbox code="audit.finalMode" path="finalMode" />

@@ -19,6 +19,7 @@ import repositories.PositionRepository;
 import security.Authority;
 import security.LoginService;
 import domain.Application;
+import domain.Audit;
 import domain.Company;
 import domain.Position;
 import domain.Problem;
@@ -42,6 +43,9 @@ public class PositionService {
 
 	@Autowired
 	private ApplicationService	applicationService;
+
+	@Autowired
+	private AuditService		auditService;
 
 
 	public Position create() {
@@ -296,4 +300,49 @@ public class PositionService {
 		this.positionRepository.flush();
 	}
 
+	//------------
+
+	public Collection<Position> getPositionsWithoutAuditor() {
+		final Collection<Position> all = this.positionRepository.findFinalPosition();
+		final Collection<Audit> allAudits = this.auditService.findAll();
+		final Collection<Position> res = new ArrayList<>();
+
+		for (final Position p : all)
+			for (final Audit a : allAudits) {
+				int count = 0;
+				if (a.getPosition().equals(p)) {
+					count++;
+					if (count == 0) {
+						res.add(p);
+						count = 0;
+					}
+
+				}
+			}
+
+		return res;
+
+	}
+
+	public Collection<Position> getPositionsToAudit() {
+		final Collection<Position> all = this.positionRepository.findFinalPosition();
+		final Collection<Audit> allAudits = this.auditService.findAll();
+		final Collection<Position> res = new ArrayList<>();
+		for (final Audit a : allAudits)
+			all.remove(a.getPosition());
+
+		return all;
+
+	}
+
+	public Position saveForAudits(Position position) {
+		Assert.notNull(position);
+
+		final Position positionDB = (Position) this.serviceUtils.checkObjectSave(position);
+		this.serviceUtils.checkIdSave(position);
+
+		position = this.positionRepository.save(position);
+
+		return position;
+	}
 }

@@ -59,6 +59,12 @@
 
 		<security:intercept-url pattern="/audit/**"
 			access="hasRole('AUDITOR')" />
+			
+		<security:intercept-url pattern="/audit.assign/**"
+			access="hasRole('AUDITOR')" />
+			
+		<security:intercept-url pattern="/position/listToAudit.do"
+			access="hasRole('AUDITOR')" />
 
 
 

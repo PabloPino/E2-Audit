@@ -24,6 +24,11 @@
 		<put-attribute name="body" value="/views/position/list.jsp" />
 	</definition>
 	
+	<definition name="position/listToAudit" extends="master.page">	
+		<put-attribute name="title" value="Lista de puestos para revisar" />
+		<put-attribute name="body" value="/views/position/listToAudit.jsp" />
+	</definition>
+	
 	<definition name="position/myList" extends="master.page">
 		<put-attribute name="title" value="Mis puestos" />
 		<put-attribute name="body" value="/views/position/myList.jsp" />

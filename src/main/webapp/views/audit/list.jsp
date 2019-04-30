@@ -70,5 +70,5 @@
 
 	<input type="button" name="create"
 		value="<spring:message code="audit.create"></spring:message>"
-		onclick="javascript:relativeRedir('audit/create.do')" />
+		onclick="javascript:relativeRedir('position/listToAudit.do')" />
 </security:authorize>

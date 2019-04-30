@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import domain.Audit;
 import domain.Auditor;
+import domain.Position;
 
 @Repository
 public interface AuditRepository extends JpaRepository<Audit, Integer> {
@@ -55,6 +56,9 @@ public interface AuditRepository extends JpaRepository<Audit, Integer> {
 
 	@Query("select p from Audit p where p.position.id = ?1")
 	Audit findAuditByPositionId(int positionId);
+
+	@Query("select p from Position p where p.audit.id = ?1")
+	Position findPositionByAuditId(int auditId);
 
 	@Query("select p from Audit p where p.auditor.id = ?1 and p.finalMode = true")
 	Collection<Audit> findAuditsFinalByAuditorId(Integer auditorId);

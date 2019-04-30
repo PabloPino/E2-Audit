@@ -116,6 +116,14 @@
 			<li><a class="fNiv" href="audit/list.do"><spring:message
 						code="master.page.audit" /></a></li>
 
+			<li><a class="fNiv" href="position/listToAudit.do"><spring:message
+						code="master.page.listToAudit" /></a></li>
+			<li><a href="position/list.do"><spring:message
+						code="master.page.position" /></a></li>
+			
+
+
+
 		</security:authorize>
 
 		<li><a class="fNiv" href="item/list.do"><spring:message
