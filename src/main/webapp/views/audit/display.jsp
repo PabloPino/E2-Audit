@@ -29,7 +29,15 @@
 
 <acme:out code="audit.position" value="${audit.position.title}" />
 <%-- <acme:out code="audit.auditor" value="${audit.auditor.name}" />
+
+
  --%>
+ 
+ 		<a href="position/display.do?positionId=${audit.position.id}"><spring:message
+				code="audit.position"></spring:message></a>
+				<br>
+				<br>
+				
 
 
 

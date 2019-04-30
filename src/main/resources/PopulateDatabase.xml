@@ -442,16 +442,16 @@
 
 	<!-- &Auditors -->
 
-	<bean id="audit1" class="domain.Audit">
+<!-- 	<bean id="audit1" class="domain.Audit">
 		<property name="moment" value="June 28, 2018" />
 		<property name="text" value="Desde mi punto de vista el salario es bajo para las tecnologias" />
 		<property name="score" value="5.0" />
 		<property name="finalMode" value="true" />
 		<property name="auditor" ref="auditor1" />
 		<property name="position" ref="position1" />
-	</bean>
+	</bean> -->
 
-	<bean id="audit2" class="domain.Audit">
+<!-- 	<bean id="audit2" class="domain.Audit">
 		<property name="moment" value="March 8, 2017" />
 		<property name="text" value="Demasiadas tecnologias piden para lo poco que pagan" />
 		<property name="score" value="2.0" />
@@ -467,7 +467,7 @@
 		<property name="finalMode" value="true" />
 		<property name="auditor" ref="auditor3" />
 		<property name="position" ref="position3" />
-	</bean>
+	</bean> -->
 
 	<bean id="audit4" class="domain.Audit">
 		<property name="moment" value="December 28, 2018" />
@@ -478,14 +478,14 @@
 		<property name="position" ref="position4" />
 	</bean>
 
-	<bean id="audit5" class="domain.Audit">
+<!-- 	<bean id="audit5" class="domain.Audit">
 		<property name="moment" value="March 4, 2016" />
 		<property name="text" value="Aceptable,buen salario y pocas tecnologias dificiles " />
 		<property name="score" value="5.0" />
 		<property name="finalMode" value="false" />
 		<property name="auditor" ref="auditor1" />
 		<property name="position" ref="position5" />
-	</bean>
+	</bean>  -->
 
 	<!-- &Provider -->
 
@@ -734,6 +734,9 @@
 
 		<property name="company" ref="company1" />
 
+	
+		
+
 	</bean>
 
 	<bean id="position2" class="domain.Position">
@@ -752,6 +755,8 @@
 		<property name="cancel" value="false" />
 
 		<property name="company" ref="company1" />
+		
+		
 
 	</bean>
 
@@ -774,6 +779,7 @@
 
 		<property name="company" ref="company1" />
 
+
 	</bean>
 
 
@@ -793,6 +799,9 @@
 		<property name="cancel" value="false" />
 
 		<property name="company" ref="company2" />
+		
+		<property name="audit" ref="audit4" />
+		
 
 	</bean>
 
@@ -812,6 +821,8 @@
 		<property name="cancel" value="false" />
 
 		<property name="company" ref="company2" />
+		
+		
 
 	</bean>
 

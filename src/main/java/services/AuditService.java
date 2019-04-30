@@ -36,13 +36,17 @@ public class AuditService {
 	@Autowired
 	private AuditorService	auditorService;
 
+	@Autowired
+	private PositionService	positionService;
+
 
 	//CRUD----------------------------------------------------------------------
 
-	public Audit create() {
+	public Audit create(final int positionId) {
 		final Audit audit = new Audit();
 		final Auditor auditor = this.auditorService.findAuditorByUserAcountId(LoginService.getPrincipal().getId());
 		this.serviceUtils.checkAuthority("AUDITOR");
+		audit.setPosition(this.positionService.findOne(positionId));
 		audit.setAuditor(auditor);
 		audit.setFinalMode(false);
 		audit.setMoment(new Date(System.currentTimeMillis() - 1000));
@@ -68,9 +72,14 @@ public class AuditService {
 
 	public void delete(final Audit audit) {
 		audit.setFinalMode(false);
+
 		Assert.notNull(audit);
+
+		final Position a = this.auditRepository.findPositionByAuditId(audit.getId());
+		a.setAudit(null);
+		this.positionService.saveForAudits(a);
 		this.serviceUtils.checkActor(audit.getAuditor());
-		Assert.isTrue(audit.isFinalMode() == false);
+		//Assert.isTrue(audit.isFinalMode() == false);
 
 		this.auditRepository.delete(audit);
 
@@ -155,6 +164,12 @@ public class AuditService {
 		final Audit res = this.auditRepository.findAuditByPositionId(positionId);
 		return res;
 	}
+
+	public Position findPositionByAuditId(final int auditId) {
+		final Position res = this.auditRepository.findPositionByAuditId(auditId);
+		return res;
+	}
+
 	public Collection<Audit> findAuditsFinalByAuditorId(final int auditorId) {
 		final Collection<Audit> res = this.auditRepository.findAuditsFinalByAuditorId(auditorId);
 		return res;

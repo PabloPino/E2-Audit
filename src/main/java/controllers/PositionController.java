@@ -113,6 +113,23 @@ public class PositionController extends AbstractController {
 
 	}
 
+	//-------------------------- List ----------------------------------
+	@RequestMapping(value = "/listToAudit", method = RequestMethod.GET)
+	public ModelAndView listToAudit() {
+		ModelAndView modelAndView;
+
+		//		final Collection<Position> positions = this.positionService.getPositionsWithoutAuditor();
+		final Collection<Position> positions = this.positionService.getPositionsToAudit();
+
+		modelAndView = new ModelAndView("position/listToAudit");
+		modelAndView.addObject("positions", positions);
+		modelAndView.addObject("requestURI", "position/listToAudit.do");
+		modelAndView.addObject("banner", this.configurationService.findOne().getBanner());
+
+		return modelAndView;
+
+	}
+
 	//Searching-------------------------------------------------------------
 
 	@RequestMapping(value = "/searchResult", method = RequestMethod.POST, params = "search")
