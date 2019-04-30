@@ -17,7 +17,7 @@ import services.ItemService;
 import utilities.AbstractTest;
 
 @ContextConfiguration(locations = {
-	"classpath:spring/junit.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
 })
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
@@ -73,7 +73,7 @@ public class UseCase10_1Test extends AbstractTest {
 			//c) analysis of sentence coverage:
 			//d) Using one of the actors that is the provider1, who is a provider
 			}, {
-				null, AssertionError.class
+				null, IllegalArgumentException.class
 			//Un actor no autenticado no deberia crear items (NEGATIVO)
 			//b) Negative test
 			//c) analysis of sentence coverage:
@@ -99,7 +99,7 @@ public class UseCase10_1Test extends AbstractTest {
 			//c) analysis of sentence coverage:
 			//d) Using one of the actors that is the provider1, who is a provider
 			}, {
-				null, AssertionError.class
+				null, IllegalArgumentException.class
 			//Un actor no autenticado no deberia editar items (NEGATIVO)
 			//b) Negative test
 			//c) analysis of sentence coverage:
@@ -126,7 +126,7 @@ public class UseCase10_1Test extends AbstractTest {
 			//c) analysis of sentence coverage:
 			//d) Using one of the actors that is the provider1, who is a sponsor
 			}, {
-				null, AssertionError.class
+				null, IllegalArgumentException.class
 			//Un actor no autenticado no deberia editar items (NEGATIVO)
 			//b) Negative test
 			//c) analysis of sentence coverage:
