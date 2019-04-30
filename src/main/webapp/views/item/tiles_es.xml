@@ -9,24 +9,14 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-	<definition name="audit/edit" extends="master.page">
-		<put-attribute name="title" value="Editar revision" />
-		<put-attribute name="body" value="/views/audit/edit.jsp" />
+	<definition name="item/edit" extends="master.page">
+		<put-attribute name="title" value="Editar item" />
+		<put-attribute name="body" value="/views/item/edit.jsp" />
 	</definition>
-	
-	<definition name="audit/display" extends="master.page">
-		<put-attribute name="title" value="Mostrar revision" />
-		<put-attribute name="body" value="/views/audit/display.jsp" />
-	</definition>
-	
-	<definition name="audit/list" extends="master.page">
-		<put-attribute name="title" value="Lista de revisions" />
-		<put-attribute name="body" value="/views/audit/list.jsp" />
-	</definition>
-	
-	<definition name="audit/myList" extends="master.page">
-		<put-attribute name="title" value="Mis revisions" />
-		<put-attribute name="body" value="/views/audit/myList.jsp" />
+
+	<definition name="item/list" extends="master.page">
+		<put-attribute name="title" value="Listar items" />
+		<put-attribute name="body" value="/views/item/list.jsp" />
 	</definition>
 
 </tiles-definitions>
