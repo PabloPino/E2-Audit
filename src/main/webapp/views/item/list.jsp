@@ -38,7 +38,7 @@
 	</security:authorize>
 
 	<display:column titleKey="item.provider">
-
+		<a href="provider/list.do?itemId=${row.id}">${row.provider.userAccount.username}</a>
 	</display:column>
 
 	<acme:column code="item.name" value="${row.name}"></acme:column>
