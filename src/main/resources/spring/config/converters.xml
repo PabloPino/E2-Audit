@@ -40,33 +40,39 @@
 
 		<bean class="converters.FinderToStringConverter" />
 		<bean class="converters.StringToFinderConverter" />
-		
+
 		<bean class="converters.ActorToStringConverter" />
 		<bean class="converters.StringToActorConverter" />
-		
+
 		<bean class="converters.MessageToStringConverter" />
 		<bean class="converters.StringToMessageConverter" />
-		
+
 		<bean class="converters.CurriculaToStringConverter" />
 		<bean class="converters.StringToCurriculaConverter" />
-		
+
 		<bean class="converters.PersonalDataToStringConverter" />
 		<bean class="converters.StringToPersonalDataConverter" />
 
 		<bean class="converters.PositionDataToStringConverter" />
 		<bean class="converters.StringToPositionDataConverter" />
-		
+
 		<bean class="converters.EducationDataToStringConverter" />
 		<bean class="converters.StringToEducationDataConverter" />
-		
+
 		<bean class="converters.MiscellaneousDataToStringConverter" />
 		<bean class="converters.StringToMiscellaneousDataConverter" />
-		
+
 		<bean class="converters.AuditToStringConverter" />
 		<bean class="converters.StringToAuditConverter" />
-		
+
 		<bean class="converters.AuditorToStringConverter" />
 		<bean class="converters.StringToAuditorConverter" />
+
+		<bean class="converters.ItemToStringConverter" />
+		<bean class="converters.StringToItemConverter" />
+
+		<bean class="converters.ProviderToStringConverter" />
+		<bean class="converters.StringToProviderConverter" />
 
 	</util:list>
 

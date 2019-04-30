@@ -22,44 +22,35 @@
 
 
 
-<security:authentication property="principal.username" var="username" />
-<jstl:if
-	test='${item.provider.userAccount.username == username || item.id == 0}'>
-	<security:authorize access="hasRole('AUDITOR')">
-		<div>
 
-			<form:form action="item/provider/edit.do" modelAttribute="item">
+<form:form action="${requestURI}" modelAttribute="item">
 
-				<form:hidden path="id" />
-				<form:hidden path="version" />
-				<form:hidden path="provider" />
+	<form:hidden path="id" />
+	<form:hidden path="version" />
+	<form:hidden path="provider" />
 
 
-				<acme:textbox code="item.name" path="name" />
-				<acme:textbox code="item.description" path="description" />
-				<acme:textarea code="item.link" path="link" />
-				<acme:textarea code="item.pictures" path="pictures" />
+	<acme:textbox code="item.name" path="name" />
+	<acme:textbox code="item.description" path="description" />
+	<acme:textarea code="item.link" path="link" />
+	<acme:textarea code="item.pictures" path="pictures" />
 
 
 
-				<!--  Los botones de crear y cancelar -->
 
-
-				<input type="submit" name="save"
-					value="<spring:message code="audit.save"></spring:message>" />
+	<input type="submit" name="save"
+		value="<spring:message code="item.save"></spring:message>" />
 
 
 
-				<jstl:if test="${item.id != 0}">
-					<input type="submit" name="delete"
-						value="<spring:message code="item.delete" />"
-						onclick="return confirm('<spring:message code="item.confirm.delete" />')" />&nbsp;
+	<jstl:if test="${item.id != 0}">
+		<input type="submit" name="delete"
+			value="<spring:message code="item.delete" />"
+			onclick="return confirm('<spring:message code="item.confirm.delete" />')" />&nbsp;
 				</jstl:if>
-			</form:form>
-			<acme:cancel url="item/provider/list.do" code="item.cancel" />
 
-		</div>
+	<acme:cancel url="item/provider/list.do" code="item.cancel" />
+</form:form>
 
-	</security:authorize>
 
-</jstl:if>
+

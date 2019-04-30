@@ -28,32 +28,42 @@
 	<security:authorize access="hasRole('PROVIDER')">
 		<security:authentication property="principal.username" var="username" />
 
-		<jstl:if test='${row.provider.userAccount.username == username}'>
-			<display:column>
+
+		<display:column>
+			<jstl:if test='${row.provider.userAccount.username == username}'>
 				<a href="item/provider/edit.do?itemId=${row.id}"><spring:message
 						code="item.edit"></spring:message></a>
-			</display:column>
-		</jstl:if>
+			</jstl:if>
+		</display:column>
+
 
 	</security:authorize>
 
 	<display:column titleKey="item.provider">
-
+		<a href="provider/list.do?itemId=${row.id}">${row.provider.userAccount.username}</a>
 	</display:column>
 
-	<acme:column code="item.name" value="${row.name}"></acme:column>
-	<acme:column code="item.description" value="${row.description}"></acme:column>
-	<acme:column code="item.link" value="${row.link}"></acme:column>
-	<acme:column code="item.pictures" value="${row.pictures}"></acme:column>
-
+	<acme:column code="item.name" value="${row.name}" />
+	<acme:column code="item.description" value="${row.description}" />
+	<display:column titleKey="item.link">
+		<jstl:forEach items="${row.link}" var="i">
+			<a href="${i}">${i}</a>
+		</jstl:forEach>
+	</display:column>
+	<display:column titleKey="item.pictures">
+		<jstl:forEach items="${row.pictures}" var="i">
+			<img src="${i}" height="50px" width="50px" />
+		</jstl:forEach>
+	</display:column>
 
 </display:table>
 
 
 <security:authorize access="hasRole('PROVIDER')">
 
-	<input type="button" name="create"
-		value="<spring:message code="item.create"></spring:message>"
-		onclick="javascript:relativeRedir('item/provider/create.do')" />
+	<a href="item/provider/create.do"> <spring:message
+			code="item.create" />
+	</a>
+
 
 </security:authorize>

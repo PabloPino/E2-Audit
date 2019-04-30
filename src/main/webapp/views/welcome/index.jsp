@@ -63,7 +63,7 @@
 
 
 
-<security:authorize access="hasAnyRole('COMPANY','HACKER')">
+<security:authorize access="hasAnyRole('COMPANY','HACKER','PROVIDER')">
 
 
 

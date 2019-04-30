@@ -58,6 +58,11 @@ public class ItemService {
 		return this.itemRepository.findAll();
 	}
 
+	public List<Item> findAllByPrincipal() {
+		final Provider provider = this.providerService.findProviderByUserAcountId(LoginService.getPrincipal().getId());
+		return this.itemRepository.findItemsByProviderId(provider.getId());
+	}
+
 	public Item findOne(final Integer id) {
 		return this.itemRepository.findOne(id);
 	}

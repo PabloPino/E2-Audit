@@ -115,15 +115,14 @@
 		<security:authorize access="hasRole('AUDITOR')">
 			<li><a class="fNiv" href="audit/list.do"><spring:message
 						code="master.page.audit" /></a></li>
-<<<<<<< HEAD
+
 			<li><a class="fNiv" href="position/listToAudit.do"><spring:message
 						code="master.page.listToAudit" /></a></li>
 			<li><a href="position/list.do"><spring:message
 						code="master.page.position" /></a></li>
 			
 
-=======
->>>>>>> 8dca2935bd838cac390927fe0faed1df3326dd88
+
 
 		</security:authorize>
 
