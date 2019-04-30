@@ -106,30 +106,50 @@
 						code="master.page.register.admin" /></a></li>
 			<li><a class="fNiv" href="position/list.do"><spring:message
 						code="master.page.position" /></a></li>
-			
+
 
 
 		</security:authorize>
 
-		
-				<security:authorize access="hasRole('AUDITOR')">
+
+		<security:authorize access="hasRole('AUDITOR')">
 			<li><a class="fNiv" href="audit/list.do"><spring:message
 						code="master.page.audit" /></a></li>
+<<<<<<< HEAD
+			<li><a class="fNiv" href="position/listToAudit.do"><spring:message
+						code="master.page.listToAudit" /></a></li>
+			<li><a href="position/list.do"><spring:message
+						code="master.page.position" /></a></li>
 			
 
+=======
+>>>>>>> 8dca2935bd838cac390927fe0faed1df3326dd88
 
 		</security:authorize>
+
+		<li><a class="fNiv" href="item/list.do"><spring:message
+					code="master.page.items" /></a>
+			<ul>
+
+				<li class="arrow"></li>
+				<security:authorize access="hasRole('PROVIDER')">
+					<li><a href="item/provider/list.do"><spring:message
+								code="master.page.provider.items" /></a></li>
+				</security:authorize>
+			</ul></li>
+
+
 
 		<security:authorize access="hasRole('HACKER')">
 			<li><a href="application/hacker/list.do"><spring:message
 						code="master.page.applications" /></a></li>
-			
+
 			<li><a href="position/list.do"><spring:message
 						code="master.page.position" /></a></li>
-			
+
 			<li><a href="curricula/list.do"><spring:message
 						code="master.page.curricula" /></a></li>
-			
+
 
 			<li><a class="fNiv"><spring:message
 						code="master.page.finder" /></a>
