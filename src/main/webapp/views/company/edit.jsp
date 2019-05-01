@@ -27,6 +27,7 @@
 
 		<form:hidden path="id" />
 		<form:hidden path="version" />
+		<form:hidden path="score" />
 
 		<acme:textbox path="username" code="useraccount.username" />
 		<acme:password path="password" code="useraccount.password" />
