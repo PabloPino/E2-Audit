@@ -136,8 +136,9 @@ public class Position extends DomainEntity {
 	// Relationships ---------------------------------------------------------
 	private Company			company;
 	private List<Finder>	finders;
-	private Audit			audit;
 
+
+	//	private Audit			audit;
 
 	@ManyToOne(optional = false)
 	@Valid
@@ -149,15 +150,15 @@ public class Position extends DomainEntity {
 		this.company = company;
 	}
 
-	@ManyToOne(optional = true)
-	@Valid
-	public Audit getAudit() {
-		return this.audit;
-	}
-
-	public void setAudit(final Audit audit) {
-		this.audit = audit;
-	}
+	//	@ManyToOne(optional = true)
+	//	@Valid
+	//	public Audit getAudit() {
+	//		return this.audit;
+	//	}
+	//
+	//	public void setAudit(final Audit audit) {
+	//		this.audit = audit;
+	//	}
 
 	@Valid
 	@ManyToMany

@@ -65,7 +65,7 @@ public class AuditService {
 		final Audit auditDB = (Audit) this.serviceUtils.checkObjectSave(audit);
 		this.serviceUtils.checkIdSave(audit);
 
-		if (auditDB.isFinalMode() == false)
+		if (auditDB.isFinalMode() == false || audit.getId() == 0)
 			audit = this.auditRepository.save(audit);
 		return audit;
 	}
@@ -75,11 +75,11 @@ public class AuditService {
 
 		Assert.notNull(audit);
 
-		final Position a = this.auditRepository.findPositionByAuditId(audit.getId());
-		a.setAudit(null);
-		this.positionService.saveForAudits(a);
+		//final Position a = this.auditRepository.findPositionByAuditId(audit.getId());
+		//a.setAudit(null);
+		//this.positionService.saveForAudits(a);
 		this.serviceUtils.checkActor(audit.getAuditor());
-		//Assert.isTrue(audit.isFinalMode() == false);
+		Assert.isTrue(audit.isFinalMode() == false);
 
 		this.auditRepository.delete(audit);
 
@@ -160,10 +160,10 @@ public class AuditService {
 		return res;
 
 	}
-	public Audit findAuditByPositionId(final int positionId) {
-		final Audit res = this.auditRepository.findAuditByPositionId(positionId);
-		return res;
-	}
+	//	public Audit findAuditByPositionId(final int positionId) {
+	//		final Audit res = this.auditRepository.findAuditByPositionId(positionId);
+	//		return res;
+	//	}
 
 	public Position findPositionByAuditId(final int auditId) {
 		final Position res = this.auditRepository.findPositionByAuditId(auditId);

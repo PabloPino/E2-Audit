@@ -225,6 +225,12 @@ public class AuditController extends AbstractController {
 			result = new ModelAndView("redirect:list.do");
 		} catch (final Throwable oops) {
 			result = this.createEditModelAndView(audit, "audit.commit.error");
+			System.out.println(audit.getId());
+			System.out.println(audit.getScore());
+			System.out.println(audit.getText());
+			System.out.println(audit.getAuditor());
+			System.out.println(audit.getMoment());
+			System.out.println(audit.getPosition());
 			System.out.println("El error en el delete de audit es por --->" + binding.hasErrors());
 			System.out.println(binding.getAllErrors());
 
@@ -236,9 +242,9 @@ public class AuditController extends AbstractController {
 	public ModelAndView assign(final int positionId) {
 		ModelAndView result;
 		final Audit audit = this.auditService.create(positionId);
-		final Position position = this.positionService.findOne(positionId);
-		position.setAudit(audit);
-		this.positionService.saveForAudits(position);
+		//final Position position = this.positionService.findOne(positionId);
+		//		position.setAudit(audit);
+		//this.positionService.saveForAudits(position);
 
 		result = this.createEditModelAndView(audit);
 		//result.addObject("auditor", auditor);

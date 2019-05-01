@@ -800,7 +800,6 @@
 
 		<property name="company" ref="company2" />
 		
-		<property name="audit" ref="audit4" />
 		
 
 	</bean>
