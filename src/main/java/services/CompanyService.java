@@ -30,6 +30,7 @@ import domain.CreditCard;
 import domain.Position;
 import domain.Problem;
 import domain.SocialProfile;
+import domain.Sponsorship;
 import forms.CompanyForm;
 
 @Service
@@ -67,6 +68,9 @@ public class CompanyService {
 
 	@Autowired
 	private ApplicationService		applicationService;
+
+	@Autowired
+	private SponsorshipService		sponsorshipService;
 
 
 	public Company findOne(final Integer id) {
@@ -298,6 +302,10 @@ public class CompanyService {
 		this.messageService.deleteMyMessages();
 
 		for (final Position p : positions) {
+			final Collection<Sponsorship> sponsorships = this.sponsorshipService.findSopnsorshipsByPositionId(p.getId());
+			for (final Sponsorship s : sponsorships)
+				s.setPosition(null);
+			//this.sponsorshipService.save(s);
 			this.positionService.delete1(p);
 			final Collection<Position> positions2 = this.positionService.findAll();
 			Assert.isTrue(!(positions2.contains(p)));

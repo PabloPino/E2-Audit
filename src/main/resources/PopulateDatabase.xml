@@ -369,12 +369,13 @@
 		<property name="VATNumber" value="75860389Y" />
 
 		<property name="userAccount" ref="userAccount9" />
-		<property name="creditCard" ref="creditcard1" />
+		<property name="creditCard" ref="creditcard10" />
 
 	</bean>
 
 	<bean id="auditor2" class="domain.Auditor">
 		<property name="name" value="Alfonso" />
+
 		<property name="surname" value="Alarcon" />
 		<property name="photo"
 			value="https://www.w3schools.com/howto/img_avatar.png" />
@@ -386,7 +387,7 @@
 		<property name="VATNumber" value="658554658Z" />
 
 		<property name="userAccount" ref="userAccount10" />
-		<property name="creditCard" ref="creditcard3" />
+		<property name="creditCard" ref="creditcard11" />
 
 	</bean>
 
@@ -402,7 +403,7 @@
 		<property name="VATNumber" value="758603890" />
 
 		<property name="userAccount" ref="userAccount11" />
-		<property name="creditCard" ref="creditcard2" />
+		<property name="creditCard" ref="creditcard20" />
 
 	</bean>
 
@@ -419,7 +420,7 @@
 		<property name="VATNumber" value="758603890" />
 
 		<property name="userAccount" ref="userAccount12" />
-		<property name="creditCard" ref="creditcard4" />
+		<property name="creditCard" ref="creditcard21" />
 
 	</bean>
 
@@ -436,56 +437,44 @@
 		<property name="VATNumber" value="758603890" />
 
 		<property name="userAccount" ref="userAccount13" />
-		<property name="creditCard" ref="creditcard6" />
+		<property name="creditCard" ref="creditcard22" />
 
 	</bean>
 
 	<!-- &Auditors -->
 
-<!-- 	<bean id="audit1" class="domain.Audit">
-		<property name="moment" value="June 28, 2018" />
-		<property name="text" value="Desde mi punto de vista el salario es bajo para las tecnologias" />
-		<property name="score" value="5.0" />
-		<property name="finalMode" value="true" />
-		<property name="auditor" ref="auditor1" />
-		<property name="position" ref="position1" />
-	</bean> -->
+	<!-- <bean id="audit1" class="domain.Audit"> <property name="moment" value="June 
+		28, 2018" /> <property name="text" value="Desde mi punto de vista el salario 
+		es bajo para las tecnologias" /> <property name="score" value="5.0" /> <property 
+		name="finalMode" value="true" /> <property name="auditor" ref="auditor1" 
+		/> <property name="position" ref="position1" /> </bean> -->
 
-<!-- 	<bean id="audit2" class="domain.Audit">
-		<property name="moment" value="March 8, 2017" />
-		<property name="text" value="Demasiadas tecnologias piden para lo poco que pagan" />
-		<property name="score" value="2.0" />
-		<property name="finalMode" value="true" />
-		<property name="auditor" ref="auditor2" />
-		<property name="position" ref="position2" />
-	</bean>
-
-	<bean id="audit3" class="domain.Audit">
-		<property name="moment" value="April 25, 2014" />
-		<property name="text" value="Es  una buena oportunidad para alguien que empieza ,no piden mucha experiencia ,ni tecnologias muy dificiles de aprender" />
-		<property name="score" value="9.0" />
-		<property name="finalMode" value="true" />
-		<property name="auditor" ref="auditor3" />
-		<property name="position" ref="position3" />
-	</bean> -->
+	<!-- <bean id="audit2" class="domain.Audit"> <property name="moment" value="March 
+		8, 2017" /> <property name="text" value="Demasiadas tecnologias piden para 
+		lo poco que pagan" /> <property name="score" value="2.0" /> <property name="finalMode" 
+		value="true" /> <property name="auditor" ref="auditor2" /> <property name="position" 
+		ref="position2" /> </bean> <bean id="audit3" class="domain.Audit"> <property 
+		name="moment" value="April 25, 2014" /> <property name="text" value="Es una 
+		buena oportunidad para alguien que empieza ,no piden mucha experiencia ,ni 
+		tecnologias muy dificiles de aprender" /> <property name="score" value="9.0" 
+		/> <property name="finalMode" value="true" /> <property name="auditor" ref="auditor3" 
+		/> <property name="position" ref="position3" /> </bean> -->
 
 	<bean id="audit4" class="domain.Audit">
 		<property name="moment" value="December 28, 2018" />
-		<property name="text" value="Pienso que esta muy bien pagado ,y no pide demasiada experiencia" />
+		<property name="text"
+			value="Pienso que esta muy bien pagado ,y no pide demasiada experiencia" />
 		<property name="score" value="9.0" />
 		<property name="finalMode" value="false" />
 		<property name="auditor" ref="auditor1" />
 		<property name="position" ref="position4" />
 	</bean>
 
-<!-- 	<bean id="audit5" class="domain.Audit">
-		<property name="moment" value="March 4, 2016" />
-		<property name="text" value="Aceptable,buen salario y pocas tecnologias dificiles " />
-		<property name="score" value="5.0" />
-		<property name="finalMode" value="false" />
-		<property name="auditor" ref="auditor1" />
-		<property name="position" ref="position5" />
-	</bean>  -->
+	<!-- <bean id="audit5" class="domain.Audit"> <property name="moment" value="March 
+		4, 2016" /> <property name="text" value="Aceptable,buen salario y pocas tecnologias 
+		dificiles " /> <property name="score" value="5.0" /> <property name="finalMode" 
+		value="false" /> <property name="auditor" ref="auditor1" /> <property name="position" 
+		ref="position5" /> </bean> -->
 
 	<!-- &Provider -->
 
@@ -504,7 +493,7 @@
 		<property name="make" value="marca1" />
 
 		<property name="userAccount" ref="userAccount19" />
-		<property name="creditCard" ref="creditcard1" />
+		<property name="creditCard" ref="creditcard14" />
 
 	</bean>
 
@@ -523,7 +512,7 @@
 		<property name="make" value="marca2" />
 
 		<property name="userAccount" ref="userAccount20" />
-		<property name="creditCard" ref="creditcard3" />
+		<property name="creditCard" ref="creditcard15" />
 
 	</bean>
 
@@ -541,7 +530,7 @@
 		<property name="make" value="marca3" />
 
 		<property name="userAccount" ref="userAccount21" />
-		<property name="creditCard" ref="creditcard2" />
+		<property name="creditCard" ref="creditcard16" />
 
 	</bean>
 
@@ -560,7 +549,7 @@
 		<property name="make" value="marca4" />
 
 		<property name="userAccount" ref="userAccount22" />
-		<property name="creditCard" ref="creditcard4" />
+		<property name="creditCard" ref="creditcard17" />
 
 	</bean>
 
@@ -579,7 +568,7 @@
 		<property name="make" value="marca5" />
 
 		<property name="userAccount" ref="userAccount23" />
-		<property name="creditCard" ref="creditcard6" />
+		<property name="creditCard" ref="creditcard18" />
 
 	</bean>
 
@@ -598,7 +587,7 @@
 		<property name="make" value="marca5" />
 
 		<property name="userAccount" ref="userAccount24" />
-		<property name="creditCard" ref="creditcard6" />
+		<property name="creditCard" ref="creditcard19" />
 
 	</bean>
 
@@ -734,8 +723,8 @@
 
 		<property name="company" ref="company1" />
 
-	
-		
+
+
 
 	</bean>
 
@@ -755,8 +744,8 @@
 		<property name="cancel" value="false" />
 
 		<property name="company" ref="company1" />
-		
-		
+
+
 
 	</bean>
 
@@ -799,8 +788,8 @@
 		<property name="cancel" value="false" />
 
 		<property name="company" ref="company2" />
-		
-		
+
+
 
 	</bean>
 
@@ -820,8 +809,8 @@
 		<property name="cancel" value="false" />
 
 		<property name="company" ref="company2" />
-		
-		
+
+
 
 	</bean>
 
@@ -1202,6 +1191,123 @@
 		<property name="CVVCode" value="222" />
 	</bean>
 
+	<bean id="creditcard10" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+
+	<bean id="creditcard11" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+
+	<bean id="creditcard12" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+
+	<bean id="creditcard13" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+
+	<bean id="creditcard14" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+
+	<bean id="creditcard15" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+
+	<bean id="creditcard16" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+
+	<bean id="creditcard17" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+
+	<bean id="creditcard18" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+
+	<bean id="creditcard19" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+
+	<bean id="creditcard20" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+
+	<bean id="creditcard21" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+
+	<bean id="creditcard22" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+
 	<!-- Configuration -->
 
 	<bean id="configuration" class="domain.Configuration">
@@ -1460,7 +1566,7 @@
 			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
 		<property name="provider" ref="provider1" />
 	</bean>
-	
+
 	<bean id="item7" class="domain.Item">
 		<property name="name" value="Item1" />
 		<property name="description" value="Colegio Claret" />
@@ -1520,7 +1626,7 @@
 		<property name="banner" value="sponsorshipsito" />
 		<property name="target" value="learn a lot" />
 		<property name="position" ref="position1" />
-		<property name="creditCard" ref="creditcard1" />
+		<property name="creditCard" ref="creditcard14" />
 		<property name="provider" ref="provider1" />
 	</bean>
 
@@ -1528,49 +1634,42 @@
 		<property name="banner" value="BEBESITAA" />
 		<property name="target" value="lo de nosotros es un secreto" />
 		<property name="position" ref="position4" />
-		<property name="creditCard" ref="creditcard2" />
+		<property name="creditCard" ref="creditcard15" />
 		<property name="provider" ref="provider2" />
 	</bean>
-	
+
 	<bean id="sponsorship3" class="domain.Sponsorship">
 		<property name="banner" value="BEBESITAA" />
 		<property name="target" value="lo de nosotros es un secreto" />
 		<property name="position" ref="position1" />
-		<property name="creditCard" ref="creditcard3" />
+		<property name="creditCard" ref="creditcard16" />
 		<property name="provider" ref="provider3" />
 	</bean>
-	
+
 	<bean id="sponsorship4" class="domain.Sponsorship">
 		<property name="banner" value="BEBESITAA" />
 		<property name="target" value="lo de nosotros es un secreto" />
 		<property name="position" ref="position4" />
-		<property name="creditCard" ref="creditcard4" />
+		<property name="creditCard" ref="creditcard17" />
 		<property name="provider" ref="provider4" />
 	</bean>
-	
+
 	<bean id="sponsorship5" class="domain.Sponsorship">
 		<property name="banner" value="BEBESITAA" />
 		<property name="target" value="lo de nosotros es un secreto" />
 		<property name="position" ref="position1" />
-		<property name="creditCard" ref="creditcard5" />
+		<property name="creditCard" ref="creditcard18" />
 		<property name="provider" ref="provider5" />
 	</bean>
-	
+
 	<bean id="sponsorship6" class="domain.Sponsorship">
 		<property name="banner" value="BEBESITAA" />
 		<property name="target" value="lo de nosotros es un secreto" />
 		<property name="position" ref="position4" />
-		<property name="creditCard" ref="creditcard7" />
+		<property name="creditCard" ref="creditcard19" />
 		<property name="provider" ref="provider6" />
 	</bean>
-	
-	<bean id="sponsorship7" class="domain.Sponsorship">
-		<property name="banner" value="BEBESITAA" />
-		<property name="target" value="lo de nosotros es un secreto" />
-		<property name="position" ref="position4" />
-		<property name="creditCard" ref="creditcard9" />
-		<property name="provider" ref="provider6" />
-	</bean>
+
 
 	<!-- MiscellaneousData -->
 

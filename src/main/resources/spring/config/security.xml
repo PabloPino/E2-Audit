@@ -277,6 +277,12 @@
 
 		<security:intercept-url pattern="/hacker/deleteHacker.do"
 			access="hasRole('HACKER')" />
+			
+		<security:intercept-url pattern="/auditor/deleteAuditor.do"
+			access="hasRole('AUDITOR')" />
+		
+		<security:intercept-url pattern="/provider/deleteProvider.do"
+			access="hasRole('PROVIDER')" />
 
 		<security:intercept-url pattern="/path/any/**"
 			access="permitAll()" />

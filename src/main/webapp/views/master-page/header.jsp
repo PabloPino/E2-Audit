@@ -242,6 +242,16 @@
 						<li><a href="hacker/deleteHacker.do" style="color: yellow"><spring:message
 									code="master.page.profile.deleteActor" /></a></li>
 					</security:authorize>
+					
+					<security:authorize access="hasRole('AUDITOR')">
+						<li><a href="auditor/deleteAuditor.do" style="color: yellow"><spring:message
+									code="master.page.profile.deleteActor" /></a></li>
+					</security:authorize>
+					
+					<security:authorize access="hasRole('PROVIDER')">
+						<li><a href="provider/deleteProvider.do" style="color: yellow"><spring:message
+									code="master.page.profile.deleteActor" /></a></li>
+					</security:authorize>
 
 					<li><a href="message/actor/list.do"><spring:message
 								code="master.page.profile.listmessages" /></a></li>

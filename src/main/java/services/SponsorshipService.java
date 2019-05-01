@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import repositories.SponsorshipRepository;
 import domain.Provider;
+import domain.Sponsorship;
 
 @Service
 @Transactional
@@ -26,7 +27,20 @@ public class SponsorshipService {
 
 
 	//CRUD----------------------------------------------------------------------
+	//Others--------------------------------------------------------------------
+	public Collection<Sponsorship> findSopnsorshipsByPositionId(final int positionId) {
+		return this.sponsorshipRepository.findSopnsorshipsByPositionId(positionId);
+	}
 
+	public Collection<Sponsorship> findSopnsorshipsByProviderId(final int providerId) {
+		return this.sponsorshipRepository.findSopnsorshipsByProviderId(providerId);
+	}
+
+	public void delete(final Sponsorship sponsorship) {
+		this.serviceUtils.checkActor(sponsorship.getProvider());
+		this.serviceUtils.checkAuthority("PROVIDER");
+		this.sponsorshipRepository.delete(sponsorship);
+	}
 	//DASHBOARD QUERIES--------------------------------------------------------------
 	public Double queryRookiesA1AVG() {
 		this.serviceUtils.checkAuthority("ADMIN");
