@@ -58,7 +58,10 @@
 	<acme:column code="position.company" value="${position.company.name}"></acme:column>
 	<acme:column code="position.finalMode" value="${position.finalMode}"></acme:column>
 	<acme:column code="position.cancel" value="${position.cancel}"></acme:column>
-	
+	<display:column>
+		<a href="audit/listAudits.do?positionId=${position.id}"><spring:message
+				code="position.audits"></spring:message></a>
+	</display:column>
 
 	
 

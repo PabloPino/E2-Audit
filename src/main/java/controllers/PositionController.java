@@ -113,7 +113,7 @@ public class PositionController extends AbstractController {
 
 	}
 
-	//-------------------------- List ----------------------------------
+	//-------------------------- ListToAudit ----------------------------------
 	@RequestMapping(value = "/listToAudit", method = RequestMethod.GET)
 	public ModelAndView listToAudit() {
 		ModelAndView modelAndView;

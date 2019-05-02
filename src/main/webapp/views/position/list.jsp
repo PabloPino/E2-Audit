@@ -49,7 +49,6 @@
 						code="position.edit"></spring:message></a>
 			</display:column>
 		</jstl:if>
-
 	</security:authorize>
 
 	<%--  La columna que va a la vista display de las miscellaneousRecord --%>
@@ -79,7 +78,10 @@
 		<a href="company/any/display.do?companyId=${position.company.id}"><spring:message
 				code="position.company"></spring:message></a>
 	</display:column>
-
+	<display:column>
+		<a href="audit/listAudits.do?positionId=${position.id}"><spring:message
+				code="position.audits"></spring:message></a>
+	</display:column>
 
 
 </display:table>

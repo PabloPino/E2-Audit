@@ -56,13 +56,14 @@
 
 
 
-
+		<security:intercept-url pattern="/audit/listAudits.do"
+			access="permitAll" />
 		<security:intercept-url pattern="/audit/**"
 			access="hasRole('AUDITOR')" />
-			
+
 		<security:intercept-url pattern="/audit.assign/**"
 			access="hasRole('AUDITOR')" />
-			
+
 		<security:intercept-url pattern="/position/listToAudit.do"
 			access="hasRole('AUDITOR')" />
 
@@ -208,7 +209,7 @@
 
 		<security:intercept-url pattern="/actor/administrator/listToBan.do"
 			access="hasRole('ADMIN')" />
-			
+
 		<security:intercept-url pattern="/actor/administrator/companiesScores.do"
 			access="hasRole('ADMIN')" />
 
@@ -277,10 +278,10 @@
 
 		<security:intercept-url pattern="/hacker/deleteHacker.do"
 			access="hasRole('HACKER')" />
-			
+
 		<security:intercept-url pattern="/auditor/deleteAuditor.do"
 			access="hasRole('AUDITOR')" />
-		
+
 		<security:intercept-url pattern="/provider/deleteProvider.do"
 			access="hasRole('PROVIDER')" />
 

@@ -34,7 +34,6 @@ public interface PositionRepository extends JpaRepository<Position, Integer> {
 
 	@Query("select a from Position a where a.deadLine > NOW() and a.finalMode = true")
 	Collection<Position> findFinalPositionWithoutDeadline();
-
 	//QUERY DASHBOARD---------------------------------------------------------------------------
 	@Query("select avg(1.0 * (select count(p) from Position p where p.company.id = c.id)) from Company c")
 	Double queryC1AVG();

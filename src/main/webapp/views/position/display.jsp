@@ -32,6 +32,9 @@
 <acme:out code="position.salary" value="${position.salary} " />
 <acme:out code="position.finalMode" value="${position.finalMode}" />
 <acme:out code="position.cancel" value="${position.cancel}" />
+<strong><spring:message code="position.audits"></spring:message>: </strong><a href="audit/listAudits.do?positionId=${position.id}"><spring:message
+					code="position.audits"></spring:message></a>
+
 
 
 
@@ -54,8 +57,6 @@
 		<acme:column code="problem.title" value="${problem.title}"></acme:column>
 		<acme:column code="problem.hint" value="${problem.hint}"></acme:column>
 		<acme:column code="problem.company" value="${problem.company.name}"></acme:column>
-
-
 	</display:table>
 
 

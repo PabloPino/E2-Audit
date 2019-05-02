@@ -155,6 +155,10 @@ public class AuditService {
 
 	}
 
+	public List<Audit> findAuditsByPosition(final int positionId) {
+		return this.auditRepository.findAuditsByPosition(positionId);
+	}
+
 	public List<Audit> findAuditsByAuditor(final Auditor auditor) {
 		final List<Audit> res = this.auditRepository.findAuditsByAuditor(auditor);
 		return res;

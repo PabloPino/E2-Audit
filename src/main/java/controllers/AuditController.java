@@ -1,6 +1,7 @@
 
 package controllers;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -77,6 +78,23 @@ public class AuditController extends AbstractController {
 		return modelAndView;
 
 	}
+
+	//-------------------------- ListAudits ----------------------------------
+	@RequestMapping(value = "/listAudits", method = RequestMethod.GET)
+	public ModelAndView listAudits(@RequestParam final int positionId) {
+		ModelAndView modelAndView;
+
+		final Collection<Audit> audits = this.auditService.findAuditsByPosition(positionId);
+
+		modelAndView = new ModelAndView("audit/list");
+		modelAndView.addObject("audits", audits);
+		modelAndView.addObject("requestURI", "audit/listAudits.do");
+		modelAndView.addObject("banner", this.configurationService.findOne().getBanner());
+
+		return modelAndView;
+
+	}
+
 	//-------------------------- List ----------------------------------
 	//	@RequestMapping(value = "/listtwo", method = RequestMethod.GET)
 	//	public ModelAndView listtwo() {
