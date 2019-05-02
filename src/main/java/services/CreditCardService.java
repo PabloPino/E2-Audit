@@ -57,6 +57,10 @@ public class CreditCardService {
 		this.creditCardRepository.delete(creditCard);
 	}
 
+	public void delete1(final CreditCard creditCard) {
+		this.creditCardRepository.delete(creditCard);
+	}
+
 	public CreditCard findOne(final int CreditCardId) {
 		return this.creditCardRepository.findOne(CreditCardId);
 	}
