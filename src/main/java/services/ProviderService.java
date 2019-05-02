@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.ProviderRepository;
+import domain.Actor;
 import domain.CreditCard;
 import domain.Item;
 import domain.Provider;
@@ -70,20 +71,20 @@ public class ProviderService {
 			this.itemService.delete(i);
 
 		for (final Sponsorship s : sponsorships) {
-			this.creditCardService.delete(s.getCreditCard());
+			this.creditCardService.delete1(s.getCreditCard());
 			this.sponsorshipService.delete(s);
 		}
-
 		this.messageService.deleteMyMessages();
 
 		for (final SocialProfile s : socialProfiles)
 			this.socialProfileService.delete(s);
 
-		//		this.creditCardService.delete(creditCard);
+		this.creditCardService.delete(creditCard);
 		this.providerRepository.delete(provider.getId());
-		//this.providerRepository.flush();
-		//		final Collection<Actor> actors = this.actorService.findAll();
-		//		Assert.isTrue(!(actors.contains(provider)));
+		this.providerRepository.flush();
+		final Collection<Actor> actors = this.actorService.findAll();
+		Assert.isTrue(!(actors.contains(provider)));
+
 	}
 
 }

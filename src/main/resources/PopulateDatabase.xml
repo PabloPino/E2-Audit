@@ -1307,6 +1307,51 @@
 		<property name="expirationYear" value="2062" />
 		<property name="CVVCode" value="222" />
 	</bean>
+	
+	<bean id="creditcard23" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+	
+	<bean id="creditcard24" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+	
+	<bean id="creditcard25" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+	
+	<bean id="creditcard26" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
+	
+	<bean id="creditcard27" class="domain.CreditCard">
+		<property name="holderName" value="CLEVER" />
+		<property name="makeName" value="VISA" />
+		<property name="number" value="4516410092471036" />
+		<property name="expirationMonth" value="2" />
+		<property name="expirationYear" value="2062" />
+		<property name="CVVCode" value="222" />
+	</bean>
 
 	<!-- Configuration -->
 
@@ -1626,7 +1671,7 @@
 		<property name="banner" value="sponsorshipsito" />
 		<property name="target" value="learn a lot" />
 		<property name="position" ref="position1" />
-		<property name="creditCard" ref="creditcard14" />
+		<property name="creditCard" ref="creditcard23" />
 		<property name="provider" ref="provider1" />
 	</bean>
 
@@ -1634,7 +1679,7 @@
 		<property name="banner" value="BEBESITAA" />
 		<property name="target" value="lo de nosotros es un secreto" />
 		<property name="position" ref="position4" />
-		<property name="creditCard" ref="creditcard15" />
+		<property name="creditCard" ref="creditcard24" />
 		<property name="provider" ref="provider2" />
 	</bean>
 
@@ -1642,7 +1687,7 @@
 		<property name="banner" value="BEBESITAA" />
 		<property name="target" value="lo de nosotros es un secreto" />
 		<property name="position" ref="position1" />
-		<property name="creditCard" ref="creditcard16" />
+		<property name="creditCard" ref="creditcard25" />
 		<property name="provider" ref="provider3" />
 	</bean>
 
@@ -1650,7 +1695,7 @@
 		<property name="banner" value="BEBESITAA" />
 		<property name="target" value="lo de nosotros es un secreto" />
 		<property name="position" ref="position4" />
-		<property name="creditCard" ref="creditcard17" />
+		<property name="creditCard" ref="creditcard26" />
 		<property name="provider" ref="provider4" />
 	</bean>
 
@@ -1658,17 +1703,11 @@
 		<property name="banner" value="BEBESITAA" />
 		<property name="target" value="lo de nosotros es un secreto" />
 		<property name="position" ref="position1" />
-		<property name="creditCard" ref="creditcard18" />
+		<property name="creditCard" ref="creditcard27" />
 		<property name="provider" ref="provider5" />
 	</bean>
 
-	<bean id="sponsorship6" class="domain.Sponsorship">
-		<property name="banner" value="BEBESITAA" />
-		<property name="target" value="lo de nosotros es un secreto" />
-		<property name="position" ref="position4" />
-		<property name="creditCard" ref="creditcard19" />
-		<property name="provider" ref="provider6" />
-	</bean>
+	
 
 
 	<!-- MiscellaneousData -->
