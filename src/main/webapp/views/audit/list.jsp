@@ -56,15 +56,21 @@
 	<acme:column code="audit.finalMode" value="${audit.finalMode}"></acme:column>
 	<acme:column code="audit.text" value="${audit.text}"></acme:column>
 	
-<%-- 	<acme:column code="audit.auditor" value="${audit.auditor.name}"></acme:column>
- --%>	<acme:column code="audit.position" value="${audit.position.title}"></acme:column>
-	
+<%-- 	<acme:column code="audit.auditor" value="${audit.auditor.name}"></acme:column>--%>
+	<jstl:if test="${audit.position.title != null}">
+		<acme:column code="audit.position" value="${audit.position.title}"></acme:column>
+	</jstl:if>
+	<jstl:if test="${audit.position.title == null}">
+		<acme:column code="audit.position" value="Position nula"></acme:column>
+	</jstl:if>	
 
 
 
 </display:table>
 
-
+<input type="button" name="back"
+		value="<spring:message code="audit.back"></spring:message>"
+		onclick="javascript:relativeRedir('position/list.do')" />
 <%--  Boton de creacion --%>
 <security:authorize access="hasRole('AUDITOR')">
 
