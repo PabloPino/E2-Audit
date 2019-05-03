@@ -85,6 +85,12 @@ public class AuditService {
 
 	}
 
+	public void delete1(final Audit audit) {
+		Assert.notNull(audit);
+		this.auditRepository.delete(audit);
+
+	}
+
 	public Audit findOne(final int auditId) {
 		return this.auditRepository.findOne(auditId);
 	}
