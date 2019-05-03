@@ -62,13 +62,13 @@ public class UseCase14_1 extends AbstractTest {
 				"hacker1", IllegalArgumentException.class
 			//Probamos con un usuario que no es un admin(CASO NEGATIVO)
 			//b) Negative test
-			//c) analysis of sentence coverage: 
+			//c) analysis of sentence coverage: 100%
 			//d) This user isn´t a admin, so it cannot manage the dashboard
 			}, {
 				"admin1", null
 			//Este admin si esta registrado en el sistema y puede ver el dashboard(CASO POSITIVO)
 			//b) Positive test
-			//c) analysis of sentence coverage: 
+			//c) analysis of sentence coverage: 100%
 			//d) This user is a admin, so it can manage the dashboard
 			},
 
