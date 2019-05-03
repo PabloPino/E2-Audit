@@ -136,6 +136,8 @@
 				<security:authorize access="hasRole('PROVIDER')">
 					<li><a href="item/provider/list.do"><spring:message
 								code="master.page.provider.items" /></a></li>
+					<li><a href="sponsorship/provider/list.do"><spring:message
+								code="master.page.provider.sponsorships" /></a></li>
 				</security:authorize>
 			</ul></li>
 
