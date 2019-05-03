@@ -443,22 +443,41 @@
 
 	<!-- &Auditors -->
 
-	<!-- <bean id="audit1" class="domain.Audit"> <property name="moment" value="June 
-		28, 2018" /> <property name="text" value="Desde mi punto de vista el salario 
-		es bajo para las tecnologias" /> <property name="score" value="5.0" /> <property 
-		name="finalMode" value="true" /> <property name="auditor" ref="auditor1" 
-		/> <property name="position" ref="position1" /> </bean> -->
+	<bean id="audit1" class="domain.Audit">
+		<property name="moment" value="June 
+		28, 2018" />
+		<property name="text"
+			value="Desde mi punto de vista el salario 
+		es bajo para las tecnologias" />
+		<property name="score" value="5.0" />
+		<property name="finalMode" value="true" />
+		<property name="auditor" ref="auditor1" />
+		<property name="position" ref="position1" />
+	</bean>
 
-	<!-- <bean id="audit2" class="domain.Audit"> <property name="moment" value="March 
-		8, 2017" /> <property name="text" value="Demasiadas tecnologias piden para 
-		lo poco que pagan" /> <property name="score" value="2.0" /> <property name="finalMode" 
-		value="true" /> <property name="auditor" ref="auditor2" /> <property name="position" 
-		ref="position2" /> </bean> <bean id="audit3" class="domain.Audit"> <property 
-		name="moment" value="April 25, 2014" /> <property name="text" value="Es una 
+	<bean id="audit2" class="domain.Audit">
+		<property name="moment" value="March 
+		8, 2017" />
+		<property name="text"
+			value="Demasiadas tecnologias piden para 
+		lo poco que pagan" />
+		<property name="score" value="2.0" />
+		<property name="finalMode" value="true" />
+		<property name="auditor" ref="auditor2" />
+		<property name="position" ref="position1" />
+	</bean>
+
+	<bean id="audit3" class="domain.Audit">
+		<property name="moment" value="April 25, 2014" />
+		<property name="text"
+			value="Es una 
 		buena oportunidad para alguien que empieza ,no piden mucha experiencia ,ni 
-		tecnologias muy dificiles de aprender" /> <property name="score" value="9.0" 
-		/> <property name="finalMode" value="true" /> <property name="auditor" ref="auditor3" 
-		/> <property name="position" ref="position3" /> </bean> -->
+		tecnologias muy dificiles de aprender" />
+		<property name="score" value="9.0" />
+		<property name="finalMode" value="true" />
+		<property name="auditor" ref="auditor3" />
+		<property name="position" ref="position3" />
+	</bean>
 
 	<bean id="audit4" class="domain.Audit">
 		<property name="moment" value="December 28, 2018" />
@@ -470,11 +489,17 @@
 		<property name="position" ref="position4" />
 	</bean>
 
-	<!-- <bean id="audit5" class="domain.Audit"> <property name="moment" value="March 
-		4, 2016" /> <property name="text" value="Aceptable,buen salario y pocas tecnologias 
-		dificiles " /> <property name="score" value="5.0" /> <property name="finalMode" 
-		value="false" /> <property name="auditor" ref="auditor1" /> <property name="position" 
-		ref="position5" /> </bean> -->
+	<bean id="audit5" class="domain.Audit">
+		<property name="moment" value="March 
+		4, 2016" />
+		<property name="text"
+			value="Aceptable,buen salario y pocas tecnologias 
+		dificiles " />
+		<property name="score" value="5.0" />
+		<property name="finalMode" value="false" />
+		<property name="auditor" ref="auditor1" />
+		<property name="position" ref="position1" />
+	</bean>
 
 	<!-- &Provider -->
 
@@ -1307,7 +1332,7 @@
 		<property name="expirationYear" value="2062" />
 		<property name="CVVCode" value="222" />
 	</bean>
-	
+
 	<bean id="creditcard23" class="domain.CreditCard">
 		<property name="holderName" value="CLEVER" />
 		<property name="makeName" value="VISA" />
@@ -1316,7 +1341,7 @@
 		<property name="expirationYear" value="2062" />
 		<property name="CVVCode" value="222" />
 	</bean>
-	
+
 	<bean id="creditcard24" class="domain.CreditCard">
 		<property name="holderName" value="CLEVER" />
 		<property name="makeName" value="VISA" />
@@ -1325,7 +1350,7 @@
 		<property name="expirationYear" value="2062" />
 		<property name="CVVCode" value="222" />
 	</bean>
-	
+
 	<bean id="creditcard25" class="domain.CreditCard">
 		<property name="holderName" value="CLEVER" />
 		<property name="makeName" value="VISA" />
@@ -1334,7 +1359,7 @@
 		<property name="expirationYear" value="2062" />
 		<property name="CVVCode" value="222" />
 	</bean>
-	
+
 	<bean id="creditcard26" class="domain.CreditCard">
 		<property name="holderName" value="CLEVER" />
 		<property name="makeName" value="VISA" />
@@ -1343,7 +1368,7 @@
 		<property name="expirationYear" value="2062" />
 		<property name="CVVCode" value="222" />
 	</bean>
-	
+
 	<bean id="creditcard27" class="domain.CreditCard">
 		<property name="holderName" value="CLEVER" />
 		<property name="makeName" value="VISA" />
@@ -1639,7 +1664,7 @@
 	</bean>
 
 	<bean id="sponsorship3" class="domain.Sponsorship">
-<property name="banner" value="banner" />
+		<property name="banner" value="banner" />
 		<property name="target" value="target" />
 		<property name="position" ref="position1" />
 		<property name="creditCard" ref="creditcard25" />
@@ -1662,7 +1687,7 @@
 		<property name="provider" ref="provider5" />
 	</bean>
 
-	
+
 
 
 	<!-- MiscellaneousData -->
