@@ -73,6 +73,10 @@
 
 		<bean class="converters.ProviderToStringConverter" />
 		<bean class="converters.StringToProviderConverter" />
+		
+		<bean class="converters.SponsorshipToStringConverter" />
+		<bean class="converters.StringToSponsorshipConverter" />
+		
 
 	</util:list>
 
