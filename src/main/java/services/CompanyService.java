@@ -302,7 +302,7 @@ public class CompanyService {
 		this.messageService.deleteMyMessages();
 
 		for (final Position p : positions) {
-			final Collection<Sponsorship> sponsorships = this.sponsorshipService.findSopnsorshipsByPositionId(p.getId());
+			final Collection<Sponsorship> sponsorships = this.sponsorshipService.findSponsorshipsByPositionId(p.getId());
 			for (final Sponsorship s : sponsorships)
 				s.setPosition(null);
 			//this.sponsorshipService.save(s);

@@ -7,8 +7,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import repositories.SponsorshipRepository;
+import security.LoginService;
 import domain.Provider;
 import domain.Sponsorship;
 
@@ -25,15 +27,48 @@ public class SponsorshipService {
 	@Autowired
 	ServiceUtils					serviceUtils;
 
+	@Autowired
+	ProviderService					providerService;
+
+	@Autowired
+	PositionService					positionService;
+
 
 	//CRUD----------------------------------------------------------------------
-	//Others--------------------------------------------------------------------
-	public Collection<Sponsorship> findSopnsorshipsByPositionId(final int positionId) {
-		return this.sponsorshipRepository.findSopnsorshipsByPositionId(positionId);
+	public Sponsorship create() {
+		final Sponsorship sponsorship = new Sponsorship();
+		final Provider provider = this.providerService.findProviderByUserAcountId(LoginService.getPrincipal().getId());
+		this.serviceUtils.checkAuthority("PROVIDER");
+		sponsorship.setProvider(provider);
+		return sponsorship;
 	}
 
-	public Collection<Sponsorship> findSopnsorshipsByProviderId(final int providerId) {
-		return this.sponsorshipRepository.findSopnsorshipsByProviderId(providerId);
+	public Sponsorship save(final Sponsorship sponsorship) {
+		Assert.notNull(sponsorship);
+
+		this.serviceUtils.checkActor(sponsorship.getProvider());
+		this.serviceUtils.checkAuthority("PROVIDER");
+		this.serviceUtils.checkIdSave(sponsorship);
+
+		final Sponsorship res = this.sponsorshipRepository.save(sponsorship);
+		return res;
+
+	}
+
+	public Sponsorship findOne(final int sponsorshipId) {
+		return this.sponsorshipRepository.findOne(sponsorshipId);
+	}
+
+	public Collection<Sponsorship> findAll() {
+		return this.sponsorshipRepository.findAll();
+	}
+
+	public Collection<Sponsorship> findSponsorshipsByProviderId(final int providerId) {
+		return this.sponsorshipRepository.findSponsorshipsByProviderId(providerId);
+	}
+
+	public Collection<Sponsorship> findSponsorshipsByPositionId(final int positionId) {
+		return this.sponsorshipRepository.findSponsorshipsByPositionId(positionId);
 	}
 
 	public void delete(final Sponsorship sponsorship) {

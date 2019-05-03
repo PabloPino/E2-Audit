@@ -65,7 +65,7 @@ public class ProviderService {
 		final Collection<SocialProfile> socialProfiles = this.socialProfileService.findProfileByActorId(provider.getId());
 		final CreditCard creditCard = this.creditCardService.findCreditCardByActor(provider.getId());
 		final List<Item> items = this.itemService.findAllByPrincipal();
-		final Collection<Sponsorship> sponsorships = this.sponsorshipService.findSopnsorshipsByProviderId(provider.getId());
+		final Collection<Sponsorship> sponsorships = this.sponsorshipService.findSponsorshipsByProviderId(provider.getId());
 
 		for (final Item i : items)
 			this.itemService.delete(i);
