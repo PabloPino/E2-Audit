@@ -28,18 +28,19 @@
 
 <security:authentication property="principal.username" var="username" />
 <jstl:if
-	test='${problem.company.userAccount.username == username || problem.id == 0}'>
-	<security:authorize access="hasRole('COMPANY')">
+	test='${sponsorship.provider.userAccount.username == username || sponsorship.id == 0}'>
+	<security:authorize access="hasRole('PROVIDER')">
 		<div>
 
-			<form:form action="problem/company/edit.do" method="post" id="formCreate"
-				name="formCreate" modelAttribute="problem">
+			<form:form action="sponsorship/provider/edit.do" method="post" id="formCreate"
+				name="formCreate" modelAttribute="sponsorship">
 
 				<!-- Atributos hidden-->
 
 				<form:hidden path="id" />
 				<form:hidden path="version" />
-				<form:hidden path="company" />
+				<form:hidden path="provider" />
+				<form:hidden path="creditCard" />
 
 
 
@@ -47,17 +48,14 @@
 				<fieldset>
 					<!-------------------Form ------------------------------------>
 
-					<acme:labelForm code="problem.title" path="title" />
-					<acme:labelForm code="problem.statement" path="statement" />
-					<acme:labelForm code="problem.hint" path="hint" />
-					<acme:textarea code="problem.attachments" path="attachments" readonly="false" />
+					<acme:labelForm code="sponsorship.target" path="target" />
+					<acme:labelForm code="sponsorship.banner" path="banner" />
 					
 
 			
-
 					<div>
 						<form:label path="position">
-							<spring:message code="problem.position"></spring:message>
+							<spring:message code="sponsorship.position"></spring:message>
 						</form:label>
 						<form:select path="position">
 							<form:option value="0">-----</form:option>
@@ -71,49 +69,22 @@
 
 				</fieldset>
 
-				<div>
-					<form:label path="finalMode">
-						<spring:message code="problem.finalMode"></spring:message>
-					</form:label>
-
-					<div>
-						<input type="radio" id="finalMode" name="finalMode" value="false" checked>
-						<label for="false"><spring:message code="problem.false"></spring:message></label>
-					</div>
-
-					<div>
-						<input type="radio" id="finalMode" name="finalMode" value="true">
-						<label for="true"><spring:message code="problem.true"></spring:message></label>
-					</div>
-					  <form:errors cssClass="error" path="finalMode" />
-					
-					<br />
-				</div>
-
-			
-
-
-
-
-
-
-
 
 
 				<!--  Los botones de crear y cancelar -->
 
 				<input type="submit" name="save"
-					value="<spring:message code="problem.save"></spring:message>" />
+					value="<spring:message code="sponsorship.save"></spring:message>" />
 
 
-				<jstl:if test="${problem.id != 0}">
+				<jstl:if test="${sponsorship.id != 0}">
 					<input type="submit" name="delete"
-						value="<spring:message code="problem.delete" />"
-						onclick="return confirm('<spring:message code="problem.confirm.delete" />')" />&nbsp;
+						value="<spring:message code="sponsorship.delete" />"
+						onclick="return confirm('<spring:message code="sponsorship.confirm.delete" />')" />&nbsp;
 	</jstl:if>
 			</form:form>
-			<acme:cancel url="problem/company/list.do"
-				code="problem.cancel" />
+			<acme:cancel url="sponsorship/provider/list.do"
+				code="sponsorship.cancel" />
 
 		</div>
 
@@ -124,9 +95,9 @@
 	</security:authorize>
 
 </jstl:if>
-<jstl:if test='${problem.company.userAccount.username != username}'>
+<jstl:if test='${sponsorship.provider.userAccount.username != username}'>
 	<h1>
-		<b><spring:message code="problem.permissions"></spring:message></b>
+		<b><spring:message code="sponsorship.permissions"></spring:message></b>
 	</h1>
 
 	<img
@@ -136,6 +107,6 @@
 	<br />
 	<br />
 
-	<acme:cancel url="" code="problem.back" />
+	<acme:cancel url="" code="sponsorship.back" />
 
 </jstl:if>

@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 
 import repositories.SponsorshipRepository;
 import security.LoginService;
+import domain.CreditCard;
 import domain.Provider;
 import domain.Sponsorship;
 
@@ -33,13 +34,20 @@ public class SponsorshipService {
 	@Autowired
 	PositionService					positionService;
 
+	@Autowired
+	CreditCardService				creditCardService;
+
 
 	//CRUD----------------------------------------------------------------------
 	public Sponsorship create() {
 		final Sponsorship sponsorship = new Sponsorship();
 		final Provider provider = this.providerService.findProviderByUserAcountId(LoginService.getPrincipal().getId());
+		final CreditCard creditCard = this.creditCardService.findCreditCardByActor(provider.getId());
+		Assert.notNull(creditCard);
 		this.serviceUtils.checkAuthority("PROVIDER");
+
 		sponsorship.setProvider(provider);
+		sponsorship.setCreditCard(creditCard);
 		return sponsorship;
 	}
 

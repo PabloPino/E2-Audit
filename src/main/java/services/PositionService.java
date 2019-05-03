@@ -130,6 +130,10 @@ public class PositionService {
 		return this.positionRepository.findAll();
 	}
 
+	public Collection<Position> findPositionsFinals() {
+		return this.positionRepository.findPositionsFinals();
+	}
+
 	public Collection<Position> findPositionsByCompanyId(final int companyId) {
 		return this.positionRepository.findPositionsByCompanyId(companyId);
 	}
