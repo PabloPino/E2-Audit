@@ -32,7 +32,7 @@
 	</definition>
 	
 	<definition name="law/normativaGDPR" extends="master.page">	
-		<put-attribute name="title" value="Política de Privacidad de Acme-Hacker-Rank" />
+		<put-attribute name="title" value="Política de Privacidad de Acme-Rookies" />
 		<put-attribute name="body" value="/views/law/normativaGDPR.jsp" />
 	</definition>
 	

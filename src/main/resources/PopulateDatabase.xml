@@ -740,7 +740,7 @@
 			value="Conocimiento de java,algo de CSS y mucho de clevercloud, por cierto los cafes me salen de vicio " />
 		<property name="technologies" value="JAVA,PHP,CSS,DJANGO" />
 		<property name="salary" value="28450.00" />
-		<property name="finalMode" value="false" />
+		<property name="finalMode" value="true" />
 		<property name="cancel" value="false" />
 
 		<property name="company" ref="company1" />
