@@ -103,7 +103,7 @@
 			<li><a href="actor/administrator/listToBan.do"><spring:message
 						code="master.page.administrator.listToBan" /></a></li>
 			<li><a href="actor/administrator/companiesScores.do"><spring:message
-						code="master.page.administrator.companiesScores" /></a></li>			
+						code="master.page.administrator.companiesScores" /></a></li>
 			<li><a href="register/administrator/newActor.do?authority=ADMIN"><spring:message
 						code="master.page.register.admin" /></a></li>
 			<li><a class="fNiv" href="position/list.do"><spring:message
@@ -122,12 +122,16 @@
 						code="master.page.listToAudit" /></a></li>
 			<li><a href="position/list.do"><spring:message
 						code="master.page.position" /></a></li>
-			
+
 
 
 
 		</security:authorize>
+		<security:authorize access="hasRole('PROVIDER')">
+			<li><a href="sponsorship/provider/list.do"><spring:message
+						code="master.page.provider.sponsorships" /></a></li>
 
+		</security:authorize>
 		<li><a class="fNiv" href="item/list.do"><spring:message
 					code="master.page.items" /></a>
 			<ul>
@@ -136,8 +140,7 @@
 				<security:authorize access="hasRole('PROVIDER')">
 					<li><a href="item/provider/list.do"><spring:message
 								code="master.page.provider.items" /></a></li>
-					<li><a href="sponsorship/provider/list.do"><spring:message
-								code="master.page.provider.sponsorships" /></a></li>
+
 				</security:authorize>
 			</ul></li>
 
@@ -244,14 +247,15 @@
 						<li><a href="hacker/deleteHacker.do" style="color: yellow"><spring:message
 									code="master.page.profile.deleteActor" /></a></li>
 					</security:authorize>
-					
+
 					<security:authorize access="hasRole('AUDITOR')">
 						<li><a href="auditor/deleteAuditor.do" style="color: yellow"><spring:message
 									code="master.page.profile.deleteActor" /></a></li>
 					</security:authorize>
-					
+
 					<security:authorize access="hasRole('PROVIDER')">
-						<li><a href="provider/deleteProvider.do" style="color: yellow"><spring:message
+						<li><a href="provider/deleteProvider.do"
+							style="color: yellow"><spring:message
 									code="master.page.profile.deleteActor" /></a></li>
 					</security:authorize>
 
