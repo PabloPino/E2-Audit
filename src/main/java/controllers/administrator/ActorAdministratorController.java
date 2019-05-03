@@ -188,7 +188,7 @@ public class ActorAdministratorController extends AbstractController {
 	@RequestMapping(value = "/companiesScores", method = RequestMethod.GET)
 	public ModelAndView companiesScores() {
 		ModelAndView result;
-		//this.administratorService.generateCompanyScores();
+		this.administratorService.generateCompanyScores();
 		final Collection<Company> companys = this.companyService.findAll();
 		result = new ModelAndView("administrator/companiesScores");
 		result.addObject("companys", companys);
