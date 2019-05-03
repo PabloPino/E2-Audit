@@ -139,6 +139,9 @@
 		<security:intercept-url pattern="/sponsorship/provider/**"
 			access="hasRole('PROVIDER')" />
 			
+			<security:intercept-url pattern="/sponsorship/display.do"
+			access="permitAll" />
+			
 			
 		<security:intercept-url pattern="/problem/company/**"
 			access="hasRole('COMPANY')" />
