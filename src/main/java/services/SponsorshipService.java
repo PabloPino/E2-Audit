@@ -55,6 +55,14 @@ public class SponsorshipService {
 
 	}
 
+	public Sponsorship save1(final Sponsorship sponsorship) {
+		Assert.notNull(sponsorship);
+
+		final Sponsorship res = this.sponsorshipRepository.save(sponsorship);
+		return res;
+
+	}
+
 	public Sponsorship findOne(final int sponsorshipId) {
 		return this.sponsorshipRepository.findOne(sponsorshipId);
 	}

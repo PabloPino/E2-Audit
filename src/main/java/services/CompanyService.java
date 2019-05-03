@@ -25,6 +25,7 @@ import security.UserAccount;
 import security.UserAccountRepository;
 import domain.Actor;
 import domain.Application;
+import domain.Audit;
 import domain.Company;
 import domain.CreditCard;
 import domain.Position;
@@ -71,6 +72,9 @@ public class CompanyService {
 
 	@Autowired
 	private SponsorshipService		sponsorshipService;
+
+	@Autowired
+	private AuditService			auditService;
 
 
 	public Company findOne(final Integer id) {
@@ -302,10 +306,14 @@ public class CompanyService {
 		this.messageService.deleteMyMessages();
 
 		for (final Position p : positions) {
+			final Collection<Audit> audits = this.auditService.findAuditsByPosition(p.getId());
 			final Collection<Sponsorship> sponsorships = this.sponsorshipService.findSponsorshipsByPositionId(p.getId());
-			for (final Sponsorship s : sponsorships)
+			for (final Audit a : audits)
+				this.auditService.delete1(a);
+			for (final Sponsorship s : sponsorships) {
 				s.setPosition(null);
-			//this.sponsorshipService.save(s);
+				this.sponsorshipService.save1(s);
+			}
 			this.positionService.delete1(p);
 			final Collection<Position> positions2 = this.positionService.findAll();
 			Assert.isTrue(!(positions2.contains(p)));
