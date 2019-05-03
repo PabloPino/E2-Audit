@@ -20,6 +20,7 @@ import security.Authority;
 import security.LoginService;
 import domain.Application;
 import domain.Audit;
+import domain.Auditor;
 import domain.Company;
 import domain.Position;
 import domain.Problem;
@@ -46,6 +47,9 @@ public class PositionService {
 
 	@Autowired
 	private AuditService		auditService;
+
+	@Autowired
+	private AuditorService		auditorService;
 
 
 	public Position create() {
@@ -331,9 +335,11 @@ public class PositionService {
 	public Collection<Position> getPositionsToAudit() {
 		final Collection<Position> all = this.positionRepository.findFinalPosition();
 		final Collection<Audit> allAudits = this.auditService.findAll();
-		final Collection<Position> res = new ArrayList<>();
+		final Auditor auditor = this.auditorService.findAuditorByUserAcountId(LoginService.getPrincipal().getId());
+
 		for (final Audit a : allAudits)
-			all.remove(a.getPosition());
+			if (a.getAuditor().equals(auditor))
+				all.remove(a.getPosition());
 
 		return all;
 
