@@ -23,123 +23,76 @@
 
 <security:authorize access="isAuthenticated()">
 <security:authentication property="principal.username" var="username" />
-<jstl:if test="${problem.finalMode == true ||problem.company.userAccount.username == username}">
+<jstl:if test="${sponsorship.provider.userAccount.username == username}">
 
 
 
-<acme:out code="problem.title" value="${problem.title}" />
+<acme:out code="sponsorship.target" value="${sponsorship.target}" />
 
-<acme:out code="problem.statement" value="${problem.statement}" />
-<acme:out code="problem.hint" value="${problem.hint}" />
-<acme:out code="problem.company" value="${problem.company.name}" />
-<acme:out code="problem.position" value="${problem.position.title}" />
-<jstl:if test="${problem.finalMode== true}">
-	<b><spring:message code="problem.finalMode"></spring:message>:</b>
-	<spring:message code="problem.true"></spring:message>
-
-</jstl:if>
-
-
-<jstl:if test="${problem.finalMode== false}">
-	<b><spring:message code="problem.finalMode"></spring:message>:</b>
-	<spring:message code="problem.false"></spring:message>
-</jstl:if>
-
+<spring:message code="sponsorship.banner"></spring:message>
 <br />
-<br />
+<img src="${sponsorship.banner} "  style="width:15%;height:15%; display: inline-block;">
+
+<acme:out code="sponsorship.creditCard.holderName" value="${sponsorship.creditCard.holderName}" />
+<acme:out code="sponsorship.creditCard.makeName" value="${sponsorship.creditCard.makeName}" />
+<acme:out code="sponsorship.creditCard.number" value="${sponsorship.creditCard.number}" />
+
+<acme:out code="sponsorship.provider" value="${sponsorship.provider.name}" />
+<acme:out code="sponsorship.position" value="${sponsorship.position.title}" />
 
 
-<fieldset>
-	<legend>
-		<b><spring:message code="problem.attachments" /></b>
-	</legend>
-
-	<jstl:forEach items="${problem.attachments}" var="attachment">
 
 
-		<a href="${attachment }">${attachment }</a>
-		<br />
 
-	</jstl:forEach>
 
-</fieldset>
 
-<security:authorize access="hasRole('COMPANY')">
+<security:authorize access="hasRole('PROVIDER')">
 
 	<security:authentication property="principal.username" var="username" />
 
-	<jstl:if test='${problem.company.userAccount.username == username}'>
-<jstl:if test="${problem.finalMode == false}">
+	<jstl:if test='${sponsorship.provider.userAccount.username == username}'>
 		<input type="button" name="edit"
-			value="<spring:message code="problem.edit"></spring:message>"
-			onclick="javascript:relativeRedir('problem/company/edit.do?problemId=${problem.id}')" />
-			</jstl:if>
+			value="<spring:message code="sponsorship.edit"></spring:message>"
+			onclick="javascript:relativeRedir('sponsorship/provider/edit.do?sponsorshipId=${sponsorship.id}')" />
 	</jstl:if>
-	<acme:cancel url="problem/company/list.do" code="problem.myCompanysProblems" />
+	<acme:cancel url="sponsorship/provider/list.do" code="sponsorship.mySponsorships" />
 </security:authorize>
-<%-- <acme:cancel url="problem/list.do" code="problem.allProblems" /> --%>
+<%-- <acme:cancel url="sponsorship/list.do" code="sponsorship.allSponsorships" /> --%>
 
 </jstl:if>
 <security:authentication property="principal.username" var="username" />
-<jstl:if test='${problem.finalMode != true && problem.company.userAccount.username != username}'>
+<jstl:if test='${sponsorship.provider.userAccount.username != username}'>
 	<h1>
-		<b><spring:message code="problem.permissions"></spring:message></b>
+		<b><spring:message code="sponsorship.permissions"></spring:message></b>
 	</h1>
 
 	<img
 		src="http://lymediseaseuk.com/wp-content/uploads/2018/07/oops-300x300.png"
-		alt="Cuestionario Picture" style="width: 10%; height: 10%;">
+		alt="Sponsorship Picture" style="width: 10%; height: 10%;">
 
-	<br />
-	<br />
+	
 
-	<acme:cancel url="" code="problem.back" />
+	<acme:cancel url="" code="sponsorship.back" />
 
 </jstl:if>
 </security:authorize>
 
 
 <security:authorize access="isAnonymous()">
-<jstl:if test="${problem.finalMode == true }">
 
-<acme:out code="problem.title" value="${problem.title}" />
+<acme:out code="sponsorship.target" value="${sponsorship.target}" />
 
-<acme:out code="problem.statement" value="${problem.statement}" />
-<acme:out code="problem.hint" value="${problem.hint}" />
-<acme:out code="problem.company" value="${problem.company.name}" />
-<acme:out code="problem.position" value="${problem.position.title}" />
-<jstl:if test="${problem.finalMode== true}">
-	<b><spring:message code="problem.finalMode"></spring:message>:</b>
-	<spring:message code="problem.true"></spring:message>
-
-</jstl:if>
-
-
-<jstl:if test="${problem.finalMode== false}">
-	<b><spring:message code="problem.finalMode"></spring:message>:</b>
-	<spring:message code="problem.false"></spring:message>
-</jstl:if>
-
+<spring:message code="sponsorship.banner"></spring:message>
 <br />
-<br />
+<img src="${sponsorship.banner} "  style="width:50%;height:50%; display: inline-block;">
+<acme:out code="sponsorship.provider" value="${sponsorship.provider.name}" />
+<acme:out code="sponsorship.position" value="${sponsorship.position.title}" />
 
 
-<fieldset>
-	<legend>
-		<b><spring:message code="problem.attachments" /></b>
-	</legend>
-
-	<jstl:forEach items="${problem.attachments}" var="attachment">
 
 
-		<a href="${attachment }">${attachment }</a>
-		<br />
 
-	</jstl:forEach>
-
-</fieldset>
-<acme:cancel url="" code="problem.back" />
-</jstl:if>
+<acme:cancel url="" code="sponsorship.back" />
 </security:authorize>
 
 
