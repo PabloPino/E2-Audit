@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.ProviderRepository;
-import domain.Actor;
 import domain.CreditCard;
 import domain.Item;
 import domain.Provider;
@@ -63,7 +62,7 @@ public class ProviderService {
 		this.serviceUtils.checkAuthority("PROVIDER");
 
 		final Collection<SocialProfile> socialProfiles = this.socialProfileService.findProfileByActorId(provider.getId());
-		final CreditCard creditCard = this.creditCardService.findCreditCardByActor(provider.getId());
+		final CreditCard a = this.creditCardService.findCreditCardByActor(provider.getId());
 		final List<Item> items = this.itemService.findAllByPrincipal();
 		final Collection<Sponsorship> sponsorships = this.sponsorshipService.findSponsorshipsByProviderId(provider.getId());
 
@@ -71,7 +70,8 @@ public class ProviderService {
 			this.itemService.delete(i);
 
 		for (final Sponsorship s : sponsorships) {
-			this.creditCardService.delete1(s.getCreditCard());
+			final CreditCard c = s.getCreditCard();
+			this.creditCardService.delete1(c);
 			this.sponsorshipService.delete(s);
 		}
 		this.messageService.deleteMyMessages();
@@ -79,11 +79,11 @@ public class ProviderService {
 		for (final SocialProfile s : socialProfiles)
 			this.socialProfileService.delete(s);
 
-		this.creditCardService.delete(creditCard);
+		if (a != null)
+			this.creditCardService.delete(a);
+
 		this.providerRepository.delete(provider.getId());
 		this.providerRepository.flush();
-		final Collection<Actor> actors = this.actorService.findAll();
-		Assert.isTrue(!(actors.contains(provider)));
 
 	}
 

@@ -31,6 +31,7 @@ public class ProviderController extends AbstractController {
 			this.providerService.deleteProvider((Provider) s);
 			result = new ModelAndView("redirect:/j_spring_security_logout");
 		} catch (final Throwable oops) {
+			System.out.println(oops.getMessage());
 			result = new ModelAndView("redirect:/welcome/index.do");
 			System.out.println("NO SE HA PODIDO BORRAR EL USUARIO");
 		}

@@ -92,6 +92,10 @@ public class SponsorshipService {
 		this.serviceUtils.checkAuthority("PROVIDER");
 		this.sponsorshipRepository.delete(sponsorship);
 	}
+
+	public void delete1(final Sponsorship sponsorship) {
+		this.sponsorshipRepository.delete(sponsorship);
+	}
 	//DASHBOARD QUERIES--------------------------------------------------------------
 	public Double queryRookiesA1AVG() {
 		this.serviceUtils.checkAuthority("ADMIN");
