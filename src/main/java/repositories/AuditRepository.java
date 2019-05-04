@@ -16,16 +16,16 @@ import domain.Position;
 public interface AuditRepository extends JpaRepository<Audit, Integer> {
 
 	//Query Dashboard (ACME-ROOKIES)
-	@Query("select avg(1.0 * (select a.score from Audit a where a.position.id = p.id)) from Position p")
+	@Query("select avg(1.0 * (select avg(a.score) from Audit a where a.position.id = p.id)) from Position p")
 	Double queryRookiesC1AVG();
 
-	@Query("select max(1.0 * (select a.score from Audit a where a.position.id = p.id)) from Position p")
+	@Query("select max(1.0 * (select avg(a.score) from Audit a where a.position.id = p.id)) from Position p")
 	Double queryRookiesC1MAX();
 
-	@Query("select min(1.0 * (select a.score from Audit a where a.position.id = p.id)) from Position p")
+	@Query("select min(1.0 * (select avg(a.score) from Audit a where a.position.id = p.id)) from Position p")
 	Double queryRookiesC1MIN();
 
-	@Query("select stddev(1.0 * (select a.score from Audit a where a.position.id = p.id)) from Position p")
+	@Query("select stddev(1.0 * (select avg(a.score) from Audit a where a.position.id = p.id)) from Position p")
 	Double queryRookiesC1STDDEV();
 
 	@Query("select avg(1.0 * (select avg(a.score) from Audit a where a.position.company.id = c.id)) from Company c")
@@ -43,7 +43,7 @@ public interface AuditRepository extends JpaRepository<Audit, Integer> {
 	@Query("select a.position.company.comercialName from Audit a  group by a.position.company.id order by a.score desc")
 	List<String> queryRookiesC3();
 
-	@Query("select avg(p.salary) from Audit a join a.position p where a.score>(select avg(1.0*(select b.score from Audit b where b.position.id=p.id))from Position p)")
+	@Query("select avg(p.salary) from Audit a join a.position p where a.score>(select avg(1.0*(select avg(b.score) from Audit b where b.position.id=p.id))from Position p)")
 	Double queryRookiesC4();
 
 	//----------- Queries de utilidad -------------------------------------
