@@ -34,7 +34,6 @@
 		<security:intercept-url pattern="/law/**"
 			access="permitAll" />
 
-
 		<security:intercept-url pattern="/views/misc/index.jsp"
 			access="permitAll" />
 
@@ -329,6 +328,9 @@
 
 		<security:intercept-url pattern="/actor/administrator/spammers.do"
 			access="hasRole('ADMIN')" />
+			
+		<security:intercept-url pattern="/item/listByProvider.do"
+			access="permitAll" />
 
 		<security:intercept-url pattern="/**"
 			access="hasRole('NONE')" />

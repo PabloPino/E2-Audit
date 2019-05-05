@@ -79,15 +79,14 @@
 
 
 <jstl:if test="${isPrincipalAuthorizedEdit}">
-	<a
-		href="company/company/edit.do?companyId=${company.id}"><spring:message
-			code="company.edit" /></a>
+	<a href="actor/edit.do"><spring:message
+			code="master.page.profile.edit" /></a>
 
 
 </jstl:if>
 
-	<acme:cancel url="/position/list.do" code="company.backPosition" />
-	<acme:cancel url="/company/any/list.do" code="company.backCompanies" />
+	<acme:cancel url="/items/listByProvider.do?providerId=${provider.id}" code="provider.itemsbyprovider" />
+	<acme:cancel url="/provider/any/list.do" code="master.page.listproviders" />
 
 
 

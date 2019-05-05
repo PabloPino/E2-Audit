@@ -208,6 +208,9 @@
 				</ul></li>
 		</security:authorize>
 
+		<li><a class="fNiv" href="provider/any/list.do"><spring:message
+					code="master.page.listproviders" /></a></li>
+
 		<security:authorize access="hasRole('COMPANY')">
 			<li><a class="fNiv" href="position/list.do"><spring:message
 						code="master.page.position" /></a></li>
@@ -278,7 +281,7 @@
 						<li><a href="message/administrator/broadcast.do"><spring:message
 									code="master.page.profile.broadcastmessage" /></a></li>
 					</security:authorize>
-
+					
 					<li><a href="j_spring_security_logout"><spring:message
 								code="master.page.logout" /> </a></li>
 				</ul></li>

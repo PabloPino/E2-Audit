@@ -33,7 +33,7 @@
 
 	<acme:column value="${row.address}" code="company.address" />
 	
-	<spring:message code="providers" var="listItemsTitle" />
-	<acme:column value="item/list.do?providerId=${row.id}" url="true" alt="${listItemsTitle}" />
+	<spring:message code="provider.itemsbyprovider" var="listItemsTitle" />
+	<acme:column value="item/listByProvider.do?providerId=${row.id}" url="true" alt="${listItemsTitle}" />
 
 </display:table>
