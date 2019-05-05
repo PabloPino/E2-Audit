@@ -494,9 +494,9 @@ public class ActorService {
 		final Authority admin = new Authority();
 		admin.setAuthority(Authority.ADMIN);
 		final Authority prov = new Authority();
-		admin.setAuthority(Authority.PROVIDER);
+		prov.setAuthority(Authority.PROVIDER);
 		final Authority aud = new Authority();
-		admin.setAuthority(Authority.AUDITOR);
+		aud.setAuthority(Authority.AUDITOR);
 
 		if (authorities.contains(com)) {
 			final Company company = this.companyService.findOne(actorId);

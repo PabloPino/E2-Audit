@@ -44,24 +44,24 @@
 		<acme:textbox path="address" code="company.address" />
 		<acme:textbox path="photo" code="company.photo" />
 		<acme:textbox path="holderName" code="creditcard.holdername" />
-		
-		<form:label path="makeName" >
+
+		<form:label path="makeName">
 			<spring:message code="creditcard.makename" />
 		</form:label>
-		<form:select path="makeName" >
-			<form:option label="" value=""/>
+		<form:select path="makeName">
+			<form:option label="" value="" />
 			<jstl:forEach items="${makes}" var="make">
 				<form:option label='${make}' value='${make}' />
 			</jstl:forEach>
 		</form:select>
 		<form:errors path="makeName" cssClass="error" />
-		
+
 		<acme:textbox path="number" code="creditcard.number" />
 		<acme:textbox path="expirationMonth" code="creditcard.expirationmonth" />
 		<acme:textbox path="expirationYear" code="creditcard.expirationyear" />
 		<acme:textbox path="CVVCode" code="creditcard.cvvcode" />
 		<acme:textbox path="VATNumber" code="creditcard.vatnumber" />
-		
+
 
 		<acme:checkbox code="company.accept" path="accept" />
 
