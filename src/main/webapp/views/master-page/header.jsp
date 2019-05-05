@@ -106,6 +106,8 @@
 						code="master.page.administrator.companiesScores" /></a></li>
 			<li><a href="register/administrator/newActor.do?authority=ADMIN"><spring:message
 						code="master.page.register.admin" /></a></li>
+			<li><a href="auditor/administrator/register.do"><spring:message
+						code="master.page.registerasauditor" /></a></li>
 			<li><a class="fNiv" href="position/list.do"><spring:message
 						code="master.page.position" /></a></li>
 
@@ -201,8 +203,6 @@
 								code="master.page.registerascompany" /></a></li>
 					<li><a href="register/actor.do?authority=HACKER"><spring:message
 								code="master.page.registerashacker" /></a></li>
-					<li><a href="register/actor.do?authority=AUDITOR"><spring:message
-								code="master.page.registerasauditor" /></a></li>
 					<li><a href="provider/none/register.do"><spring:message
 								code="master.page.registerasprovider" /></a></li>
 				</ul></li>

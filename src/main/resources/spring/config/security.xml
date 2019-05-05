@@ -78,7 +78,8 @@
 		<security:intercept-url pattern="/position/listToAudit.do"
 			access="hasRole('AUDITOR')" />
 			
-
+		<security:intercept-url pattern="/auditor/administrator/**"
+			access="hasRole('ADMIN')" />
 
 		<security:intercept-url pattern="/provider/provider/**"
 			access="hasRole('PROVIDER')" />

@@ -55,12 +55,6 @@ public class RegisterController extends AbstractController {
 			case "COMPANY":
 				actor = this.actorService.create("COMPANY");
 				break;
-			case "AUDITOR":
-				actor = this.auditorService.create();
-				break;
-			case "PROVIDER":
-				actor = this.providerService.create();
-				break;
 			default:
 				throw new NullPointerException();
 			}
@@ -122,10 +116,6 @@ public class RegisterController extends AbstractController {
 			result = new ModelAndView("register/hacker");
 		else if (actorForm.getAuthority().equals(Authority.COMPANY))
 			result = new ModelAndView("register/company");
-		else if (actorForm.getAuthority().equals(Authority.AUDITOR))
-			result = new ModelAndView("register/hacker");
-		else if (actorForm.getAuthority().equals(Authority.PROVIDER))
-			result = new ModelAndView("register/company");
 		else
 			throw new NullPointerException();
 
@@ -148,10 +138,6 @@ public class RegisterController extends AbstractController {
 		if (principal == null && form.getAuthority().equals(Authority.COMPANY))
 			res = true;
 		if (principal == null && form.getAuthority().equals(Authority.HACKER))
-			res = true;
-		if (principal == null && form.getAuthority().equals(Authority.AUDITOR))
-			res = true;
-		if (principal == null && form.getAuthority().equals(Authority.PROVIDER))
 			res = true;
 		if (principal instanceof Administrator && form.getAuthority().equals(Authority.ADMIN))
 			res = true;
