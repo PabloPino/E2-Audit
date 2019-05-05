@@ -113,6 +113,8 @@
 		<%-- <form:hidden path="answerExplanation" />
 		<form:hidden path="answerCode" /> --%>
 		<jstl:if test="${application.status.equals('SUBMITTED')}">
+			
+			<jstl:if test="${isRead == false}">
 			<form:label path="status">
 				<spring:message code="app.status"></spring:message>
 			</form:label>
@@ -120,6 +122,10 @@
 				<option value="ACCEPTED">ACCEPTED</option>
 				<option value="REJECTED">REJECTED</option>
 			</form:select>
+			</jstl:if>
+			<jstl:if test="${isRead == true}">
+			<acme:textbox code="app.status" path="status" />
+			</jstl:if>
 		</jstl:if>
 		<br>
 		<br>
