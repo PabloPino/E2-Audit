@@ -20,12 +20,7 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<!-- <div id="container">
-  <div id="inner">
- 
-  </div>
-</div>
- -->
+
  <jstl:if test="${sponsorship != null}">
    <div  style="margin-right:150px" class="child"><img src="${sponsorship.banner} "  style="width:200%;height:200%; display: inline-block;">
     </div>
