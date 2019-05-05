@@ -95,14 +95,19 @@
 		<br>
 	</jstl:if>
 	<security:authorize access="hasRole('HACKER')">
+		<jstl:if test="${isRead == true}">
+			<acme:textbox code="app.status" path="status" />
+		</jstl:if>
 		<jstl:if
 			test="${application.id !=0  && !application.answerCode.isEmpty() && !application.answerExplanation.isEmpty() && application.status.equals('PENDING')}">
-			<form:label path="status">
-				<spring:message code="app.status"></spring:message>
-			</form:label>
-			<form:select id="status" path="status">
-				<option value="SUBMITTED">SUBMITTED</option>
-			</form:select>
+			<jstl:if test="${isRead == false}">
+				<form:label path="status">
+					<spring:message code="app.status"></spring:message>
+				</form:label>
+				<form:select id="status" path="status">
+					<option value="SUBMITTED">SUBMITTED</option>
+				</form:select>
+			</jstl:if>
 			<br>
 			<br>
 		</jstl:if>
@@ -113,18 +118,17 @@
 		<%-- <form:hidden path="answerExplanation" />
 		<form:hidden path="answerCode" /> --%>
 		<jstl:if test="${application.status.equals('SUBMITTED')}">
-			
 			<jstl:if test="${isRead == false}">
-			<form:label path="status">
-				<spring:message code="app.status"></spring:message>
-			</form:label>
-			<form:select id="status" path="status">
-				<option value="ACCEPTED">ACCEPTED</option>
-				<option value="REJECTED">REJECTED</option>
-			</form:select>
+				<form:label path="status">
+					<spring:message code="app.status"></spring:message>
+				</form:label>
+				<form:select id="status" path="status">
+					<option value="ACCEPTED">ACCEPTED</option>
+					<option value="REJECTED">REJECTED</option>
+				</form:select>
 			</jstl:if>
 			<jstl:if test="${isRead == true}">
-			<acme:textbox code="app.status" path="status" />
+				<acme:textbox code="app.status" path="status" />
 			</jstl:if>
 		</jstl:if>
 		<br>
