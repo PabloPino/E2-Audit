@@ -1098,7 +1098,7 @@
 		<property name="answerCode"
 			value="https://github.com/jirutka/validator-collection/tree/master/src/main/java/cz/jirutka/validator/collection/constraints" />
 		<property name="submitMoment" value="June 25, 2018 17:35" />
-		<property name="status" value="SUBMITTED" />
+		<property name="status" value="PENDING" />
 		<property name="curricula" ref="curricula4" />
 		<property name="problem" ref="problem2" />
 		<property name="position" ref="position2" />
