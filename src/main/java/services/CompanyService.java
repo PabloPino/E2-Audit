@@ -96,6 +96,7 @@ public class CompanyService {
 		final Company res = new Company();
 		res.setBanned(false);
 		res.setUserAccount(new UserAccount());
+		res.setScore(0.);
 		return res;
 	}
 
@@ -150,6 +151,7 @@ public class CompanyService {
 
 		return res;
 	}
+
 	public void delete(final Company b) {
 		final Company company = (Company) this.serviceUtils.checkObject(b);
 		this.serviceUtils.checkActor(company);
@@ -169,6 +171,7 @@ public class CompanyService {
 		res.setAddress(b.getAddress());
 		res.setCompanyName(b.getComercialName());
 		res.setVATNumber(b.getVATNumber());
+		res.setScore(b.getScore());
 		if (b.getCreditCard() != null) {
 			res.setCVVCode(b.getCreditCard().getCVVCode());
 			res.setExpirationMonth(b.getCreditCard().getExpirationMonth());
@@ -254,6 +257,7 @@ public class CompanyService {
 		res.getUserAccount().setPassword(form.getPassword());
 		res.setComercialName(form.getCompanyName());
 		res.setVATNumber(form.getVATNumber());
+		res.setScore(form.getScore());
 		CreditCard creditCard = null;
 		if (res.getId() == 0)
 			creditCard = new CreditCard();

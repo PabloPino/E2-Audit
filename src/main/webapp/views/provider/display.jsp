@@ -85,7 +85,7 @@
 
 </jstl:if>
 
-	<acme:cancel url="/items/listByProvider.do?providerId=${provider.id}" code="provider.itemsbyprovider" />
+	<acme:cancel url="/item/listByProvider.do?providerId=${provider.id}" code="provider.itemsbyprovider" />
 	<acme:cancel url="/provider/any/list.do" code="master.page.listproviders" />
 
 

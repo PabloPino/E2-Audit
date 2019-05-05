@@ -35,7 +35,15 @@ public class CompanyForm extends DomainEntity {
 	private int		expirationMonth;
 	private int		expirationYear;
 	private int		CVVCode;
+	private double	score;
 
+
+	public double getScore() {
+		return this.score;
+	}
+	public void setScore(final double score) {
+		this.score = score;
+	}
 
 	@NotBlank
 	@SafeHtml(whitelistType = WhiteListType.NONE)
