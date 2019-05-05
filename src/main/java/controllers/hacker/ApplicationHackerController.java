@@ -143,7 +143,7 @@ public class ApplicationHackerController extends AbstractController {
 			application.setStatus(null);
 			application.setStatus("SUBMITTED");
 		}
-		if (application.getAnswerCode().contains("https://")) {
+		if (application.getAnswerCode().contains("https://") || application.getStatus().equals("PENDING")) {
 			this.applicationService.save(application);
 			modelAndView = new ModelAndView("redirect:/application/hacker/list.do");
 			//			modelAndView = this.list();
@@ -156,7 +156,6 @@ public class ApplicationHackerController extends AbstractController {
 		}
 		return modelAndView;
 	}
-
 	//	Create-----------------------------------------------------
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create(@RequestParam final int positionId) {
