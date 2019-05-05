@@ -14,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import security.Authority;
 import services.ActorService;
+import services.AuditorService;
 import services.ConfigurationService;
+import services.ProviderService;
 import domain.Actor;
 import domain.Administrator;
 import forms.ActorForm;
@@ -25,6 +27,12 @@ public class RegisterController extends AbstractController {
 
 	@Autowired
 	private ActorService			actorService;
+
+	@Autowired
+	private AuditorService			auditorService;
+
+	@Autowired
+	private ProviderService			providerService;
 
 	@Autowired
 	private ConfigurationService	configurationService;
@@ -103,6 +111,7 @@ public class RegisterController extends AbstractController {
 		ModelAndView result = null;
 
 		// TODO faltan actores
+		result.addObject("action", "register/actor.do");
 
 		if (actorForm.getAuthority().equals(Authority.HACKER))
 			result = new ModelAndView("register/hacker");

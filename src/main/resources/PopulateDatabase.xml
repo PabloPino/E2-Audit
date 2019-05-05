@@ -476,7 +476,7 @@
 		<property name="score" value="9.0" />
 		<property name="finalMode" value="true" />
 		<property name="auditor" ref="auditor3" />
-		<property name="position" ref="position3" />
+		<property name="position" ref="position1" />
 	</bean>
 
 	<bean id="audit4" class="domain.Audit">
@@ -872,7 +872,7 @@
 			value="Conocimiento de java ,CSS3 ,HTML5 y alto nivel de ingles y frances" />
 		<property name="technologies" value="JAVA ,CSS3,HTML5" />
 		<property name="salary" value="22500.00" />
-		<property name="finalMode" value="false" />
+		<property name="finalMode" value="true" />
 		<property name="cancel" value="false" />
 
 		<property name="company" ref="company3" />
@@ -997,6 +997,8 @@
 
 
 	</bean>
+	
+	
 
 	<bean id="problem6" class="domain.Problem">
 		<property name="title" value="6Fallo critico" />
@@ -1049,6 +1051,25 @@
 		</property>
 		<property name="company" ref="company2" />
 		<property name="position" ref="position4" />
+
+
+	</bean>
+	
+	<bean id="problem10" class="domain.Problem">
+		<property name="title" value="Fallo de mergue provocado por github " />
+		<property name="statement"
+			value="El mergue ha provocado un fallo critico al traerse el repositorio" />
+		<property name="hint" value="HEAD---->" />
+		<property name="finalMode" value="true" />
+		<property name="attachments">
+			<list>
+				<value>https://github.com/apache/aries-jax-rs-whiteboard</value>
+
+			</list>
+
+		</property>
+		<property name="company" ref="company3" />
+		<property name="position" ref="position7" />
 
 
 	</bean>

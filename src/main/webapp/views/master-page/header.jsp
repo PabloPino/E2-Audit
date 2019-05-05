@@ -106,6 +106,8 @@
 						code="master.page.administrator.companiesScores" /></a></li>
 			<li><a href="register/administrator/newActor.do?authority=ADMIN"><spring:message
 						code="master.page.register.admin" /></a></li>
+			<li><a href="auditor/administrator/register.do"><spring:message
+						code="master.page.registerasauditor" /></a></li>
 			<li><a class="fNiv" href="position/list.do"><spring:message
 						code="master.page.position" /></a></li>
 
@@ -201,6 +203,8 @@
 								code="master.page.registerascompany" /></a></li>
 					<li><a href="register/actor.do?authority=HACKER"><spring:message
 								code="master.page.registerashacker" /></a></li>
+					<li><a href="provider/none/register.do"><spring:message
+								code="master.page.registerasprovider" /></a></li>
 				</ul></li>
 		</security:authorize>
 
@@ -223,12 +227,17 @@
 			</a>
 				<ul>
 					<li class="arrow"></li>
-					<security:authorize access="!hasRole('COMPANY')">
+					<security:authorize access="!hasRole('COMPANY') && !hasRole('PROVIDER')">
 						<li><a href="actor/edit.do"><spring:message
 									code="master.page.profile.edit" /></a></li>
 					</security:authorize>
 					<security:authorize access="hasRole('COMPANY')">
 						<li><a href="company/company/edit.do"><spring:message
+									code="master.page.profile.edit" /></a></li>
+					</security:authorize>
+					
+					<security:authorize access="hasRole('PROVIDER')">
+						<li><a href="provider/provider/edit.do"><spring:message
 									code="master.page.profile.edit" /></a></li>
 					</security:authorize>
 

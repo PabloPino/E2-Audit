@@ -14,6 +14,11 @@
 		<put-attribute name="body" value="/views/audit/edit.jsp" />
 	</definition>
 	
+	<definition name="audit/create" extends="master.page">
+		<put-attribute name="title" value="Crear revision" />
+		<put-attribute name="body" value="/views/audit/edit.jsp" />
+	</definition>
+	
 	<definition name="audit/display" extends="master.page">
 		<put-attribute name="title" value="Mostrar revision" />
 		<put-attribute name="body" value="/views/audit/display.jsp" />

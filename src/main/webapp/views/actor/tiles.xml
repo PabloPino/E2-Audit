@@ -22,6 +22,11 @@
 		<put-attribute name="title" value="Register as a sponsor" />
 		<put-attribute name="body" value="/views/actor/register.jsp" />
 	</definition>
+	
+	<definition name="register/auditor" extends="master.page">
+		<put-attribute name="title" value="Register an auditor" />
+		<put-attribute name="body" value="/views/actor/register.jsp" />
+	</definition>
 
 	<definition name="register/company" extends="master.page">
 		<put-attribute name="title" value="Register as a company" />

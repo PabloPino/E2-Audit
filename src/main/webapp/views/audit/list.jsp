@@ -68,13 +68,15 @@
 
 </display:table>
 
-<input type="button" name="back"
-		value="<spring:message code="audit.back"></spring:message>"
-		onclick="javascript:relativeRedir('position/list.do')" />
-<%--  Boton de creacion --%>
 <security:authorize access="hasRole('AUDITOR')">
 
 	<input type="button" name="create"
 		value="<spring:message code="audit.create"></spring:message>"
 		onclick="javascript:relativeRedir('position/listToAudit.do')" />
 </security:authorize>
+
+
+<input type="button" name="back"
+		value="<spring:message code="audit.backTo"></spring:message>"
+		onclick="javascript:relativeRedir('position/list.do')" />
+<%--  Boton de creacion --%>
