@@ -1630,14 +1630,14 @@
 	<!-- Sponsorship -->
 
 	<bean id="sponsorship1" class="domain.Sponsorship">
-		<property name="banner" value="http://banner1.com" />
+		<property name="banner" value="https://f4.bcbits.com/img/0015926705_10.jpg" />
 		<property name="target" value="http://banner1.com" />
 		<property name="creditCard" ref="creditcard23" />
 		<property name="provider" ref="provider1" />
 	</bean>
 
 	<bean id="sponsorship2" class="domain.Sponsorship">
-		<property name="banner" value="http://banner1.com" />
+		<property name="banner" value="https://f4.bcbits.com/img/0015926705_10.jpg" />
 		<property name="target" value="http://banner1.com" />
 		<property name="position" ref="position4" />
 		<property name="creditCard" ref="creditcard24" />
@@ -1645,7 +1645,7 @@
 	</bean>
 
 	<bean id="sponsorship3" class="domain.Sponsorship">
-		<property name="banner" value="http://banner1.com" />
+		<property name="banner" value="https://f4.bcbits.com/img/0015926705_10.jpg" />
 		<property name="target" value="http://banner1.com" />
 		<property name="position" ref="position1" />
 		<property name="creditCard" ref="creditcard25" />
@@ -1653,7 +1653,7 @@
 	</bean>
 
 	<bean id="sponsorship4" class="domain.Sponsorship">
-		<property name="banner" value="http://banner1.com" />
+		<property name="banner" value="https://f4.bcbits.com/img/0015926705_10.jpg" />
 		<property name="target" value="http://banner1.com" />
 		<property name="position" ref="position4" />
 		<property name="creditCard" ref="creditcard26" />
@@ -1661,7 +1661,7 @@
 	</bean>
 
 	<bean id="sponsorship5" class="domain.Sponsorship">
-		<property name="banner" value="http://banner1.com" />
+		<property name="banner" value="https://f4.bcbits.com/img/0015926705_10.jpg" />
 		<property name="target" value="http://banner1.com" />
 		<property name="position" ref="position1" />
 		<property name="creditCard" ref="creditcard27" />

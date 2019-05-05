@@ -25,9 +25,11 @@ import services.MessageService;
 import services.PositionService;
 import services.ProblemService;
 import services.ServiceUtils;
+import services.SponsorshipService;
 import domain.Hacker;
 import domain.Position;
 import domain.Problem;
+import domain.Sponsorship;
 
 @Controller
 @RequestMapping("/position")
@@ -55,6 +57,9 @@ public class PositionController extends AbstractController {
 
 	@Autowired
 	ServiceUtils			serviceUtils;
+
+	@Autowired
+	SponsorshipService		sponsorshipService;
 
 
 	//-------------------------- List ----------------------------------
@@ -150,13 +155,20 @@ public class PositionController extends AbstractController {
 	public ModelAndView display(@RequestParam final int positionId) {
 		ModelAndView result;
 		final Position position;
-
+		result = new ModelAndView("position/display");
 		position = this.positionService.findOne(positionId);
 		final Collection<Problem> problems = this.positionService.findProblemsByPositionId(positionId);
 
-		result = new ModelAndView("position/display");
+		try {
+			final Sponsorship sponsorship = this.sponsorshipService.getRandomSponsorshipByPositionId(positionId);
+			result.addObject("sponsorship", sponsorship);
+		} catch (final Exception e) {
+			// TODO: handle exception
+		}
+
 		result.addObject("position", position);
 		result.addObject("problems", problems);
+
 		result.addObject("banner", this.configurationService.findOne().getBanner());
 
 		return result;

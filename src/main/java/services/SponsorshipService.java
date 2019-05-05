@@ -2,6 +2,8 @@
 package services;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Random;
 
 import javax.transaction.Transactional;
 
@@ -85,6 +87,13 @@ public class SponsorshipService {
 
 	public Collection<Sponsorship> findSponsorshipsByPositionId(final int positionId) {
 		return this.sponsorshipRepository.findSponsorshipsByPositionId(positionId);
+	}
+
+	public Sponsorship getRandomSponsorshipByPositionId(final int positionId) {
+		final List<Sponsorship> sponsorships = (List<Sponsorship>) this.findSponsorshipsByPositionId(positionId);
+		final Random rand = new Random();
+		final int n = rand.nextInt(sponsorships.size());
+		return sponsorships.get(n);
 	}
 
 	public void delete(final Sponsorship sponsorship) {
