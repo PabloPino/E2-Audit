@@ -1084,7 +1084,7 @@
 		<property name="answerCode"
 			value="https://github.com/jirutka/validator-collection/tree/master/src/main/java/cz/jirutka/validator/collection/constraints" />
 		<property name="submitMoment" value="June 25, 2018 17:35" />
-		<property name="status" value="REJECTED" />
+		<property name="status" value="SUBMITTED" />
 		<property name="curricula" ref="curricula6" />
 		<property name="problem" ref="problem2" />
 		<property name="position" ref="position2" />
@@ -1234,26 +1234,8 @@
 		<property name="CVVCode" value="222" />
 	</bean>
 
-	<bean id="creditcard12" class="domain.CreditCard">
-		<property name="holderName" value="CLEVER" />
-		<property name="makeName" value="VISA" />
-		<property name="number" value="4516410092471036" />
-		<property name="expirationMonth" value="2" />
-		<property name="expirationYear" value="2062" />
-		<property name="CVVCode" value="222" />
-	</bean>
-
-	<bean id="creditcard13" class="domain.CreditCard">
-		<property name="holderName" value="CLEVER" />
-		<property name="makeName" value="VISA" />
-		<property name="number" value="4516410092471036" />
-		<property name="expirationMonth" value="2" />
-		<property name="expirationYear" value="2062" />
-		<property name="CVVCode" value="222" />
-	</bean>
-
 	<bean id="creditcard14" class="domain.CreditCard">
-		<property name="holderName" value="CLEVER" />
+		<property name="holderName" value="aaa" />
 		<property name="makeName" value="VISA" />
 		<property name="number" value="4516410092471036" />
 		<property name="expirationMonth" value="2" />
@@ -1334,7 +1316,7 @@
 	</bean>
 
 	<bean id="creditcard23" class="domain.CreditCard">
-		<property name="holderName" value="CLEVER" />
+		<property name="holderName" value="bbbb" />
 		<property name="makeName" value="VISA" />
 		<property name="number" value="4516410092471036" />
 		<property name="expirationMonth" value="2" />
@@ -1648,40 +1630,39 @@
 	<!-- Sponsorship -->
 
 	<bean id="sponsorship1" class="domain.Sponsorship">
-		<property name="banner" value="banner" />
-		<property name="target" value="target" />
-		<property name="position" ref="position1" />
+		<property name="banner" value="https://f4.bcbits.com/img/0015926705_10.jpg" />
+		<property name="target" value="http://banner1.com" />
 		<property name="creditCard" ref="creditcard23" />
 		<property name="provider" ref="provider1" />
 	</bean>
 
 	<bean id="sponsorship2" class="domain.Sponsorship">
-		<property name="banner" value="banner" />
-		<property name="target" value="target" />
+		<property name="banner" value="https://f4.bcbits.com/img/0015926705_10.jpg" />
+		<property name="target" value="http://banner1.com" />
 		<property name="position" ref="position4" />
 		<property name="creditCard" ref="creditcard24" />
 		<property name="provider" ref="provider2" />
 	</bean>
 
 	<bean id="sponsorship3" class="domain.Sponsorship">
-		<property name="banner" value="banner" />
-		<property name="target" value="target" />
+		<property name="banner" value="https://f4.bcbits.com/img/0015926705_10.jpg" />
+		<property name="target" value="http://banner1.com" />
 		<property name="position" ref="position1" />
 		<property name="creditCard" ref="creditcard25" />
 		<property name="provider" ref="provider3" />
 	</bean>
 
 	<bean id="sponsorship4" class="domain.Sponsorship">
-		<property name="banner" value="banner" />
-		<property name="target" value="target" />
+		<property name="banner" value="https://f4.bcbits.com/img/0015926705_10.jpg" />
+		<property name="target" value="http://banner1.com" />
 		<property name="position" ref="position4" />
 		<property name="creditCard" ref="creditcard26" />
 		<property name="provider" ref="provider4" />
 	</bean>
 
 	<bean id="sponsorship5" class="domain.Sponsorship">
-		<property name="banner" value="banner" />
-		<property name="target" value="target" />
+		<property name="banner" value="https://f4.bcbits.com/img/0015926705_10.jpg" />
+		<property name="target" value="http://banner1.com" />
 		<property name="position" ref="position1" />
 		<property name="creditCard" ref="creditcard27" />
 		<property name="provider" ref="provider5" />

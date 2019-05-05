@@ -67,7 +67,7 @@ public class Sponsorship extends DomainEntity {
 	}
 
 	@Valid
-	@OneToOne(optional = false)
+	@OneToOne(optional = true)
 	public CreditCard getCreditCard() {
 		return this.creditCard;
 	}

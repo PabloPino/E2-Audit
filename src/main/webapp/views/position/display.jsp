@@ -21,6 +21,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
+ <jstl:if test="${sponsorship != null}">
+   <div  style="margin-right:150px" class="child"><img src="${sponsorship.banner} "  style="width:200%;height:200%; display: inline-block;">
+    </div>
+</jstl:if>
 
 <acme:out code="position.ticker" value="${position.ticker}" />
 <acme:out code="position.title" value="${position.title}" />
@@ -62,6 +66,8 @@
 
 
 </fieldset>
+
+
 
 
 

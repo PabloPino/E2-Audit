@@ -64,11 +64,6 @@ public class AuditorService {
 
 	// CRUD
 
-	public Auditor findOne(final Integer id) {
-		this.serviceUtils.checkId(id);
-		return this.auditorRepository.findOne(id);
-	}
-
 	public Collection<Auditor> findAll(final Collection<Integer> ids) {
 		this.serviceUtils.checkIds(ids);
 		return this.auditorRepository.findAll(ids);
@@ -270,6 +265,10 @@ public class AuditorService {
 		this.auditorRepository.flush();
 		final Collection<Actor> actors = this.actorService.findAll();
 		Assert.isTrue(!(actors.contains(auditor)));
+	}
+
+	public Auditor findOne(final Integer id) {
+		return this.auditorRepository.findOne(id);
 	}
 
 }

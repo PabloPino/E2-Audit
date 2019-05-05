@@ -17,3 +17,20 @@
 	color: red;
 	font-weight: bolder;
 }
+
+
+.container {
+  overflow: hidden;
+  width: 200px;
+}
+
+.inner {
+  overflow: hidden;
+  width: 2000px;
+}
+
+.child {
+  float: right;
+  width: 100px;
+  height: 100px;
+}
