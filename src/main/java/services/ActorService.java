@@ -40,10 +40,15 @@ import com.itextpdf.text.pdf.PdfWriter;
 import domain.Actor;
 import domain.Administrator;
 import domain.Application;
+import domain.Audit;
+import domain.Auditor;
 import domain.Company;
 import domain.CreditCard;
 import domain.Hacker;
+import domain.Item;
 import domain.Problem;
+import domain.Provider;
+import domain.Sponsorship;
 import forms.ActorForm;
 import repositories.ActorRepository;
 import security.Authority;
@@ -90,6 +95,21 @@ public class ActorService {
 
 	@Autowired
 	private ProblemService			problemService;
+
+	@Autowired
+	private ProviderService			providerService;
+
+	@Autowired
+	private AuditorService			auditorService;
+
+	@Autowired
+	private ItemService				itemService;
+
+	@Autowired
+	private AuditService			auditService;
+
+	@Autowired
+	private SponsorshipService		sponsorshipService;
 
 
 	public Actor create(final String authority) {
@@ -426,6 +446,10 @@ public class ActorService {
 		com.setAuthority(Authority.COMPANY);
 		final Authority admin = new Authority();
 		admin.setAuthority(Authority.ADMIN);
+		final Authority prov = new Authority();
+		admin.setAuthority(Authority.PROVIDER);
+		final Authority aud = new Authority();
+		admin.setAuthority(Authority.AUDITOR);
 
 		if (authorities.contains(com)) {
 			final Company company = this.companyService.findOne(actorId);
@@ -479,6 +503,38 @@ public class ActorService {
 				e.printStackTrace();
 			}
 
+		} else if (authorities.contains(prov)) {
+			final Provider provider = this.providerService.findOne(actor.getId());
+
+			try {
+				final OutputStream outputStream = new FileOutputStream("C:\\Users\\" + provider.getUserAccount().getUsername() + "_data.pdf");
+				final PdfWriter pdfWriter = PdfWriter.getInstance(document, outputStream);
+				document = this.initDoc(actor, document);
+				document = this.docProvider(document, provider);
+				document.close();
+				pdfWriter.close();
+			} catch (final IOException e) {
+				e.printStackTrace();
+			} catch (final DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (authorities.contains(aud)) {
+			final Auditor auditor = this.auditorService.findOne(actor.getId());
+
+			try {
+				final OutputStream outputStream = new FileOutputStream("C:\\Users\\" + auditor.getUserAccount().getUsername() + "_data.pdf");
+				final PdfWriter pdfWriter = PdfWriter.getInstance(document, outputStream);
+				document = this.initDoc(actor, document);
+				document = this.docAuditor(document, auditor);
+				document.close();
+				pdfWriter.close();
+			} catch (final IOException e) {
+				e.printStackTrace();
+			} catch (final DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -560,6 +616,35 @@ public class ActorService {
 		return document;
 	}
 
+	public Document docProvider(final Document document, final Provider provider) throws DocumentException, MalformedURLException, IOException {
+
+		final List<Item> items = new ArrayList<>(this.itemService.findItemsByProviderId(provider.getId()));
+		if (items != null)
+			if (!items.isEmpty()) {
+				document.add(new Paragraph("ITEMS.", new Font(FontFactory.getFont("arial", 22, Font.UNDERLINE))));
+				document.add(new Paragraph("\n"));
+				for (final Item item : items) {
+					document.add(new Paragraph("\n"));
+					document.add(new Paragraph(item.getId() + ": " + item.getName() + ", " + item.getDescription()));
+					document.add(new Paragraph("\n"));
+				}
+			}
+
+		final List<Sponsorship> sponsorships = new ArrayList<>(this.sponsorshipService.findSponsorshipsByProviderId(provider.getId()));
+		if (sponsorships != null)
+			if (!sponsorships.isEmpty()) {
+				document.add(new Paragraph("SPONSORSHIPS.", new Font(FontFactory.getFont("arial", 22, Font.UNDERLINE))));
+				document.add(new Paragraph("\n"));
+				for (final Sponsorship sponsorship : sponsorships) {
+					if (StringUtils.isNotEmpty(sponsorship.getBanner()))
+						document.add(this.urlToImage(new URL(sponsorship.getBanner())));
+					document.add(new Paragraph("\n"));
+				}
+			}
+
+		return document;
+	}
+
 	public Collection<Actor> findAllExceptMe(final Actor a) {
 		Collection<Actor> result;
 		result = this.actorRepository.findSpammersAndBannedActors();
@@ -567,6 +652,23 @@ public class ActorService {
 		Assert.notNull(result);
 
 		return result;
+	}
+
+	public Document docAuditor(final Document document, final Auditor auditor) throws DocumentException, MalformedURLException, IOException {
+
+		final List<Audit> audits = new ArrayList<>(this.auditService.findAuditsByAuditorId(auditor.getId()));
+		if (audits != null)
+			if (!audits.isEmpty()) {
+				document.add(new Paragraph("AUDITS.", new Font(FontFactory.getFont("arial", 22, Font.UNDERLINE))));
+				document.add(new Paragraph("\n"));
+				for (final Audit audit : audits) {
+					document.add(new Paragraph("\n"));
+					document.add(new Paragraph(audit.getId() + ": " + audit.getText() + ", " + audit.getScore()));
+					document.add(new Paragraph("\n"));
+				}
+			}
+
+		return document;
 	}
 
 }

@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import repositories.ProviderRepository;
 import domain.CreditCard;
 import domain.Item;
 import domain.Provider;
 import domain.SocialProfile;
 import domain.Sponsorship;
+import repositories.ProviderRepository;
 
 @Service
 @Transactional
@@ -47,13 +47,17 @@ public class ProviderService {
 	@Autowired
 	private SponsorshipService		sponsorshipService;
 
-
 	//CRUD----------------------------------------------------------------------------
+
 
 	//Other methods--------------------------------------------------------------------------------
 
 	public Provider findProviderByUserAcountId(final int userAccountId) {
 		return this.providerRepository.findProviderByUserAcountId(userAccountId);
+	}
+
+	public Provider findOne(final Integer id) {
+		return this.providerRepository.findOne(id);
 	}
 
 	public void deleteProvider(final Provider provider) {

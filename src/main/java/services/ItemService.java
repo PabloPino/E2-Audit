@@ -109,4 +109,8 @@ public class ItemService {
 		return this.itemRepository.queryRookiesB2();
 	}
 
+	public List<Item> findItemsByProviderId(final int providerId) {
+		return this.itemRepository.findItemsByProviderId(providerId);
+	}
+
 }

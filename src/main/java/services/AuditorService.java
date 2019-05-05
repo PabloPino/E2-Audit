@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import repositories.AuditorRepository;
 import domain.Actor;
 import domain.Audit;
 import domain.Auditor;
 import domain.CreditCard;
 import domain.SocialProfile;
+import repositories.AuditorRepository;
 
 @Service
 @Transactional
@@ -73,6 +73,10 @@ public class AuditorService {
 		this.auditorRepository.flush();
 		final Collection<Actor> actors = this.actorService.findAll();
 		Assert.isTrue(!(actors.contains(auditor)));
+	}
+
+	public Auditor findOne(final Integer id) {
+		return this.auditorRepository.findOne(id);
 	}
 
 }
