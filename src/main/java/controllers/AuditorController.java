@@ -113,6 +113,7 @@ public class AuditorController extends AbstractController {
 		result.addObject("isPrincipalAuthorizedEdit", this.isPrincipalAuthorizedEdit(actorForm));
 		result.addObject("banner", this.configurationService.findOne().getBanner());
 		result.addObject("makes", this.configurationService.findOne().getMakeName());
+		result.addObject("action", "auditor/administrator/register.do");
 		return result;
 	}
 

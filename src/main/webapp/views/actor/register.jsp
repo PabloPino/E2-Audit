@@ -22,7 +22,7 @@
 <spring:message code="confirm.phone" var="confirmPhoneMessage" />
 
 <jstl:if test="${isPrincipalAuthorizedEdit}">
-		<form:form action="register/actor.do" method="post" id="formEdit"
+		<form:form action="${action}" method="post" id="formEdit"
 			name="formEdit" modelAttribute="actorForm">
 			
 			<form:hidden path="id" />

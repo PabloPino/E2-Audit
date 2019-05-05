@@ -111,6 +111,7 @@ public class RegisterController extends AbstractController {
 		ModelAndView result = null;
 
 		// TODO faltan actores
+		result.addObject("action", "register/actor.do");
 
 		if (actorForm.getAuthority().equals(Authority.HACKER))
 			result = new ModelAndView("register/hacker");

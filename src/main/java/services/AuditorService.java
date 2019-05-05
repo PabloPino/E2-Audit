@@ -74,7 +74,7 @@ public class AuditorService {
 	}
 
 	public Auditor create() {
-		this.serviceUtils.checkNoActor();
+		this.serviceUtils.checkAuthority(Authority.ADMIN);
 		final Auditor res = new Auditor();
 		res.setBanned(false);
 		res.setUserAccount(new UserAccount());
@@ -90,7 +90,7 @@ public class AuditorService {
 		final Auditor auditor = (Auditor) this.serviceUtils.checkObjectSave(c);
 
 		if (c.getId() == 0) {
-			this.serviceUtils.checkNoActor();
+			this.serviceUtils.checkAuthority(Authority.ADMIN);
 			c.setBanned(false);
 			c.setSpammer(null);
 
