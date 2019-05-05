@@ -18,8 +18,6 @@
 <%@taglib prefix="acme" uri="/WEB-INF/tags" %>
 
 <jstl:if test="${isPrincipalAuthorizedEdit}">
-	<jstl:choose>
-	<jstl:when test="${isBrotherhood}">
 		<form:form action="hacker/edit.do" method="post" id="formEdit"
 			name="formEdit" modelAttribute="hackerForm">
 			
@@ -39,9 +37,5 @@
 			
 			
 		</form:form>
-	</jstl:when>
-	<jstl:when test="${isAdmin}">
 	
-	</jstl:when>
-	</jstl:choose>
 </jstl:if>

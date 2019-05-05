@@ -50,10 +50,10 @@
 	<jstl:if
 		test='${customer.userAccount.username == username || customer.id == 0}'>
 		
-<input type="button" name="edit" value="<spring:message code="hacker.edit"></spring:message>" onclick="javascript:relativeRedir('hacker/brotherhood/edit.do?hackerId=${hacker.id}')"/>	
+<input type="button" name="edit" value="<spring:message code="hacker.edit"></spring:message>" onclick="javascript:relativeRedir('hacker/any/edit.do?hackerId=${hacker.id}')"/>	
 	</jstl:if>
 
-<input type="button" name="cancel" value="<spring:message code="hacker.cancel"></spring:message>" onclick="javascript:relativeRedir('hacker/brotherhood/list.do')" />	
+<input type="button" name="cancel" value="<spring:message code="hacker.cancel"></spring:message>" onclick="javascript:relativeRedir('hacker/any/list.do')" />	
 
 
 
