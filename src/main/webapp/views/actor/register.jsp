@@ -39,6 +39,9 @@
 			<acme:textbox path="phone" id="phone" code="company.phone" />
 			<acme:textbox path="address" code="company.address" />
 			<acme:textbox path="photo" code="company.photo" />
+			<jstl:if test="${actorForm.authority == 'PROVIDER'}">
+				<acme:textbox path="make" code="provider.make" />
+			</jstl:if>
 			<acme:textbox path="holderName" code="creditcard.holdername" />
 						
 			<form:label path="makeName" >
