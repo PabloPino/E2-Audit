@@ -58,14 +58,26 @@
 
 		<security:intercept-url pattern="/audit/listAudits.do"
 			access="permitAll" />
-		<security:intercept-url pattern="/audit/**"
+		<security:intercept-url pattern="/audit/listToAudit"
 			access="hasRole('AUDITOR')" />
-
+			
+		<security:intercept-url pattern="/audit/create.do"
+			access="hasRole('AUDITOR')" />
+		<security:intercept-url pattern="/audit/edit.do"
+			access="hasRole('AUDITOR')" />
+		<security:intercept-url pattern="/audit/list.do"
+			access="hasRole('AUDITOR')" />
+		<security:intercept-url pattern="/audit/delete"
+			access="hasRole('AUDITOR')" />
+		<security:intercept-url pattern="/audit/display.do"
+			access="permitAll" />
+			
 		<security:intercept-url pattern="/audit.assign/**"
 			access="hasRole('AUDITOR')" />
 
 		<security:intercept-url pattern="/position/listToAudit.do"
 			access="hasRole('AUDITOR')" />
+			
 
 
 

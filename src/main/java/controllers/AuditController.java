@@ -158,7 +158,7 @@ public class AuditController extends AbstractController {
 		final Auditor auditor = this.auditorService.findAuditorByUserAcountId(LoginService.getPrincipal().getId());
 		final Position position = this.positionService.findOne(positionId);
 
-		result = this.createEditModelAndView(audit);
+		result = this.createEditModelAndView2(audit);
 		//		result.addObject("position", position);
 		//		result.addObject("auditor", auditor);
 
@@ -191,6 +191,8 @@ public class AuditController extends AbstractController {
 
 			if (binding.getAllErrors().toString().contains("borrador"))
 				result = this.createEditModelAndView(audit, "audit.finalMode.error.borrador");
+			if (binding.getAllErrors().toString().contains("creado"))
+				result = this.createEditModelAndView(audit, "audit.finalMode.error.creado");
 			else
 				result = this.createEditModelAndView(audit);
 
@@ -264,10 +266,36 @@ public class AuditController extends AbstractController {
 		//		position.setAudit(audit);
 		//this.positionService.saveForAudits(position);
 
-		result = this.createEditModelAndView(audit);
+		result = this.createEditModelAndView2(audit);
 		//result.addObject("auditor", auditor);
 
 		return result;
 
+	}
+	//	//
+	protected ModelAndView createEditModelAndView2(final Audit audit) {
+		ModelAndView result;
+
+		result = this.createEditModelAndView2(audit, null);
+
+		return result;
+	}
+	protected ModelAndView createEditModelAndView2(final Audit audit, final String message) {
+		final ModelAndView result;
+		Boolean readonly = null;
+
+		if (audit.isFinalMode() == true)
+			readonly = true;
+
+		result = new ModelAndView("audit/create");
+		result.addObject("audit", audit);
+
+		result.addObject("banner", this.configurationService.findOne().getBanner());
+		result.addObject("message", message);
+		result.addObject("readonly", readonly);
+
+		result.addObject("requestURI", "audit/create.do");
+
+		return result;
 	}
 }

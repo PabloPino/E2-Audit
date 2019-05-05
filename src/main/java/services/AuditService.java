@@ -190,5 +190,19 @@ public class AuditService {
 		return res;
 
 	}
+	public boolean getIsAudit(final int positionId) {
+		boolean res = false;
+		final Auditor auditor = this.auditorService.findAuditorByUserAcountId(LoginService.getPrincipal().getId());
 
+		final Collection<Audit> auditsByAuditor = this.findAuditsByAuditorId(auditor.getId());
+		for (final Audit a : auditsByAuditor)
+			if (a.getPosition().getId() == positionId) {
+				res = true;
+				break;
+			}
+		if (res == true)
+			throw new IllegalAccessError("Ya ha sido creado por ti ese puesto");
+
+		return res;
+	}
 }
