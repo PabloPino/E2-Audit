@@ -68,7 +68,12 @@
 			access="hasRole('AUDITOR')" />
 
 
-
+		<security:intercept-url pattern="/provider/provider/**"
+			access="hasRole('PROVIDER')" />
+		<security:intercept-url pattern="/provider/none/**"
+			access="!isAuthenticated()" />
+		<security:intercept-url pattern="/provider/any/**"
+			access="permitAll" />
 
 
 		<security:intercept-url pattern="/company/company/**"

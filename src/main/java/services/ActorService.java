@@ -28,6 +28,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.Validator;
 
+import repositories.ActorRepository;
+import security.Authority;
+import security.LoginService;
+import security.UserAccount;
+import security.UserAccountRepository;
+
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -40,16 +46,13 @@ import com.itextpdf.text.pdf.PdfWriter;
 import domain.Actor;
 import domain.Administrator;
 import domain.Application;
+import domain.Auditor;
 import domain.Company;
 import domain.CreditCard;
 import domain.Hacker;
 import domain.Problem;
+import domain.Provider;
 import forms.ActorForm;
-import repositories.ActorRepository;
-import security.Authority;
-import security.LoginService;
-import security.UserAccount;
-import security.UserAccountRepository;
 
 @Service
 @Transactional
@@ -90,6 +93,12 @@ public class ActorService {
 
 	@Autowired
 	private ProblemService			problemService;
+
+	@Autowired
+	private AuditorService			auditorService;
+
+	@Autowired
+	private ProviderService			providerService;
 
 
 	public Actor create(final String authority) {
@@ -172,6 +181,10 @@ public class ActorService {
 		hack.setAuthority(Authority.HACKER);
 		final Authority admin = new Authority();
 		admin.setAuthority(Authority.ADMIN);
+		final Authority audit = new Authority();
+		audit.setAuthority(Authority.AUDITOR);
+		final Authority prov = new Authority();
+		prov.setAuthority(Authority.PROVIDER);
 
 		if (authorities.contains(com)) {
 			Company company = null;
@@ -242,6 +255,48 @@ public class ActorService {
 			final Actor actor1 = this.administratorService.save(administrator);
 			//if (actor.getId() == 0)
 			//this.boxService.addSystemBox(actor1);
+		} else if (authorities.contains(audit)) {
+			Auditor auditor = null;
+			if (actor.getId() != 0)
+				auditor = this.auditorService.findOne(actor.getId());
+			else {
+				auditor = this.auditorService.create();
+				auditor.setUserAccount(actor.getUserAccount());
+			}
+
+			auditor.setSurname(actor.getSurname());
+			auditor.setEmail(actor.getEmail());
+			auditor.setBanned(actor.getBanned());
+			auditor.setSpammer(actor.getSpammer());
+			auditor.setName(actor.getName());
+			auditor.setPhone(actor.getPhone());
+			auditor.setPhoto(actor.getPhoto());
+			auditor.setAddress(actor.getAddress());
+			auditor.setCreditCard(actor.getCreditCard());
+			auditor.setVATNumber(actor.getVATNumber());
+
+			final Actor actor1 = this.auditorService.save(auditor);
+		} else if (authorities.contains(prov)) {
+			Provider provider = null;
+			if (actor.getId() != 0)
+				provider = this.providerService.findOne(actor.getId());
+			else {
+				provider = this.providerService.create();
+				provider.setUserAccount(actor.getUserAccount());
+			}
+
+			provider.setSurname(actor.getSurname());
+			provider.setEmail(actor.getEmail());
+			provider.setBanned(actor.getBanned());
+			provider.setSpammer(actor.getSpammer());
+			provider.setName(actor.getName());
+			provider.setPhone(actor.getPhone());
+			provider.setPhoto(actor.getPhoto());
+			provider.setAddress(actor.getAddress());
+			provider.setCreditCard(actor.getCreditCard());
+			provider.setVATNumber(actor.getVATNumber());
+
+			final Actor actor1 = this.providerService.save(provider);
 		}
 
 	}
