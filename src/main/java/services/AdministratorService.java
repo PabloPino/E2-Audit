@@ -279,8 +279,8 @@ public class AdministratorService {
 						value += a.getScore();
 					value = value / audits.size();
 
-					//reescalamos al rango -1,1
-					finalValue = ((value / 10) * 2) - 1;
+					//reescalamos al rango 0,1
+					finalValue = ((value / 10) * 1) + 0;
 				}
 
 				c.setScore(finalValue);
