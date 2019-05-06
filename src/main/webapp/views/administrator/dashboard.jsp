@@ -53,7 +53,7 @@
 		</legend>
 		<display:table name="queryC4" id="row" requestURI="${requestURI}"
 			pagesize="5" class="displaytag">
-			<acme:column code="dashboard.queryC4Hacker" value="${row}" />
+			<acme:column code="dashboard.queryC4Rookie" value="${row}" />
 		</display:table>
 	</fieldset>
 

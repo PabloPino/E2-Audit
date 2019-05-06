@@ -11,9 +11,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
 import services.ActorService;
-import services.HackerService;
+import services.RookieService;
 import utilities.AbstractTest;
-import domain.Hacker;
+import domain.Rookie;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -32,7 +32,7 @@ public class UseCase24_4 extends AbstractTest {
 	private ActorService	actorService;
 
 	@Autowired
-	private HackerService	hackerService;
+	private RookieService	rookieService;
 
 
 	@Test
@@ -60,22 +60,22 @@ public class UseCase24_4 extends AbstractTest {
 	private void banTemplate(final String username, final Class<?> expected) {
 		Class<?> caught;
 		caught = null;
-		final Hacker hacker1 = (Hacker) this.actorService.findActorByUsername("hacker1");
+		final Rookie rookie1 = (Rookie) this.actorService.findActorByUsername("rookie1");
 
 		try {
 			//Nos autenticamos
 			this.authenticate(username);
 			//Lo baneamos
-			hacker1.setBanned(true);
+			rookie1.setBanned(true);
 			//Lo desbaneamos
 
-			//	this.hackerService.save(hacker1);
-			hacker1.setBanned(false);
+			//	this.rookieService.save(rookie1);
+			rookie1.setBanned(false);
 
 			this.unauthenticate();
-			Assert.isTrue(hacker1.getBanned() == false);
+			Assert.isTrue(rookie1.getBanned() == false);
 
-			this.authenticate("hacker1");
+			this.authenticate("rookie1");
 
 			//Guardamos el cambio
 
@@ -92,14 +92,14 @@ public class UseCase24_4 extends AbstractTest {
 	public void UnBanAccessTest() {
 		final Object AccessDashBoardTest[][] = {
 			{
-				"hacker1", null
-			//Probamos con un hacker que no es spammer por lo que no debe dejar banear(CASO POSITIVO)
+				"rookie1", null
+			//Probamos con un rookie que no es spammer por lo que no debe dejar banear(CASO POSITIVO)
 			//b) Positive test
 			//c) analysis of sentence coverage: 96%
 			//d) This user is spammer  and we should be able to ban and unban him
 			}, {
 				"USERNOEXISTENTE", java.lang.IllegalArgumentException.class
-			//Probamos con un hacker que no es spammer por lo que no debe dejar banear(CASO NEGATIVO)
+			//Probamos con un rookie que no es spammer por lo que no debe dejar banear(CASO NEGATIVO)
 			//b) Negative test
 			//c) analysis of sentence coverage: 96%
 			//d) This user doesn´t exist and can´t be banned or unbanned 
@@ -112,19 +112,19 @@ public class UseCase24_4 extends AbstractTest {
 	private void banTemplate2(final String username, final Class<?> expected) {
 		Class<?> caught;
 		caught = null;
-		final Hacker hacker1 = (Hacker) this.actorService.findActorByUsername("hacker1");
+		final Rookie rookie1 = (Rookie) this.actorService.findActorByUsername("rookie1");
 
 		try {
 			//Nos autenticamos
 			this.authenticate(username);
 			//Lo baneamos
-			final Hacker a = (Hacker) this.actorService.findActorByUsername(username);
+			final Rookie a = (Rookie) this.actorService.findActorByUsername(username);
 			a.setBanned(true);
 			//lo desbanemos
 			a.setBanned(false);
 
 			//guardamos
-			this.hackerService.save(a);
+			this.rookieService.save(a);
 			this.unauthenticate();
 			// comprobamos que esta desbaneado
 			Assert.isTrue(a.getBanned() == false);

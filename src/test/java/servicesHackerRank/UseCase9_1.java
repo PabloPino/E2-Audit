@@ -1,6 +1,7 @@
 
 package servicesHackerRank;
-import java.util.Date;
+
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -17,7 +18,6 @@ import services.PositionService;
 import utilities.AbstractTest;
 import domain.Company;
 import domain.Position;
-
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {

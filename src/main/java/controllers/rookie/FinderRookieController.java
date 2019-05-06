@@ -8,7 +8,7 @@
  * http://www.tdg-seville.info/License.html
  */
 
-package controllers.hacker;
+package controllers.rookie;
 
 import java.util.List;
 
@@ -28,8 +28,8 @@ import services.ConfigurationService;
 import services.FinderService;
 
 @Controller
-@RequestMapping("/finder/hacker")
-public class FinderHackerController extends AbstractController {
+@RequestMapping("/finder/rookie")
+public class FinderRookieController extends AbstractController {
 
 	@Autowired
 	private FinderService			finderService;
@@ -40,7 +40,7 @@ public class FinderHackerController extends AbstractController {
 
 	// Constructors -----------------------------------------------------------
 
-	public FinderHackerController() {
+	public FinderRookieController() {
 		super();
 	}
 
@@ -88,7 +88,7 @@ public class FinderHackerController extends AbstractController {
 		modelAndView.addObject("positions", positions);
 		modelAndView.addObject("banner", this.configurationService.findOne().getBanner());
 		modelAndView.addObject("numResults", this.configurationService.findOne().getNumResults());
-		modelAndView.addObject("requestURI", "finder/hacker/list.do");
+		modelAndView.addObject("requestURI", "finder/rookie/list.do");
 
 		return modelAndView;
 	}

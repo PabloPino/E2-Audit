@@ -21,26 +21,26 @@
 <form:hidden path="version" />
 <form:hidden path="userAccount" />
 
-<acme:out code="hacker.name" value="${hacker.name}"/>
-<acme:out code="hacker.middleName" value="${hacker.middleName}"/>
-<acme:out code="hacker.surname" value="${hacker.surname}"/>
-<acme:out code="hacker.photo" value="${hacker.photo}"/>
-<acme:out code="hacker.email" value="${hacker.email}"/>
+<acme:out code="rookie.name" value="${rookie.name}"/>
+<acme:out code="rookie.middleName" value="${rookie.middleName}"/>
+<acme:out code="rookie.surname" value="${rookie.surname}"/>
+<acme:out code="rookie.photo" value="${rookie.photo}"/>
+<acme:out code="rookie.email" value="${rookie.email}"/>
 
-<acme:out code="hacker.phone" value="${hacker.phone}"/>
-<acme:out code="hacker.address" value="${hacker.address}"/>
+<acme:out code="rookie.phone" value="${rookie.phone}"/>
+<acme:out code="rookie.address" value="${rookie.address}"/>
 
 <security:authorize access="hasRole('ADMIN')">
 <jstl:choose>
-	<jstl:when test="${hacker.spammer}">
-		<jstl:out value="${hacker.spammer}" />
+	<jstl:when test="${rookie.spammer}">
+		<jstl:out value="${rookie.spammer}" />
 	</jstl:when>
 	<jstl:otherwise>
 		<jstl:out value="N/A" />
 	</jstl:otherwise>
 </jstl:choose>
-<acme:out code="hacker.score" value="${hacker.score}"/>
-<acme:out code="hacker.vatnumber" value="${hacker.VATNumber}" />
+<acme:out code="rookie.score" value="${rookie.score}"/>
+<acme:out code="rookie.vatnumber" value="${rookie.VATNumber}" />
 </security:authorize>
 
 
@@ -50,10 +50,10 @@
 	<jstl:if
 		test='${customer.userAccount.username == username || customer.id == 0}'>
 		
-<input type="button" name="edit" value="<spring:message code="hacker.edit"></spring:message>" onclick="javascript:relativeRedir('hacker/any/edit.do?hackerId=${hacker.id}')"/>	
+<input type="button" name="edit" value="<spring:message code="rookie.edit"></spring:message>" onclick="javascript:relativeRedir('rookie/any/edit.do?rookieId=${rookie.id}')"/>	
 	</jstl:if>
 
-<input type="button" name="cancel" value="<spring:message code="hacker.cancel"></spring:message>" onclick="javascript:relativeRedir('hacker/any/list.do')" />	
+<input type="button" name="cancel" value="<spring:message code="rookie.cancel"></spring:message>" onclick="javascript:relativeRedir('rookie/any/list.do')" />	
 
 
 

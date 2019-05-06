@@ -40,7 +40,7 @@ public class MiscellaneousDataService {
 	public MiscellaneousData create(final int curriculaId) {
 		final Curricula curricula = this.curriculaService.findOne(curriculaId);
 		this.serviceUtils.checkObject(curricula);
-		this.serviceUtils.checkActor(curricula.getHacker());
+		this.serviceUtils.checkActor(curricula.getRookie());
 		Assert.notNull(curricula);
 		final MiscellaneousData miscellaneousData = new MiscellaneousData();
 
@@ -86,9 +86,9 @@ public class MiscellaneousDataService {
 		Assert.notNull(miscellaneousData);
 		this.serviceUtils.checkObjectSave(miscellaneousData);
 
-		//compruebo que el hacker que esta intentando editar sea el el dueño del historial al que pertenece dicho Record
-		this.serviceUtils.checkActor(miscellaneousData.getCurricula().getHacker());
-		this.serviceUtils.checkAuthority("HACKER");
+		//compruebo que el rookie que esta intentando editar sea el el dueño del historial al que pertenece dicho Record
+		this.serviceUtils.checkActor(miscellaneousData.getCurricula().getRookie());
+		this.serviceUtils.checkAuthority("ROOKIE");
 
 		//comprobamos que el id del objeto no sea nulo o negativo por seguridad
 		this.serviceUtils.checkIdSave(miscellaneousData);
@@ -102,7 +102,7 @@ public class MiscellaneousDataService {
 		Assert.notNull(p);
 		Assert.isTrue(p.getOriginal() == true);
 		final MiscellaneousData miscellaneousData = (MiscellaneousData) this.serviceUtils.checkObject(p);
-		this.serviceUtils.checkActor(miscellaneousData.getCurricula().getHacker());
+		this.serviceUtils.checkActor(miscellaneousData.getCurricula().getRookie());
 		this.miscellaneousDataRepository.delete(p);
 	}
 

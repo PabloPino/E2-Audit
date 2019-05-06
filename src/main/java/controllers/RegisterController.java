@@ -49,8 +49,8 @@ public class RegisterController extends AbstractController {
 			case "SPONSOR":
 				actor = this.actorService.create("SPONSOR");
 				break;
-			case "HACKER":
-				actor = this.actorService.create("HACKER");
+			case "ROOKIE":
+				actor = this.actorService.create("ROOKIE");
 				break;
 			case "COMPANY":
 				actor = this.actorService.create("COMPANY");
@@ -112,8 +112,8 @@ public class RegisterController extends AbstractController {
 
 		// TODO faltan actores
 
-		if (actorForm.getAuthority().equals(Authority.HACKER))
-			result = new ModelAndView("register/hacker");
+		if (actorForm.getAuthority().equals(Authority.ROOKIE))
+			result = new ModelAndView("register/rookie");
 		else if (actorForm.getAuthority().equals(Authority.COMPANY))
 			result = new ModelAndView("register/company");
 		else
@@ -138,7 +138,7 @@ public class RegisterController extends AbstractController {
 		}
 		if (principal == null && form.getAuthority().equals(Authority.COMPANY))
 			res = true;
-		if (principal == null && form.getAuthority().equals(Authority.HACKER))
+		if (principal == null && form.getAuthority().equals(Authority.ROOKIE))
 			res = true;
 		if (principal instanceof Administrator && form.getAuthority().equals(Authority.ADMIN))
 			res = true;

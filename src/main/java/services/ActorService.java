@@ -50,7 +50,7 @@ import domain.Audit;
 import domain.Auditor;
 import domain.Company;
 import domain.CreditCard;
-import domain.Hacker;
+import domain.Rookie;
 import domain.Item;
 import domain.Problem;
 import domain.Provider;
@@ -77,7 +77,7 @@ public class ActorService {
 	private CompanyService			companyService;
 
 	@Autowired
-	private HackerService			hackerService;
+	private RookieService			rookieService;
 
 	@Autowired
 	private ConfigurationService	configurationService;
@@ -151,7 +151,7 @@ public class ActorService {
 		final Collection<Actor> actors = new ArrayList<>();
 		actors.addAll(this.administratorService.findAll());
 		actors.addAll(this.companyService.findAll());
-		actors.addAll(this.hackerService.findAll());
+		actors.addAll(this.rookieService.findAll());
 
 		return actors;
 	}
@@ -190,7 +190,7 @@ public class ActorService {
 		final Authority com = new Authority();
 		com.setAuthority(Authority.COMPANY);
 		final Authority hack = new Authority();
-		hack.setAuthority(Authority.HACKER);
+		hack.setAuthority(Authority.ROOKIE);
 		final Authority admin = new Authority();
 		admin.setAuthority(Authority.ADMIN);
 		final Authority audit = new Authority();
@@ -221,26 +221,26 @@ public class ActorService {
 			//if (actor.getId() == 0)
 			//this.boxService.addSystemBox(actor1);
 		} else if (authorities.contains(hack)) {
-			Hacker hacker = null;
+			Rookie rookie = null;
 			if (actor.getId() != 0)
 
-				hacker = this.hackerService.findOne(actor.getId());
+				rookie = this.rookieService.findOne(actor.getId());
 			else {
-				hacker = this.hackerService.create();
-				hacker.setUserAccount(actor.getUserAccount());
+				rookie = this.rookieService.create();
+				rookie.setUserAccount(actor.getUserAccount());
 			}
-			hacker.setEmail(actor.getEmail());
-			hacker.setBanned(actor.getBanned());
-			hacker.setSpammer(actor.getSpammer());
-			hacker.setName(actor.getName());
-			hacker.setPhone(actor.getPhone());
-			hacker.setPhoto(actor.getPhoto());
-			hacker.setSurname(actor.getSurname());
-			hacker.setAddress(actor.getAddress());
-			hacker.setCreditCard(actor.getCreditCard());
-			hacker.setVATNumber(actor.getVATNumber());
+			rookie.setEmail(actor.getEmail());
+			rookie.setBanned(actor.getBanned());
+			rookie.setSpammer(actor.getSpammer());
+			rookie.setName(actor.getName());
+			rookie.setPhone(actor.getPhone());
+			rookie.setPhoto(actor.getPhoto());
+			rookie.setSurname(actor.getSurname());
+			rookie.setAddress(actor.getAddress());
+			rookie.setCreditCard(actor.getCreditCard());
+			rookie.setVATNumber(actor.getVATNumber());
 
-			final Actor actor1 = this.hackerService.save(hacker);
+			final Actor actor1 = this.rookieService.save(rookie);
 			//if (actor.getId() == 0)
 			//this.boxService.addSystemBox(actor1);
 
@@ -362,13 +362,13 @@ public class ActorService {
 	public void validateForm(final ActorForm form, final BindingResult binding) {
 		if (form.getId() == 0 && !form.getAccept()) {
 			/*
-			 * binding.addError(new FieldError("hackerForm", "accept", form.getAccept(), false, new String[] {
-			 * "hackerForm.accept", "accept"
+			 * binding.addError(new FieldError("rookieForm", "accept", form.getAccept(), false, new String[] {
+			 * "rookieForm.accept", "accept"
 			 * }, new Object[] {
 			 * new DefaultMessageSourceResolvable(new String[] {
-			 * "hackerForm.accept", "accept"
+			 * "rookieForm.accept", "accept"
 			 * }, new Object[] {}, "accept")
-			 * }, "hacker.mustaccept"));
+			 * }, "rookie.mustaccept"));
 			 */
 			final Locale locale = LocaleContextHolder.getLocale();
 			final String errorMessage = this.messageSource.getMessage("company.mustaccept", new Object[] {
@@ -488,7 +488,7 @@ public class ActorService {
 
 		final Collection<Authority> authorities = actor.getUserAccount().getAuthorities();
 		final Authority hack = new Authority();
-		hack.setAuthority(Authority.HACKER);
+		hack.setAuthority(Authority.ROOKIE);
 		final Authority com = new Authority();
 		com.setAuthority(Authority.COMPANY);
 		final Authority admin = new Authority();
@@ -519,13 +519,13 @@ public class ActorService {
 			}
 
 		} else if (authorities.contains(hack)) {
-			final Hacker hacker = this.hackerService.findOne(actor.getId());
+			final Rookie rookie = this.rookieService.findOne(actor.getId());
 
 			try {
-				final OutputStream outputStream = new FileOutputStream("C:\\Users\\" + hacker.getUserAccount().getUsername() + "_data.pdf");
+				final OutputStream outputStream = new FileOutputStream("C:\\Users\\" + rookie.getUserAccount().getUsername() + "_data.pdf");
 				final PdfWriter pdfWriter = PdfWriter.getInstance(document, outputStream);
 				document = this.initDoc(actor, document);
-				document = this.docHacker(document, hacker);
+				document = this.docRookie(document, rookie);
 				document.close();
 				pdfWriter.close();
 			} catch (final IOException e) {
@@ -646,9 +646,9 @@ public class ActorService {
 		return document;
 	}
 
-	public Document docHacker(final Document document, final Hacker hacker) throws DocumentException, MalformedURLException, IOException {
+	public Document docRookie(final Document document, final Rookie rookie) throws DocumentException, MalformedURLException, IOException {
 
-		final List<Application> applications = new ArrayList<>(this.applicationService.findApplicationByHacker(hacker));
+		final List<Application> applications = new ArrayList<>(this.applicationService.findApplicationByRookie(rookie));
 		if (applications != null)
 			if (!applications.isEmpty()) {
 				document.add(new Paragraph("APPLICATIONS.", new Font(FontFactory.getFont("arial", 22, Font.UNDERLINE))));

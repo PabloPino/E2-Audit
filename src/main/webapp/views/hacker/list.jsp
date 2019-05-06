@@ -21,16 +21,16 @@
 
 
 
-<display:table name="hackers" id="hacker"
-	requestURI="hacker/list.do" pagesize="5"
+<display:table name="rookies" id="rookie"
+	requestURI="rookie/list.do" pagesize="5"
 	class="displaytag">
 
 
 
 			
-		<acme:column code="hacker.name" value="${ hacker.name}"></acme:column>
-		<acme:column code="hacker.middleName" value="${ hacker.middleName}" ></acme:column>	
-		<acme:column code="hacker.surname" value="${ hacker.surname}"></acme:column>
+		<acme:column code="rookie.name" value="${ rookie.name}"></acme:column>
+		<acme:column code="rookie.middleName" value="${ rookie.middleName}" ></acme:column>	
+		<acme:column code="rookie.surname" value="${ rookie.surname}"></acme:column>
 
 
 
@@ -40,7 +40,7 @@
 
 </display:table>
 
-		<acme:cancel url="hacker/any/list.do" code="hacker.back" />
+		<acme:cancel url="rookie/any/list.do" code="rookie.back" />
 
 
 

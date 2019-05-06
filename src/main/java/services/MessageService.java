@@ -22,7 +22,7 @@ import domain.Actor;
 import domain.Application;
 import domain.Company;
 import domain.Finder;
-import domain.Hacker;
+import domain.Rookie;
 import domain.Message;
 import domain.Position;
 import forms.MessageForm;
@@ -38,7 +38,7 @@ public class MessageService {
 	@Autowired
 	private ActorService			actorService;
 	@Autowired
-	private HackerService			hackerService;
+	private RookieService			rookieService;
 	@Autowired
 	private FinderService			finderService;
 	@Autowired
@@ -210,9 +210,9 @@ public class MessageService {
 
 	public void notificationApplication(final Application a) {
 		final Application application = (Application) this.serviceUtils.checkObjectSave(a);
-		final Hacker hacker = application.getHacker();
+		final Rookie rookie = application.getRookie();
 		final Company company = application.getPosition().getCompany();
-		this.generateNotificationApplication(hacker, a.getPosition().getTicker());
+		this.generateNotificationApplication(rookie, a.getPosition().getTicker());
 		this.generateNotificationApplication(company, a.getPosition().getTicker());
 	}
 
@@ -221,7 +221,7 @@ public class MessageService {
 		for (final Finder f : finders) {
 			final Collection<Position> positions = this.finderService.findPositionsByFinder(f);
 			if (positions.contains(newPosition))
-				this.generateNotificationFinder(f.getHacker(), newPosition.getTicker());
+				this.generateNotificationFinder(f.getRookie(), newPosition.getTicker());
 		}
 	}
 
@@ -237,12 +237,12 @@ public class MessageService {
 		this.messageRepository.save(message);
 	}
 
-	private void generateNotificationFinder(final Hacker hacker, final String ticker) {
+	private void generateNotificationFinder(final Rookie rookie, final String ticker) {
 		final Message message = this.create();
 		message.setSender(this.actorService.findActorByUsername("system"));
 		message.setBody("This position may be interesting " + ticker + " \r\n" + "Esta posición puede ser interesante " + ticker + " \r\n");
 		message.setSubject("A new interesting position // Una nueva posición interesante");
-		message.setReceiver(hacker);
+		message.setReceiver(rookie);
 		final Collection<String> tags = message.getTags();
 		tags.add("NOTIFICATION");
 		message.setTags(tags);

@@ -57,10 +57,10 @@
 	<acme:column code="position.salary" value="${position.salary}0 Euros"></acme:column>
 	
 	<acme:column code="position.company" value="${position.company.name}"></acme:column>
-	<security:authorize access="hasRole('HACKER')">
+	<security:authorize access="hasRole('ROOKIE')">
 		<display:column titleKey="app.application">
 			<jstl:if test="${position.deadLine > now}">
-				<a href="application/hacker/create.do?positionId=${position.id}"><spring:message
+				<a href="application/rookie/create.do?positionId=${position.id}"><spring:message
 						code="app.create"></spring:message></a>
 			</jstl:if>
 		</display:column>

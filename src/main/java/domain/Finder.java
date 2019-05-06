@@ -23,7 +23,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(indexes = {
-	@Index(columnList = "hacker")
+	@Index(columnList = "rookie")
 })
 public class Finder extends DomainEntity {
 
@@ -89,18 +89,18 @@ public class Finder extends DomainEntity {
 
 	//Relationships----------------------------------------------------------------
 
-	private Hacker			hacker;
+	private Rookie			rookie;
 	private List<Position>	positions;
 
 
 	@Valid
 	@OneToOne(optional = true)
-	public Hacker getHacker() {
-		return this.hacker;
+	public Rookie getRookie() {
+		return this.rookie;
 	}
 
-	public void setHacker(final Hacker hacker) {
-		this.hacker = hacker;
+	public void setRookie(final Rookie rookie) {
+		this.rookie = rookie;
 	}
 
 	@Valid

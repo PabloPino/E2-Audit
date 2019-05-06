@@ -13,13 +13,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import services.ActorService;
 import services.ApplicationService;
-import services.HackerService;
 import services.PositionService;
+import services.RookieService;
 import utilities.AbstractTest;
 import domain.Application;
 import domain.Company;
-import domain.Hacker;
 import domain.Position;
+import domain.Rookie;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -47,7 +47,7 @@ public class UseCase9_3 extends AbstractTest {
 	private PositionService		positionService;
 
 	@Autowired
-	private HackerService		hackerService;
+	private RookieService		rookieService;
 
 
 	@Test
@@ -98,14 +98,14 @@ public class UseCase9_3 extends AbstractTest {
 			final Application app = apps.get(0);
 			//			Sacamos el id de una position
 			final int positionId = pos.get(0).getId();
-			//			Cogemos un hacker
-			final Hacker hacker = this.hackerService.findAll().get(0);
+			//			Cogemos un rookie
+			final Rookie rookie = this.rookieService.findAll().get(0);
 
 			// Edito una application
 			app.setStatus("SUBMITTED");
 			//Creo una application
 			final Application appCreated = this.applicationService.create(positionId);
-			appCreated.setHacker(hacker);
+			appCreated.setRookie(rookie);
 
 			//Guardo una application
 			this.applicationService.save(app);

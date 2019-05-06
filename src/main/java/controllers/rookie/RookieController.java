@@ -1,5 +1,5 @@
 
-package controllers.hacker;
+package controllers.rookie;
 
 import javax.validation.Valid;
 
@@ -16,19 +16,19 @@ import security.LoginService;
 import security.UserAccount;
 import services.ActorService;
 import services.ConfigurationService;
-import services.HackerService;
+import services.RookieService;
 import controllers.AbstractController;
 import domain.Actor;
-import domain.Hacker;
-import forms.HackerForm;
+import domain.Rookie;
+import forms.RookieForm;
 
 @Controller
-@RequestMapping("/hacker")
-public class HackerController extends AbstractController {
+@RequestMapping("/rookie")
+public class RookieController extends AbstractController {
 
 	// Constructors -----------------------------------------------------------
 
-	public HackerController() {
+	public RookieController() {
 		super();
 	}
 
@@ -36,7 +36,7 @@ public class HackerController extends AbstractController {
 	//-----------------Services-------------------------
 
 	@Autowired
-	HackerService					hackerService;
+	RookieService					rookieService;
 
 	@Autowired
 	ActorService					actorService;
@@ -57,7 +57,7 @@ public class HackerController extends AbstractController {
 	public ModelAndView action1() {
 		ModelAndView result;
 
-		result = new ModelAndView("hacker/action-1");
+		result = new ModelAndView("rookie/action-1");
 
 		return result;
 	}
@@ -68,22 +68,22 @@ public class HackerController extends AbstractController {
 	public ModelAndView action2() {
 		ModelAndView result;
 
-		result = new ModelAndView("hacker/action-2");
+		result = new ModelAndView("rookie/action-2");
 
 		return result;
 	}
 
 	//-----------------Display-------------------------
 
-	//display creado para mostrar al hacker logueado
+	//display creado para mostrar al rookie logueado
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display() {
 		ModelAndView result;
-		Hacker hacker;
+		Rookie rookie;
 
-		hacker = (Hacker) this.actorService.findByUserAccount(LoginService.getPrincipal());
-		result = new ModelAndView("hacker/edit");
-		result.addObject("hacker", hacker);
+		rookie = (Rookie) this.actorService.findByUserAccount(LoginService.getPrincipal());
+		result = new ModelAndView("rookie/edit");
+		result.addObject("rookie", rookie);
 		result.addObject("banner", this.configurationService.findOne().getBanner());
 
 		return result;
@@ -92,42 +92,42 @@ public class HackerController extends AbstractController {
 	//------------------Edit---------------------------------------------
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int hackerId) {
+	public ModelAndView edit(@RequestParam final int rookieId) {
 		ModelAndView result;
-		Hacker hacker;
+		Rookie rookie;
 
-		hacker = this.hackerService.findOne(hackerId);
-		Assert.notNull(hacker);
-		result = this.createEditModelAndView(hacker);
+		rookie = this.rookieService.findOne(rookieId);
+		Assert.notNull(rookie);
+		result = this.createEditModelAndView(rookie);
 
 		return result;
 
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid final HackerForm hackerForm, final BindingResult binding) {
+	public ModelAndView save(@Valid final RookieForm rookieForm, final BindingResult binding) {
 		ModelAndView result;
-		Hacker hacker = null;
+		Rookie rookie = null;
 
-		this.hackerService.validateForm(hackerForm, binding);
+		this.rookieService.validateForm(rookieForm, binding);
 		if (binding.hasErrors()) {
-			hacker = this.hackerService.deconstruct(hackerForm);
+			rookie = this.rookieService.deconstruct(rookieForm);
 			System.out.println(binding.getAllErrors());
-			result = this.createEditModelAndView(hacker);
-			result.addObject("message", "hacker.commit.error");
+			result = this.createEditModelAndView(rookie);
+			result.addObject("message", "rookie.commit.error");
 		} else
 
 			try {
-				hacker = this.hackerService.deconstruct(hackerForm);
-				this.hackerService.save(hacker);
+				rookie = this.rookieService.deconstruct(rookieForm);
+				this.rookieService.save(rookie);
 				result = new ModelAndView("redirect:display.do");
 
 			} catch (final Throwable oops) {
-				final Actor test = this.actorService.findActorByUsername(hackerForm.getUsername());
+				final Actor test = this.actorService.findActorByUsername(rookieForm.getUsername());
 				if (test != null)
-					result = this.createEditModelAndView(hacker, "actor.userExists");
+					result = this.createEditModelAndView(rookie, "actor.userExists");
 				else
-					result = this.createEditModelAndView(hacker, "hacker.commit.error");
+					result = this.createEditModelAndView(rookie, "rookie.commit.error");
 
 			}
 
@@ -139,22 +139,22 @@ public class HackerController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
-		final Hacker hacker;
+		final Rookie rookie;
 
-		hacker = this.hackerService.create();
+		rookie = this.rookieService.create();
 
-		result = new ModelAndView("hacker/create");
-		result.addObject("hacker", hacker);
+		result = new ModelAndView("rookie/create");
+		result.addObject("rookie", rookie);
 		return result;
 	}
 
-	@RequestMapping(value = "/deleteHacker", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteRookie", method = RequestMethod.GET)
 	public ModelAndView deleteAllData() {
 
 		ModelAndView result;
 		final Actor s = this.actorService.findPrincipal();
 		try {
-			this.hackerService.deleteHacker((Hacker) s);
+			this.rookieService.deleteRookie((Rookie) s);
 			result = new ModelAndView("redirect:/j_spring_security_logout");
 		} catch (final Throwable oops) {
 			result = new ModelAndView("redirect:/welcome/index.do");
@@ -168,31 +168,31 @@ public class HackerController extends AbstractController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam final int brotherhoodId) {
 		final ModelAndView result;
-		//		final List<Hacker> hackers = this.hackerService.listHackersByBrotherhood(brotherhoodId);
+		//		final List<Rookie> rookies = this.rookieService.listRookiesByBrotherhood(brotherhoodId);
 		//
-		result = new ModelAndView("hacker/list");
-		//		result.addObject("requestURI", "hacker/list.do");
-		//		result.addObject("hackers", hackers);
+		result = new ModelAndView("rookie/list");
+		//		result.addObject("requestURI", "rookie/list.do");
+		//		result.addObject("rookies", rookies);
 
 		return result;
 	}
 	//---------------------------------------------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(final Hacker hacker) {
+	protected ModelAndView createEditModelAndView(final Rookie rookie) {
 		ModelAndView result;
 
-		result = this.createEditModelAndView(hacker, null);
+		result = this.createEditModelAndView(rookie, null);
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(final Hacker hacker, final String messageCode) {
+	protected ModelAndView createEditModelAndView(final Rookie rookie, final String messageCode) {
 		final ModelAndView result;
 		UserAccount userAccount = new UserAccount();
-		userAccount = hacker.getUserAccount();
+		userAccount = rookie.getUserAccount();
 
-		result = new ModelAndView("hacker/edit");
-		result.addObject("hacker", hacker);
+		result = new ModelAndView("rookie/edit");
+		result.addObject("rookie", rookie);
 		result.addObject("userAccount", userAccount);
 		result.addObject("message", messageCode);
 

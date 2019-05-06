@@ -44,8 +44,8 @@
 <jstl:if test="${educationData.original == true }">
 <security:authentication property="principal.username" var="username" />
 <jstl:if
-	test='${educationData.curricula.hacker.userAccount.username == username || educationData.id == 0}'>
-	<security:authorize access="hasRole('HACKER')">
+	test='${educationData.curricula.rookie.userAccount.username == username || educationData.id == 0}'>
+	<security:authorize access="hasRole('ROOKIE')">
 		<div>
 
 			<form:form action="educationData/edit.do" method="post"
@@ -108,7 +108,7 @@
 
 </jstl:if>
 <jstl:if
-	test='${educationData.curricula.hacker.userAccount.username != username}'>
+	test='${educationData.curricula.rookie.userAccount.username != username}'>
 	<h1>
 		<b><spring:message code="curricula.permissions"></spring:message></b>
 	</h1>

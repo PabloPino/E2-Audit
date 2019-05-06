@@ -37,7 +37,7 @@ public class PersonalDataService {
 	public PersonalData create(final int curriculaId) {
 		final Curricula curricula = this.curriculaService.findOne(curriculaId);
 		this.serviceUtils.checkObject(curricula);
-		this.serviceUtils.checkActor(curricula.getHacker());
+		this.serviceUtils.checkActor(curricula.getRookie());
 		Assert.notNull(curricula);
 		final PersonalData personalData = new PersonalData();
 
@@ -84,9 +84,9 @@ public class PersonalDataService {
 		Assert.notNull(personalData);
 		this.serviceUtils.checkObjectSave(personalData);
 
-		//compruebo que el hacker que esta intentando editar sea el el dueño del historial al que pertenece dicho Record
-		this.serviceUtils.checkActor(personalData.getCurricula().getHacker());
-		this.serviceUtils.checkAuthority("HACKER");
+		//compruebo que el rookie que esta intentando editar sea el el dueño del historial al que pertenece dicho Record
+		this.serviceUtils.checkActor(personalData.getCurricula().getRookie());
+		this.serviceUtils.checkAuthority("ROOKIE");
 
 		//comprobamos que el id del objeto no sea nulo o negativo por seguridad
 		this.serviceUtils.checkIdSave(personalData);
@@ -100,7 +100,7 @@ public class PersonalDataService {
 		Assert.notNull(p);
 		Assert.isTrue(p.getOriginal() == true);
 		final PersonalData personalData = (PersonalData) this.serviceUtils.checkObject(p);
-		this.serviceUtils.checkActor(personalData.getCurricula().getHacker());
+		this.serviceUtils.checkActor(personalData.getCurricula().getRookie());
 		this.personalDataRepository.delete(p);
 	}
 
@@ -109,8 +109,8 @@ public class PersonalDataService {
 
 		return res;
 	}
-	public Collection<PersonalData> findAllPersonalDatasByHackerId(final int hackerId) {
-		return this.personalDataRepository.findAllPersonalDatasByHackerId(hackerId);
+	public Collection<PersonalData> findAllPersonalDatasByRookieId(final int rookieId) {
+		return this.personalDataRepository.findAllPersonalDatasByRookieId(rookieId);
 	}
 
 	public void flush() {

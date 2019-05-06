@@ -22,11 +22,11 @@
 <display:table name="applications" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
-	<security:authorize access="hasAnyRole('HACKER')">
+	<security:authorize access="hasAnyRole('ROOKIE')">
 		<display:column titleKey="app.edit">
 			<jstl:if test="${row.status.equals('PENDING')}">
 
-				<a href="application/hacker/edit.do?applicationId=${row.id}"> <spring:message
+				<a href="application/rookie/edit.do?applicationId=${row.id}"> <spring:message
 						code="app.edit" />
 				</a>
 			</jstl:if>
@@ -44,19 +44,19 @@
 			</jstl:if>
 		</display:column>
 	</security:authorize>
-	<security:authorize access="hasAnyRole('HACKER','COMPANY')">
+	<security:authorize access="hasAnyRole('ROOKIE','COMPANY')">
 		<display:column titleKey="app.publishMoment" property="publishMoment" />
 		<display:column titleKey="app.submitMoment" property="submitMoment" />
 		<display:column titleKey="app.status" property="status"
 			sortable="true" />
 		<display:column titleKey="app.problem" property="problem.title" />
 		<display:column titleKey="app.position" property="position.title" />
-		<security:authorize access="hasRole('HACKER')">
+		<security:authorize access="hasRole('ROOKIE')">
 			<display:column titleKey="app.company"
 				property="position.company.comercialName" />
 
 			<display:column titleKey="app.show">
-				<a href="application/hacker/show.do?applicationId=${row.id}"> <spring:message
+				<a href="application/rookie/show.do?applicationId=${row.id}"> <spring:message
 						code="app.show" />
 				</a>
 			</display:column>
@@ -67,7 +67,7 @@
 			</a>
 		</display:column>
 		<security:authorize access="hasRole('COMPANY')">
-			<display:column titleKey="app.hacker" property="hacker.name" />
+			<display:column titleKey="app.rookie" property="rookie.name" />
 			<display:column titleKey="app.show">
 				<a href="application/company/show.do?applicationId=${row.id}"> <spring:message
 						code="app.show" />
@@ -77,6 +77,6 @@
 
 	</security:authorize>
 </display:table>
-<security:authorize access="hasRole('HACKER')">
+<security:authorize access="hasRole('ROOKIE')">
 	<a href="position/listtwo.do">Create application</a>
 </security:authorize>

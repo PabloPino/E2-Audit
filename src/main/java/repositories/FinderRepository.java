@@ -10,8 +10,8 @@ import domain.Finder;
 @Repository
 public interface FinderRepository extends JpaRepository<Finder, Integer> {
 
-	@Query("select f from Finder f where f.hacker.id = ?1")
-	Finder findFinderByHackerId(int hackerId);
+	@Query("select f from Finder f where f.rookie.id = ?1")
+	Finder findFinderByRookieId(int rookieId);
 
 	//QUERY DASHBOARD---------------------------------------------------------------------------
 	@Query("select avg(f.positions.size) from Finder f")

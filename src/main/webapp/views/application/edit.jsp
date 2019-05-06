@@ -28,11 +28,11 @@
 	<form:hidden path="version" />
 	<form:hidden path="problem" />
 	<form:hidden path="position" />
-	<form:hidden path="hacker" />
+	<form:hidden path="rookie" />
 
 
 
-	<security:authorize access="hasRole('HACKER')">
+	<security:authorize access="hasRole('ROOKIE')">
 		<jstl:if test="${application.status.equals('PENDING')}">
 			<form:hidden path="status" />
 		</jstl:if>
@@ -91,10 +91,10 @@
 		<br>
 		<acme:textbox code="app.company" path="position.company.comercialName" />
 		<br>
-		<acme:textbox code="app.hacker" path="hacker.name" />
+		<acme:textbox code="app.rookie" path="rookie.name" />
 		<br>
 	</jstl:if>
-	<security:authorize access="hasRole('HACKER')">
+	<security:authorize access="hasRole('ROOKIE')">
 		<jstl:if test="${isRead == true}">
 			<acme:textbox code="app.status" path="status" />
 		</jstl:if>
@@ -139,8 +139,8 @@
 		<%-- <input type="submit" name="save"
 			value="<spring:message code="app.save" />" /> --%>
 		<acme:submit name="save" code="app.save" />
-		<security:authorize access="hasRole('HACKER')">
-			<acme:cancel url="application/hacker/list.do" code="app.cancel" />
+		<security:authorize access="hasRole('ROOKIE')">
+			<acme:cancel url="application/rookie/list.do" code="app.cancel" />
 		</security:authorize>
 		<security:authorize access="hasRole('COMPANY')">
 			<acme:cancel url="application/company/list.do" code="app.cancel" />
@@ -148,8 +148,8 @@
 	</jstl:if>
 
 	<jstl:if test="${isRead == true}">
-		<security:authorize access="hasRole('HACKER')">
-			<acme:cancel url="application/hacker/list.do" code="app.back" />
+		<security:authorize access="hasRole('ROOKIE')">
+			<acme:cancel url="application/rookie/list.do" code="app.back" />
 		</security:authorize>
 		<security:authorize access="hasRole('COMPANY')">
 			<acme:cancel url="application/company/list.do" code="app.back" />

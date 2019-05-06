@@ -1,6 +1,7 @@
 
 package servicesHackerRank;
-import javax.transaction.Transactional;
+
+import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,13 +15,12 @@ import services.ActorService;
 import services.AdministratorService;
 import services.CompanyService;
 import services.CreditCardService;
-import services.HackerService;
+import services.RookieService;
 import utilities.AbstractTest;
 import domain.Administrator;
 import domain.Company;
 import domain.CreditCard;
-import domain.Hacker;
-
+import domain.Rookie;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -29,7 +29,7 @@ import domain.Hacker;
 @Transactional
 public class UseCase8_2 extends AbstractTest {
 
-	// An actor who is not authenticated must be able to edit to the system as a company or a hacker.
+	// An actor who is not authenticated must be able to edit to the system as a company or a rookie.
 
 	// Services
 
@@ -38,7 +38,7 @@ public class UseCase8_2 extends AbstractTest {
 	@Autowired
 	private CompanyService			companyService;
 	@Autowired
-	private HackerService			hackerService;
+	private RookieService			rookieService;
 	@Autowired
 	private ActorService			actorService;
 	@Autowired
@@ -57,10 +57,10 @@ public class UseCase8_2 extends AbstractTest {
 		this.editCompanyDriver("company1", null);
 		// Una company edita los datos personales de otra company (NEGATIVO)
 		this.editCompanyDriver("company2", IllegalArgumentException.class);
-		// Un hacker edita sus datos personales (POSITIVO)
-		this.editHackerDriver("hacker1", null);
-		// Un hacker edita los datos personales de otro hacker (NEGATIVO)
-		this.editHackerDriver("hacker2", IllegalArgumentException.class);
+		// Un rookie edita sus datos personales (POSITIVO)
+		this.editRookieDriver("rookie1", null);
+		// Un rookie edita los datos personales de otro rookie (NEGATIVO)
+		this.editRookieDriver("rookie2", IllegalArgumentException.class);
 		// Un administrator edita sus datos personales (POSITIVO)
 		this.editAdminDriver("admin1", null);
 		// Un administrator edita los datos personales de otro administrator (NEGATIVO)
@@ -104,22 +104,22 @@ public class UseCase8_2 extends AbstractTest {
 		}
 		super.unauthenticate();
 	}
-	private void editHackerDriver(final String username, final Class<?> expected) {
+	private void editRookieDriver(final String username, final Class<?> expected) {
 		super.authenticate(username);
 		Class<?> caught = null;
 		try {
-			final Hacker hacker = this.hackerService.findOne(super.getEntityId("hacker1"));
-			final CreditCard creditCard = hacker.getCreditCard();
-			final Integer hackerVersionBefore = hacker.getVersion();
+			final Rookie rookie = this.rookieService.findOne(super.getEntityId("rookie1"));
+			final CreditCard creditCard = rookie.getCreditCard();
+			final Integer rookieVersionBefore = rookie.getVersion();
 			final Integer creditCardVersionBefore = creditCard.getVersion();
-			hacker.setAddress("address");
-			hacker.setEmail("email@email.com");
-			hacker.setName("name");
-			hacker.setPhone("phone");
-			hacker.setPhoto("http://photo");
-			hacker.setSurname("surname");
-			hacker.setVATNumber("vATNumber");
-			hacker.getUserAccount().setPassword("newHacker" + UseCase8_2.uniqueness);
+			rookie.setAddress("address");
+			rookie.setEmail("email@email.com");
+			rookie.setName("name");
+			rookie.setPhone("phone");
+			rookie.setPhoto("http://photo");
+			rookie.setSurname("surname");
+			rookie.setVATNumber("vATNumber");
+			rookie.getUserAccount().setPassword("newRookie" + UseCase8_2.uniqueness);
 			UseCase8_2.uniqueness++;
 			creditCard.setCVVCode(123);
 			creditCard.setExpirationMonth(12);
@@ -127,12 +127,12 @@ public class UseCase8_2 extends AbstractTest {
 			creditCard.setHolderName("holderName");
 			creditCard.setMakeName("makeName");
 			creditCard.setNumber("1111222233334444");
-			hacker.setCreditCard(creditCard);
-			final Hacker savedHacker = this.hackerService.save(hacker);
+			rookie.setCreditCard(creditCard);
+			final Rookie savedRookie = this.rookieService.save(rookie);
 			this.flushRep.flush();
-			Assert.notNull(this.hackerService.findOne(savedHacker.getId()));
-			Assert.isTrue(savedHacker.getVersion() > hackerVersionBefore);
-			Assert.isTrue(savedHacker.getCreditCard().getVersion() > creditCardVersionBefore);
+			Assert.notNull(this.rookieService.findOne(savedRookie.getId()));
+			Assert.isTrue(savedRookie.getVersion() > rookieVersionBefore);
+			Assert.isTrue(savedRookie.getCreditCard().getVersion() > creditCardVersionBefore);
 		} catch (final Throwable t) {
 			caught = t.getClass();
 			super.checkExceptions(expected, caught);

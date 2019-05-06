@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import domain.Finder;
-import domain.Hacker;
+import domain.Rookie;
 import domain.Position;
 import repositories.FinderRepository;
 import security.LoginService;
@@ -31,7 +31,7 @@ public class FinderService {
 	//Services------------------------------------------------------------------
 
 	@Autowired
-	private HackerService			hackerService;
+	private RookieService			rookieService;
 
 	@Autowired
 	private PositionService			positionService;
@@ -44,10 +44,10 @@ public class FinderService {
 
 	public Finder create() {
 		final Finder finder = new Finder();
-		final Hacker hacker = this.hackerService.findHackerByUserAcountId(LoginService.getPrincipal().getId());
+		final Rookie rookie = this.rookieService.findRookieByUserAcountId(LoginService.getPrincipal().getId());
 		final List<Position> positions = new ArrayList<>();
 
-		finder.setHacker(hacker);
+		finder.setRookie(rookie);
 		finder.setLastUpdate(new Date(System.currentTimeMillis() - 100));
 		finder.setPositions(positions);
 
@@ -55,8 +55,8 @@ public class FinderService {
 	}
 
 	public Finder findOneByPrincipal() {
-		final Hacker hacker = this.hackerService.findHackerByUserAcountId(LoginService.getPrincipal().getId());
-		return this.finderRepository.findFinderByHackerId(hacker.getId());
+		final Rookie rookie = this.rookieService.findRookieByUserAcountId(LoginService.getPrincipal().getId());
+		return this.finderRepository.findFinderByRookieId(rookie.getId());
 	}
 
 	public Finder findOne(final Integer id) {
@@ -87,10 +87,10 @@ public class FinderService {
 	//Others------------------------------------------------------------------------
 
 	private boolean checkPrincipal(final Finder finder) {
-		final Hacker hacker = finder.getHacker();
-		final Hacker principal = this.hackerService.findHackerByUserAcountId(LoginService.getPrincipal().getId());
+		final Rookie rookie = finder.getRookie();
+		final Rookie principal = this.rookieService.findRookieByUserAcountId(LoginService.getPrincipal().getId());
 
-		Assert.isTrue(hacker.getId() == principal.getId());
+		Assert.isTrue(rookie.getId() == principal.getId());
 
 		return true;
 	}

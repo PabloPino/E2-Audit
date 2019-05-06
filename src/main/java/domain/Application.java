@@ -22,7 +22,7 @@ import org.hibernate.validator.constraints.URL;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(indexes = {
-	@Index(columnList = "hacker")
+	@Index(columnList = "rookie")
 })
 public class Application extends DomainEntity {
 
@@ -83,7 +83,7 @@ public class Application extends DomainEntity {
 	// Relationships ---------------------------------------------------------
 	private Problem		problem;
 	private Position	position;
-	private Hacker		hacker;
+	private Rookie		rookie;
 	private Curricula	curricula;
 
 
@@ -107,12 +107,12 @@ public class Application extends DomainEntity {
 	}
 	@Valid
 	@ManyToOne(optional = false)
-	public Hacker getHacker() {
-		return this.hacker;
+	public Rookie getRookie() {
+		return this.rookie;
 	}
 
-	public void setHacker(final Hacker hacker) {
-		this.hacker = hacker;
+	public void setRookie(final Rookie rookie) {
+		this.rookie = rookie;
 	}
 
 	@Valid

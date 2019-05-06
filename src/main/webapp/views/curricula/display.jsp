@@ -22,7 +22,7 @@
 
 
 
-<%-- <security:authorize access="hasRole('HACKER')">
+<%-- <security:authorize access="hasRole('ROOKIE')">
 <security:authentication property="principal.username" var="username" />
 
 	<jstl:if test='${history.brotherhood.userAccount.username == username}'>
@@ -58,7 +58,7 @@
 			
 			<jstl:if test="${personalData.original == true }">
 			<security:authentication property="principal.username" var="username" />
-			<jstl:if test='${curricula.hacker.userAccount.username == username}'>
+			<jstl:if test='${curricula.rookie.userAccount.username == username}'>
 			
 				<spring:message code="curricula.edit" var="edit"></spring:message>
 				<input type="button" name="edit" value="${edit}"
@@ -97,7 +97,7 @@
 				</display:table>
 				
 				<%--  Boton de creacion --%>
-				<security:authorize access="hasRole('HACKER')">
+				<security:authorize access="hasRole('ROOKIE')">
 				<jstl:if test="${curricula.original == true }">
 					<input type="button" name="create"
 						value="<spring:message code="curricula.create"></spring:message>"
@@ -137,7 +137,7 @@
 				</display:table>
 				
 				<%--  Boton de creacion --%>
-				<security:authorize access="hasRole('HACKER')">
+				<security:authorize access="hasRole('ROOKIE')">
 				<jstl:if test="${curricula.original == true }">
 					<input type="button" name="create"
 						value="<spring:message code="curricula.create"></spring:message>"
@@ -169,7 +169,7 @@
 				</display:table>
 				
 				<%--  Boton de creacion --%>
-				<security:authorize access="hasRole('HACKER')">
+				<security:authorize access="hasRole('ROOKIE')">
 					<jstl:if test="${curricula.original == true }">
 					<input type="button" name="create"
 						value="<spring:message code="curricula.create"></spring:message>"
@@ -183,7 +183,7 @@
 
 <security:authentication property="principal.username" var="username" />
 
-	<jstl:if test='${curricula.hacker.userAccount.username == username}'>
+	<jstl:if test='${curricula.rookie.userAccount.username == username}'>
 <%--  Boton de ATRAS --%>
 <acme:cancel url="curricula/list.do" code="curricula.back" />	
 

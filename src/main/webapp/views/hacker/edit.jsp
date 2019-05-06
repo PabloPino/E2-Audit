@@ -18,22 +18,22 @@
 <%@taglib prefix="acme" uri="/WEB-INF/tags" %>
 
 <jstl:if test="${isPrincipalAuthorizedEdit}">
-		<form:form action="hacker/edit.do" method="post" id="formEdit"
-			name="formEdit" modelAttribute="hackerForm">
+		<form:form action="rookie/edit.do" method="post" id="formEdit"
+			name="formEdit" modelAttribute="rookieForm">
 			
 			<form:hidden path="id" />
 			<form:hidden path="version" />
 			
-			<acme:userAccount code="hacker.userAccount" />
-			<acme:userAccount code="hacker.password" />
+			<acme:userAccount code="rookie.userAccount" />
+			<acme:userAccount code="rookie.password" />
 			
-			<acme:textbox path="name" code="hacker.name" />
-			<acme:textbox path="middleName" code="hacker.middleName" />
-			<acme:textbox path="surname" code="hacker.surname" />
-			<acme:textbox path="photo" code="hacker.photo" />
-			<acme:textbox path="email" code="hacker.email" />
-			<acme:textbox path="phone" code="hacker.phone" />
-			<acme:textbox path="VATNumber" code="hacker.vatnumber" />
+			<acme:textbox path="name" code="rookie.name" />
+			<acme:textbox path="middleName" code="rookie.middleName" />
+			<acme:textbox path="surname" code="rookie.surname" />
+			<acme:textbox path="photo" code="rookie.photo" />
+			<acme:textbox path="email" code="rookie.email" />
+			<acme:textbox path="phone" code="rookie.phone" />
+			<acme:textbox path="VATNumber" code="rookie.vatnumber" />
 			
 			
 		</form:form>

@@ -16,7 +16,7 @@ import services.ActorService;
 import services.ConfigurationService;
 import services.CurriculaService;
 import services.EducationDataService;
-import services.HackerService;
+import services.RookieService;
 import domain.EducationData;
 
 @Controller
@@ -28,7 +28,7 @@ public class EducationDataController extends AbstractController {
 	EducationDataService	educationDataService;
 
 	@Autowired
-	HackerService			hacekrService;
+	RookieService			hacekrService;
 
 	@Autowired
 	CurriculaService		curriculaService;

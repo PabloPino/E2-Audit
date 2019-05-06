@@ -42,7 +42,7 @@ public class UseCase24_1 extends AbstractTest {
 		// Un adminstrador manda un mensaje de broadcast (POSITIVO)
 		this.driverBroadcast("admin1", null);
 		// Un usuario no administrador manda un mensaje de broadcast (NEGATIVO)
-		this.driverBroadcast("hacker1", IllegalArgumentException.class);
+		this.driverBroadcast("rookie1", IllegalArgumentException.class);
 	}
 
 	// Driver

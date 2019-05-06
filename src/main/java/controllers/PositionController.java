@@ -20,13 +20,13 @@ import org.springframework.web.servlet.ModelAndView;
 import security.LoginService;
 import services.CompanyService;
 import services.ConfigurationService;
-import services.HackerService;
+import services.RookieService;
 import services.MessageService;
 import services.PositionService;
 import services.ProblemService;
 import services.ServiceUtils;
 import services.SponsorshipService;
-import domain.Hacker;
+import domain.Rookie;
 import domain.Position;
 import domain.Problem;
 import domain.Sponsorship;
@@ -53,7 +53,7 @@ public class PositionController extends AbstractController {
 	MessageService			messageService;
 
 	@Autowired
-	HackerService			hackerService;
+	RookieService			rookieService;
 
 	@Autowired
 	ServiceUtils			serviceUtils;
@@ -71,10 +71,10 @@ public class PositionController extends AbstractController {
 		List<Position> positions2 = new ArrayList<Position>();
 		if (LoginService.getPrincipal2().getAuthentication().getPrincipal() != "anonymousUser") {
 			final int userAccountId = LoginService.getPrincipal().getId();
-			final Hacker hacker = this.hackerService.findHackerByUserAcountId(userAccountId);
-			if (hacker != null) {
-				final int hackerId = hacker.getId();
-				positions2 = this.positionService.findPositionByHackerId(hackerId);
+			final Rookie rookie = this.rookieService.findRookieByUserAcountId(userAccountId);
+			if (rookie != null) {
+				final int rookieId = rookie.getId();
+				positions2 = this.positionService.findPositionByRookieId(rookieId);
 			}
 		}
 		modelAndView = new ModelAndView("position/list");
@@ -103,9 +103,9 @@ public class PositionController extends AbstractController {
 		now = new Date(System.currentTimeMillis() - 1000);
 		final Collection<Position> positions = this.positionService.findFinalPositionsWithoutDeadline();
 		final int userAccountId = LoginService.getPrincipal().getId();
-		final Hacker hacker = this.hackerService.findHackerByUserAcountId(userAccountId);
-		final int hackerId = hacker.getId();
-		final List<Position> positions2 = this.positionService.findPositionByHackerId(hackerId);
+		final Rookie rookie = this.rookieService.findRookieByUserAcountId(userAccountId);
+		final int rookieId = rookie.getId();
+		final List<Position> positions2 = this.positionService.findPositionByRookieId(rookieId);
 		positions.removeAll(positions2);
 
 		modelAndView = new ModelAndView("position/list");
@@ -219,7 +219,7 @@ public class PositionController extends AbstractController {
 				final Position savedPosition = this.positionService.save(position);
 				result = new ModelAndView("redirect:myList.do");
 
-				// Si se crea una nueva posición se notifica a los hackers interesados
+				// Si se crea una nueva posición se notifica a los rookies interesados
 				if (oldPositionFinal != null)
 					if (oldPositionFinal != savedPosition.isFinalMode()) {
 						this.positionService.flush();

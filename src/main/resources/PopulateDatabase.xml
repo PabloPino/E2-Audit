@@ -42,7 +42,7 @@
 		<property name="nick" value="Curaneitor78"></property>
 		<property name="nameSN" value="Twitter"></property>
 		<property name="linkSN" value="https://twitter.com/Curaneitor"></property>
-		<property name="actor" ref="hacker1" />
+		<property name="actor" ref="rookie1" />
 	</bean>
 
 	<bean id="socialProfile2" class="domain.SocialProfile">
@@ -56,21 +56,21 @@
 		<property name="nick" value="SickerHup"></property>
 		<property name="nameSN" value="Tuenti"></property>
 		<property name="linkSN" value="	https://www.tuenti.com/sickerHup"></property>
-		<property name="actor" ref="hacker1" />
+		<property name="actor" ref="rookie1" />
 	</bean>
 
 	<bean id="socialProfile4" class="domain.SocialProfile">
 		<property name="nick" value="SickerHup"></property>
 		<property name="nameSN" value="Tuenti"></property>
 		<property name="linkSN" value="	https://www.tuenti.com/sickerHup"></property>
-		<property name="actor" ref="hacker2" />
+		<property name="actor" ref="rookie2" />
 	</bean>
 
 	<bean id="socialProfile5" class="domain.SocialProfile">
 		<property name="nick" value="Aprobados"></property>
 		<property name="nameSN" value="Twitter"></property>
 		<property name="linkSN" value="https://twitter.com/Aprobados"></property>
-		<property name="actor" ref="hacker2" />
+		<property name="actor" ref="rookie2" />
 	</bean>
 
 	<bean id="socialProfile6" class="domain.SocialProfile">
@@ -94,36 +94,36 @@
 	</bean>
 
 	<bean id="userAccount3" class="security.UserAccount">
-		<property name="username" value="hacker1" />
+		<property name="username" value="rookie1" />
 		<property name="password" value="2ba2a8ac968a7a2b0a7baa7f2fef18d2" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="HACKER" />
+					<property name="authority" value="ROOKIE" />
 				</bean>
 			</list>
 		</property>
 	</bean>
 
 	<bean id="userAccount4" class="security.UserAccount">
-		<property name="username" value="hacker2" />
+		<property name="username" value="rookie2" />
 		<property name="password" value="91af68b69a50a98dbc0800942540342c" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="HACKER" />
+					<property name="authority" value="ROOKIE" />
 				</bean>
 			</list>
 		</property>
 	</bean>
 
 	<bean id="userAccount5" class="security.UserAccount">
-		<property name="username" value="hacker3" />
+		<property name="username" value="rookie3" />
 		<property name="password" value="c6ae6edca1ad45f42e619ec91a32b636" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="HACKER" />
+					<property name="authority" value="ROOKIE" />
 				</bean>
 			</list>
 		</property>
@@ -616,15 +616,15 @@
 
 	</bean>
 
-	<!-- &Hackers -->
+	<!-- &Rookies -->
 
-	<bean id="hacker1" class="domain.Hacker">
-		<property name="name" value="Hackerman " />
-		<property name="surname" value="El Hacker original" />
+	<bean id="rookie1" class="domain.Rookie">
+		<property name="name" value="Rookieman " />
+		<property name="surname" value="El Rookie original" />
 		<property name="photo"
 			value="https://i.ytimg.com/vi/KEkrWRHCDQU/maxresdefault.jpg" />
 		<property name="phone" value="+34(625)773656789" />
-		<property name="email" value="hackerman@gmail.com" />
+		<property name="email" value="rookieman@gmail.com" />
 		<property name="spammer" value="false" />
 		<property name="banned" value="false" />
 		<property name="address" value="Calle internet" />
@@ -635,7 +635,7 @@
 
 	</bean>
 
-	<bean id="hacker2" class="domain.Hacker">
+	<bean id="rookie2" class="domain.Rookie">
 		<property name="name" value="Pablo " />
 		<property name="surname" value="Pino que no Abedul" />
 		<property name="photo"
@@ -652,7 +652,7 @@
 
 	</bean>
 
-	<bean id="hacker3" class="domain.Hacker">
+	<bean id="rookie3" class="domain.Rookie">
 		<property name="name" value="Julian" />
 		<property name="surname" value="Lopez Jimenez" />
 		<property name="photo"
@@ -1081,7 +1081,7 @@
 		value="June 25, 2018 15:35" /> <property name="answerExplanation" value="Conflicto 
 		de librerias " /> <property name="answerCode" value="https://github.com/jirutka/validator-collection/tree/master/src/main/java/cz/jirutka/validator/collection/constraints" 
 		/> <property name="status" value="PENDING" /> <property name="problem" ref="problem1" 
-		/> <property name="position" ref="position1" /> <property name="hacker" ref="hacker1" 
+		/> <property name="position" ref="position1" /> <property name="rookie" ref="rookie1" 
 		/> </bean> -->
 
 
@@ -1095,7 +1095,7 @@
 		<property name="curricula" ref="curricula5" />
 		<property name="problem" ref="problem1" />
 		<property name="position" ref="position1" />
-		<property name="hacker" ref="hacker2" />
+		<property name="rookie" ref="rookie2" />
 
 	</bean>
 
@@ -1109,7 +1109,7 @@
 		<property name="curricula" ref="curricula6" />
 		<property name="problem" ref="problem2" />
 		<property name="position" ref="position2" />
-		<property name="hacker" ref="hacker3" />
+		<property name="rookie" ref="rookie3" />
 
 	</bean>
 
@@ -1123,7 +1123,7 @@
 		<property name="curricula" ref="curricula4" />
 		<property name="problem" ref="problem2" />
 		<property name="position" ref="position2" />
-		<property name="hacker" ref="hacker2" />
+		<property name="rookie" ref="rookie2" />
 
 	</bean>
 
@@ -1137,7 +1137,7 @@
 		<property name="curricula" ref="curricula1" />
 		<property name="problem" ref="problem5" />
 		<property name="position" ref="position7" />
-		<property name="hacker" ref="hacker1" />
+		<property name="rookie" ref="rookie1" />
 
 	</bean>
 
@@ -1151,7 +1151,7 @@
 		<property name="curricula" ref="curricula6" />
 		<property name="problem" ref="problem5" />
 		<property name="position" ref="position7" />
-		<property name="hacker" ref="hacker3" />
+		<property name="rookie" ref="rookie3" />
 
 	</bean>
 	<!-- &creditcards -->
@@ -1388,7 +1388,7 @@
 		<!-- https://i.ibb.co/xYkd9rX/IMG-0696.jpg https://i.ibb.co/MZ6qL84/wwwww.png -->
 		<property name="banner" value="https://i.ibb.co/GxW2K0d/Rookies.png" />
 		<property name="welcomeMessageEN"
-			value="Welcome to Acme hacker Rookies! We're IT hacker's favourite job marketplace!" />
+			value="Welcome to Acme rookie Rookies! We're IT rookie's favourite job marketplace!" />
 		<property name="welcomeMessageES"
 			value="¡Bienvenidos a Acme Rookies! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
 		<property name="securityMessageEN"
@@ -1489,29 +1489,29 @@
 	<!-- Curricula -->
 
 	<bean id="curricula1" class="domain.Curricula">
-		<property name="hacker" ref="hacker1" />
+		<property name="rookie" ref="rookie1" />
 		<property name="original" value="true" />
 	</bean>
 	<bean id="curricula2" class="domain.Curricula">
-		<property name="hacker" ref="hacker1" />
+		<property name="rookie" ref="rookie1" />
 		<property name="original" value="true" />
 	</bean>
 	<bean id="curricula3" class="domain.Curricula">
-		<property name="hacker" ref="hacker1" />
+		<property name="rookie" ref="rookie1" />
 		<property name="original" value="true" />
 
 	</bean>
 
 	<bean id="curricula4" class="domain.Curricula">
-		<property name="hacker" ref="hacker2" />
+		<property name="rookie" ref="rookie2" />
 		<property name="original" value="true" />
 	</bean>
 	<bean id="curricula5" class="domain.Curricula">
-		<property name="hacker" ref="hacker2" />
+		<property name="rookie" ref="rookie2" />
 		<property name="original" value="true" />
 	</bean>
 	<bean id="curricula6" class="domain.Curricula">
-		<property name="hacker" ref="hacker3" />
+		<property name="rookie" ref="rookie3" />
 		<property name="original" value="true" />
 	</bean>
 
@@ -1773,7 +1773,7 @@
 		<property name="tags">
 			<value>Tag1</value>
 		</property>
-		<property name="sender" ref="hacker1" />
+		<property name="sender" ref="rookie1" />
 		<property name="receiver" ref="administrator1" />
 	</bean>
 
@@ -1785,7 +1785,7 @@
 			<value>TestTag</value>
 		</property>
 		<property name="sender" ref="administrator1" />
-		<property name="receiver" ref="hacker1" />
+		<property name="receiver" ref="rookie1" />
 	</bean>
 
 	<bean id="message3" class="domain.Message">

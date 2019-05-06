@@ -20,7 +20,7 @@ import services.AuditService;
 import services.AuditorService;
 import services.CompanyService;
 import services.ConfigurationService;
-import services.HackerService;
+import services.RookieService;
 import services.MessageService;
 import services.PositionService;
 import services.ProblemService;
@@ -57,7 +57,7 @@ public class AuditController extends AbstractController {
 	MessageService			messageService;
 
 	@Autowired
-	HackerService			hackerService;
+	RookieService			rookieService;
 
 	@Autowired
 	ServiceUtils			serviceUtils;
@@ -104,9 +104,9 @@ public class AuditController extends AbstractController {
 	//		now = new Date(System.currentTimeMillis() - 1000);
 	//		final Collection<Position> audits = this.auditService.findFinalPositionsWithoutDeadline();
 	//		final int userAccountId = LoginService.getPrincipal().getId();
-	//		final Hacker hacker = this.hackerService.findHackerByUserAcountId(userAccountId);
-	//		final int hackerId = hacker.getId();
-	//		final List<Position> audits2 = this.auditService.findPositionByHackerId(hackerId);
+	//		final Rookie rookie = this.rookieService.findRookieByUserAcountId(userAccountId);
+	//		final int rookieId = rookie.getId();
+	//		final List<Position> audits2 = this.auditService.findPositionByRookieId(rookieId);
 	//		audits.removeAll(audits2);
 	//
 	//		modelAndView = new ModelAndView("audit/list");

@@ -64,7 +64,7 @@
 
 
 <security:authorize
-	access="hasAnyRole('COMPANY','HACKER','PROVIDER','AUDITOR')">
+	access="hasAnyRole('COMPANY','ROOKIE','PROVIDER','AUDITOR')">
 
 
 

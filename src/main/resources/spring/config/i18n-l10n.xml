@@ -22,7 +22,7 @@
 		<value>/views/actor/messages</value>
 		<value>/views/administrator/messages</value>
 		<value>/views/company/messages</value>
-		<value>/views/hacker/messages</value>
+		<value>/views/rookie/messages</value>
 		<value>/views/application/messages</value>
 		<value>/views/customer/messages</value>
 		<value>/views/profile/messages</value>

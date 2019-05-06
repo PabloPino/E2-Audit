@@ -12,7 +12,7 @@ import javax.validation.Valid;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(indexes = {
-	@Index(columnList = "hacker")
+	@Index(columnList = "rookie")
 })
 public class Curricula extends DomainEntity {
 
@@ -20,17 +20,17 @@ public class Curricula extends DomainEntity {
 	private boolean	original;
 
 	//--------Relaciones
-	private Hacker	hacker;
+	private Rookie	rookie;
 
 
 	@ManyToOne(optional = true)
 	@Valid
-	public Hacker getHacker() {
-		return this.hacker;
+	public Rookie getRookie() {
+		return this.rookie;
 	}
 
-	public void setHacker(final Hacker hacker) {
-		this.hacker = hacker;
+	public void setRookie(final Rookie rookie) {
+		this.rookie = rookie;
 	}
 
 	public boolean getOriginal() {

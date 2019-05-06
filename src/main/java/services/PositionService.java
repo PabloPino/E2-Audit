@@ -149,8 +149,8 @@ public class PositionService {
 		return this.positionRepository.findPositionsByCompanyIdNotCanceled(companyId);
 	}
 
-	public List<Position> findPositionByHackerId(final int hackerId) {
-		return this.positionRepository.findPositionByHackerId(hackerId);
+	public List<Position> findPositionByRookieId(final int rookieId) {
+		return this.positionRepository.findPositionByRookieId(rookieId);
 	}
 
 	public Boolean tieneApps(final Position p) {

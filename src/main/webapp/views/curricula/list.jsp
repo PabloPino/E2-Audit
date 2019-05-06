@@ -49,7 +49,7 @@
 
 <security:authentication property="principal.username" var="username" />
 
-	<jstl:if test='${personalData.curricula.hacker.userAccount.username == username}'>
+	<jstl:if test='${personalData.curricula.rookie.userAccount.username == username}'>
 	
 			<input type="button" name="create"
 				value="<spring:message code="curricula.create"></spring:message>"

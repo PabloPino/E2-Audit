@@ -15,10 +15,10 @@ public interface PersonalDataRepository extends JpaRepository<PersonalData, Inte
 	@Query("select p from PersonalData p where p.curricula.id = ?1")
 	PersonalData findPersonalDataByCurriculaId(int curriculaId);
 
-	@Query("select p from PersonalData p where p.curricula.hacker.id = ?1 and p.original = true")
-	Collection<PersonalData> findAllPersonalDatasByHackerId(int hackerId);
+	@Query("select p from PersonalData p where p.curricula.rookie.id = ?1 and p.original = true")
+	Collection<PersonalData> findAllPersonalDatasByRookieId(int rookieId);
 
-	@Query("select p from PersonalData p where p.curricula.hacker.id = ?1 and p.original = false")
-	Collection<PersonalData> findAllCopiedPersonalDatasByHackerId(int hackerId);
+	@Query("select p from PersonalData p where p.curricula.rookie.id = ?1 and p.original = false")
+	Collection<PersonalData> findAllCopiedPersonalDatasByRookieId(int rookieId);
 
 }

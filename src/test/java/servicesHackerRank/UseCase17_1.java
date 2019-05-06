@@ -16,19 +16,19 @@ import security.UserAccount;
 import services.ActorService;
 import services.CurriculaService;
 import services.EducationDataService;
-import services.HackerService;
 import services.MiscellaneousDataService;
 import services.PersonalDataService;
 import services.PositionDataService;
 import services.ProblemService;
+import services.RookieService;
 import utilities.AbstractTest;
 import domain.Actor;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
 import domain.MiscellaneousData;
 import domain.PersonalData;
 import domain.PositionData;
+import domain.Rookie;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -37,12 +37,12 @@ import domain.PositionData;
 @Transactional
 public class UseCase17_1 extends AbstractTest {
 
-	//A hacker may register one or more curricula. Curricula consist of the following data: personal
+	//A rookie may register one or more curricula. Curricula consist of the following data: personal
 	//	data, which includes a full name, a statement, a phone number, a GitHub profile, and a
 	//	LinkedIn profile; position data, which includes the title, the description, the start date, and
-	//	the optional end date of every position that a hacker has had; education data, which includes
+	//	the optional end date of every position that a rookie has had; education data, which includes
 	//	the degree, the institution, the mark, the start date, and the optional end date of every
-	//	degree that a hacker has; and miscellaneous data, which is free text with optional attachments.
+	//	degree that a rookie has; and miscellaneous data, which is free text with optional attachments.
 
 	//Services---------------------------------------------------------------------
 
@@ -56,7 +56,7 @@ public class UseCase17_1 extends AbstractTest {
 	private CurriculaService			curriculaService;
 
 	@Autowired
-	private HackerService				hackerService;
+	private RookieService				rookieService;
 
 	@Autowired
 	private PersonalDataService			personalDataService;
@@ -82,17 +82,17 @@ public class UseCase17_1 extends AbstractTest {
 			//c) analysis of sentence coverage: 99.4%
 			//d) This user doesn't exists, so it cannot manage it curriculas
 			}, {
-				"hacker1", "Juan", null
-			//Este hacker si esta registrado en el sistema (CASO POSITIVO)
+				"rookie1", "Juan", null
+			//Este rookie si esta registrado en el sistema (CASO POSITIVO)
 			//b) Positive test
 			//c) analysis of sentence coverage: 99.4%
-			//d) A hacker should manage their curriculas, which includes listing, showing, creating, updating, and deleting them
+			//d) A rookie should manage their curriculas, which includes listing, showing, creating, updating, and deleting them
 			}, {
-				"hacker5", "TEST", java.lang.IllegalArgumentException.class
-			//			//Este hacker si esta registrado en el sistema, da fallo porque este actor no tiene ninguna curricula y una de las cosas que hacemos es listar y editar una de ellas por lo que este es un (CASO NEGATIVO)
+				"rookie5", "TEST", java.lang.IllegalArgumentException.class
+			//			//Este rookie si esta registrado en el sistema, da fallo porque este actor no tiene ninguna curricula y una de las cosas que hacemos es listar y editar una de ellas por lo que este es un (CASO NEGATIVO)
 			//			//b) Negative test
 			//			//c) analysis of sentence coverage: 99.4%
-			//			//d) A hacker should manage their curriculas, which includes listing, showing, creating, updating, and deleting them
+			//			//d) A rookie should manage their curriculas, which includes listing, showing, creating, updating, and deleting them
 			},
 
 		};
@@ -108,19 +108,19 @@ public class UseCase17_1 extends AbstractTest {
 			//Nos autenticamos
 			this.authenticate(username);
 			//Encontramos el actor cuyo nombre de usuario es igual a que pasamos por parámetros
-			//final Hacker h = this.hackerService.findHackerByUserAcountId(LoginService.getPrincipal().getId());
-			//(Hacker) this.actorService.findActorByUsername(username);
+			//final Rookie h = this.rookieService.findRookieByUserAcountId(LoginService.getPrincipal().getId());
+			//(Rookie) this.actorService.findActorByUsername(username);
 
 			final Actor a = this.actorService.findActorByUsername(username);
 			System.out.println(LoginService.getPrincipal());
 
 			final UserAccount uA = a.getUserAccount();
 			System.out.println(uA.getId());
-			final Hacker h = this.hackerService.findHackerByUserAcountId(uA.getId());
+			final Rookie h = this.rookieService.findRookieByUserAcountId(uA.getId());
 
 			System.out.println(h);
 
-			final List<Curricula> res = (List<Curricula>) this.curriculaService.findCurriculasByHackerId(h.getId());
+			final List<Curricula> res = (List<Curricula>) this.curriculaService.findCurriculasByRookieId(h.getId());
 			final Curricula c = res.get(0);
 			System.out.println(c);
 

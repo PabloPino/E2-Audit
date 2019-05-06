@@ -11,9 +11,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
 import services.ActorService;
-import services.HackerService;
+import services.RookieService;
 import utilities.AbstractTest;
-import domain.Hacker;
+import domain.Rookie;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -32,7 +32,7 @@ public class UseCase24_3 extends AbstractTest {
 	private ActorService	actorService;
 
 	@Autowired
-	private HackerService	hackerService;
+	private RookieService	rookieService;
 
 
 	@Test
@@ -60,21 +60,21 @@ public class UseCase24_3 extends AbstractTest {
 	private void banTemplate(final String username, final Class<?> expected) {
 		Class<?> caught;
 		caught = null;
-		final Hacker hacker1 = (Hacker) this.actorService.findActorByUsername("hacker1");
+		final Rookie rookie1 = (Rookie) this.actorService.findActorByUsername("rookie1");
 
 		try {
 			//Nos autenticamos
 			this.authenticate(username);
 			//Lo baneamos
 
-			hacker1.setBanned(true);
+			rookie1.setBanned(true);
 
-			//	this.hackerService.save(hacker1);
+			//	this.rookieService.save(rookie1);
 
 			this.unauthenticate();
-			Assert.isTrue(hacker1.getBanned() == true);
+			Assert.isTrue(rookie1.getBanned() == true);
 
-			this.authenticate("hacker1");
+			this.authenticate("rookie1");
 
 			//Guardamos el cambio
 
@@ -91,14 +91,14 @@ public class UseCase24_3 extends AbstractTest {
 	public void BanAccessTest() {
 		final Object AccessDashBoardTest[][] = {
 			{
-				"hacker2", java.lang.IllegalArgumentException.class
-			//Probamos con un hacker que no es spammer por lo que no debe dejar banear(CASO NEGATIVO)
+				"rookie2", java.lang.IllegalArgumentException.class
+			//Probamos con un rookie que no es spammer por lo que no debe dejar banear(CASO NEGATIVO)
 			//b) Negative test
 			//c) analysis of sentence coverage: 100%
 			//d) This user doesn't has spammer true, so it cannot be banned
 			}, {
-				"hacker1", null
-			//Probamos con un hacker que es spammer por lo que no debe dejar banear(CASO POSITIVO)
+				"rookie1", null
+			//Probamos con un rookie que es spammer por lo que no debe dejar banear(CASO POSITIVO)
 			//b) Positove test
 			//c) analysis of sentence coverage: 100%
 			//d) This user does has spammer true, so it can be banned
@@ -112,19 +112,19 @@ public class UseCase24_3 extends AbstractTest {
 	private void banTemplate2(final String username, final Class<?> expected) {
 		Class<?> caught;
 		caught = null;
-		final Hacker hacker1 = (Hacker) this.actorService.findActorByUsername("hacker1");
+		final Rookie rookie1 = (Rookie) this.actorService.findActorByUsername("rookie1");
 
 		try {
 			//Nos autenticamos
 			this.authenticate(username);
 			//Lo baneamos
-			final Hacker a = (Hacker) this.actorService.findActorByUsername(username);
+			final Rookie a = (Rookie) this.actorService.findActorByUsername(username);
 			a.setBanned(true);
 			//guardamos
-			this.hackerService.save(a);
+			this.rookieService.save(a);
 			this.unauthenticate();
 			// comprobamos que esta baneado
-			Assert.isTrue(hacker1.getBanned() == true);
+			Assert.isTrue(rookie1.getBanned() == true);
 			//tratamos de autenticarnos
 			this.authenticate(username);
 

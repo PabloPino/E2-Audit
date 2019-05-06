@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(indexes = {
 	@Index(columnList = "user_account")
 })
-public class Hacker extends Actor {
+public class Rookie extends Actor {
 
 	// Identification ---------------------------------------------------------
 	// ATRIBUTOS

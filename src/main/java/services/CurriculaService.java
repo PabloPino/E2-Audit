@@ -13,7 +13,7 @@ import org.springframework.util.Assert;
 import repositories.CurriculaRepository;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
+import domain.Rookie;
 import domain.MiscellaneousData;
 import domain.PersonalData;
 import domain.PositionData;
@@ -27,7 +27,7 @@ public class CurriculaService {
 	private CurriculaRepository			curriculaRepository;
 
 	//	@Autowired
-	//	private HackerService		hackerService;
+	//	private RookieService		rookieService;
 
 	@Autowired
 	private PersonalDataService			personalDataService;
@@ -46,11 +46,11 @@ public class CurriculaService {
 
 	//Services-----------------------------------------------------------------------------
 
-	public Curricula createAndSave(final Hacker hacker) {
-		Assert.notNull(hacker);
+	public Curricula createAndSave(final Rookie rookie) {
+		Assert.notNull(rookie);
 		final Curricula curricula = new Curricula();
 
-		curricula.setHacker(hacker);
+		curricula.setRookie(rookie);
 		curricula.setOriginal(true);
 
 		this.curriculaRepository.saveAndFlush(curricula);
@@ -64,7 +64,7 @@ public class CurriculaService {
 		final Curricula newCurricula = new Curricula();
 
 		newCurricula.setOriginal(false);
-		newCurricula.setHacker(originalCurricula.getHacker());
+		newCurricula.setRookie(originalCurricula.getRookie());
 
 		final Curricula nCurr = this.curriculaRepository.save(newCurricula);
 
@@ -85,12 +85,12 @@ public class CurriculaService {
 		return this.curriculaRepository.findOne(CurriculaId);
 	}
 
-	public Collection<Curricula> findCurriculasByHackerId(final int hackerId) {
-		return this.curriculaRepository.findCurriculasByHackerId(hackerId);
+	public Collection<Curricula> findCurriculasByRookieId(final int rookieId) {
+		return this.curriculaRepository.findCurriculasByRookieId(rookieId);
 	}
 
-	public Collection<Curricula> findSimplyCurriculasByHackerId(final int hackerId) {
-		return this.curriculaRepository.findSimplyCurriculasByHackerId(hackerId);
+	public Collection<Curricula> findSimplyCurriculasByRookieId(final int rookieId) {
+		return this.curriculaRepository.findSimplyCurriculasByRookieId(rookieId);
 	}
 
 	public PersonalData findPersonalFromCurricula(final int curriculaId) {
@@ -105,9 +105,9 @@ public class CurriculaService {
 		Assert.notNull(curricula);
 		//	final Curricula curriculaDB = (Curricula) this.serviceUtils.checkObjectSave(curricula);
 
-		//compruebo que el hacker que esta intentando editar sea el el dueño del historial al que pertenece dicho Record
-		this.serviceUtils.checkActor(curricula.getHacker());
-		this.serviceUtils.checkAuthority("HACKER");
+		//compruebo que el rookie que esta intentando editar sea el el dueño del historial al que pertenece dicho Record
+		this.serviceUtils.checkActor(curricula.getRookie());
+		this.serviceUtils.checkAuthority("ROOKIE");
 
 		//comprobamos que el id del objeto no sea nulo o negativo por seguridad
 		this.serviceUtils.checkIdSave(curricula);
@@ -118,8 +118,8 @@ public class CurriculaService {
 	}
 	public void delete(final int curriculaId) {
 		final Curricula curricula = this.curriculaRepository.findOne(curriculaId);
-		this.serviceUtils.checkAuthority("HACKER");
-		this.serviceUtils.checkActor(curricula.getHacker());
+		this.serviceUtils.checkAuthority("ROOKIE");
+		this.serviceUtils.checkActor(curricula.getRookie());
 		Assert.isTrue(curricula.getOriginal() == true);
 
 		final Collection<PositionData> positionDatas = this.positionDataService.findPositionDatasByCurriculaId(curriculaId);
@@ -140,8 +140,8 @@ public class CurriculaService {
 	public void deleteCopy(final int curriculaId) {
 		final Curricula curricula = this.curriculaRepository.findOne(curriculaId);
 
-		this.serviceUtils.checkAuthority("HACKER");
-		this.serviceUtils.checkActor(curricula.getHacker());
+		this.serviceUtils.checkAuthority("ROOKIE");
+		this.serviceUtils.checkActor(curricula.getRookie());
 		//Assert.isTrue(curricula.getOriginal() == false);
 
 		final Collection<PositionData> positionDatas = this.positionDataService.findPositionDatasByCurriculaId(curriculaId);
@@ -175,8 +175,8 @@ public class CurriculaService {
 		return this.curriculaRepository.queryB1STDDEV();
 	}
 
-	public Collection<Curricula> findCopiedCurriculasByHackerId(final int hackerId) {
-		return this.curriculaRepository.findCopiedCurriculasByHackerId(hackerId);
+	public Collection<Curricula> findCopiedCurriculasByRookieId(final int rookieId) {
+		return this.curriculaRepository.findCopiedCurriculasByRookieId(rookieId);
 	}
 
 	public Curricula findCurriculasByApplicationId(final int applicationId) {

@@ -1,5 +1,5 @@
 
-package controllers.hacker;
+package controllers.rookie;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,28 +16,28 @@ import services.ActorService;
 import services.ConfigurationService;
 import services.CurriculaService;
 import services.EducationDataService;
-import services.HackerService;
+import services.RookieService;
 import services.MiscellaneousDataService;
 import services.PersonalDataService;
 import services.PositionDataService;
 import controllers.AbstractController;
 import domain.Curricula;
 import domain.EducationData;
-import domain.Hacker;
+import domain.Rookie;
 import domain.MiscellaneousData;
 import domain.PersonalData;
 import domain.PositionData;
 
 @Controller
 @RequestMapping("/curricula")
-public class CurriculaHackerController extends AbstractController {
+public class CurriculaRookieController extends AbstractController {
 
 	//-----------------Services-------------------------
 	@Autowired
 	CurriculaService			curriculaService;
 
 	@Autowired
-	HackerService				hackerService;
+	RookieService				rookieService;
 
 	@Autowired
 	ActorService				actorService;
@@ -90,10 +90,10 @@ public class CurriculaHackerController extends AbstractController {
 		final ModelAndView result;
 		Collection<Curricula> curriculas = new ArrayList<>();
 
-		final Hacker hacker = this.hackerService.findHackerByUserAcountId(LoginService.getPrincipal().getId());
+		final Rookie rookie = this.rookieService.findRookieByUserAcountId(LoginService.getPrincipal().getId());
 
-		final Collection<PersonalData> personalDatas = this.personalDataService.findAllPersonalDatasByHackerId(hacker.getId());
-		curriculas = this.curriculaService.findCurriculasByHackerId(hacker.getId());
+		final Collection<PersonalData> personalDatas = this.personalDataService.findAllPersonalDatasByRookieId(rookie.getId());
+		curriculas = this.curriculaService.findCurriculasByRookieId(rookie.getId());
 
 		result = new ModelAndView("curricula/list");
 		result.addObject("curriculas", curriculas);
@@ -105,8 +105,8 @@ public class CurriculaHackerController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		final ModelAndView result;
-		final Hacker hacker = (Hacker) this.actorService.findActorByUsername(LoginService.getPrincipal().getUsername());
-		final Curricula curricula = this.curriculaService.createAndSave(hacker);
+		final Rookie rookie = (Rookie) this.actorService.findActorByUsername(LoginService.getPrincipal().getUsername());
+		final Curricula curricula = this.curriculaService.createAndSave(rookie);
 		final Curricula nCurricula = this.curriculaService.save(curricula);
 		this.curriculaService.flush();
 		System.out.println(nCurricula.getId());

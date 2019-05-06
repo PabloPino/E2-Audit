@@ -15,7 +15,7 @@ import repositories.ApplicationRepository;
 import security.LoginService;
 import security.UserAccount;
 import domain.Application;
-import domain.Hacker;
+import domain.Rookie;
 import domain.Position;
 import domain.Problem;
 
@@ -57,14 +57,14 @@ public class ApplicationService {
 		final List<Problem> problems = this.applicationRepository.findRandomFinalProblem(position);
 		final Problem problem = problems.get(0);
 		final UserAccount userAccount = LoginService.getPrincipal();
-		final Hacker hacker = this.applicationRepository.findHackerByUserAccount(userAccount);
+		final Rookie rookie = this.applicationRepository.findRookieByUserAccount(userAccount);
 
 		result = new Application();
 		result.setPublishMoment(fechaActual);
 		result.setStatus("PENDING");
 		result.setPosition(position);
 		result.setProblem(problem);
-		result.setHacker(hacker);
+		result.setRookie(rookie);
 		return result;
 
 	}
@@ -111,7 +111,7 @@ public class ApplicationService {
 
 	public void delete1(final Application application) {
 		Assert.notNull(application);
-		this.serviceUtils.checkActor(application.getHacker());
+		this.serviceUtils.checkActor(application.getRookie());
 
 		this.applicationRepository.delete(application);
 
@@ -127,8 +127,8 @@ public class ApplicationService {
 
 	//OTHER METHODS------------------------------
 
-	public List<Application> findApplicationByHacker(final Hacker hacker) {
-		return this.applicationRepository.findApplicationByHacker(hacker);
+	public List<Application> findApplicationByRookie(final Rookie rookie) {
+		return this.applicationRepository.findApplicationByRookie(rookie);
 	}
 
 	public Collection<Application> getAppsByPosition(final Integer positionId) {
@@ -136,10 +136,10 @@ public class ApplicationService {
 		return res;
 	}
 
-	public Hacker findHackerByUserAccount(final UserAccount userAccount) {
-		Hacker hacker;
-		hacker = this.applicationRepository.findHackerByUserAccount(userAccount);
-		return hacker;
+	public Rookie findRookieByUserAccount(final UserAccount userAccount) {
+		Rookie rookie;
+		rookie = this.applicationRepository.findRookieByUserAccount(userAccount);
+		return rookie;
 	}
 
 	public int findCompanyIdByUserAccountId(final int userAccountId) {

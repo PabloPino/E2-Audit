@@ -32,8 +32,8 @@
 		<bean class="converters.AdministratorToStringConverter" />
 		<bean class="converters.StringToAdministratorConverter" />
 
-		<bean class="converters.HackerToStringConverter" />
-		<bean class="converters.StringToHackerConverter" />
+		<bean class="converters.RookieToStringConverter" />
+		<bean class="converters.StringToRookieConverter" />
 
 		<bean class="converters.SocialProfileToStringConverter" />
 		<bean class="converters.StringToSocialProfileConverter" />

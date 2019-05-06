@@ -39,7 +39,7 @@ public class EducationDataService {
 	public EducationData create(final int curriculaId) {
 		final Curricula curricula = this.curriculaService.findOne(curriculaId);
 		this.serviceUtils.checkObject(curricula);
-		this.serviceUtils.checkActor(curricula.getHacker());
+		this.serviceUtils.checkActor(curricula.getRookie());
 		Assert.notNull(curricula);
 		final EducationData educationData = new EducationData();
 
@@ -87,9 +87,9 @@ public class EducationDataService {
 		Assert.notNull(educationData);
 		this.serviceUtils.checkObjectSave(educationData);
 
-		//compruebo que el hacker que esta intentando editar sea el el dueño del historial al que pertenece dicho Record
-		this.serviceUtils.checkActor(educationData.getCurricula().getHacker());
-		this.serviceUtils.checkAuthority("HACKER");
+		//compruebo que el rookie que esta intentando editar sea el el dueño del historial al que pertenece dicho Record
+		this.serviceUtils.checkActor(educationData.getCurricula().getRookie());
+		this.serviceUtils.checkAuthority("ROOKIE");
 
 		//comprobamos que el id del objeto no sea nulo o negativo por seguridad
 		this.serviceUtils.checkIdSave(educationData);
@@ -103,7 +103,7 @@ public class EducationDataService {
 		Assert.notNull(p);
 		Assert.isTrue(p.getOriginal() == true);
 		final EducationData educationData = (EducationData) this.serviceUtils.checkObject(p);
-		this.serviceUtils.checkActor(educationData.getCurricula().getHacker());
+		this.serviceUtils.checkActor(educationData.getCurricula().getRookie());
 		this.educationDataRepository.delete(p);
 	}
 

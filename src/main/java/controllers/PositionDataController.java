@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
 import services.ConfigurationService;
 import services.CurriculaService;
-import services.HackerService;
+import services.RookieService;
 import services.PositionDataService;
 import domain.PositionData;
 
@@ -28,7 +28,7 @@ public class PositionDataController extends AbstractController {
 	PositionDataService		positionDataService;
 
 	@Autowired
-	HackerService			hacekrService;
+	RookieService			hacekrService;
 
 	@Autowired
 	CurriculaService		curriculaService;

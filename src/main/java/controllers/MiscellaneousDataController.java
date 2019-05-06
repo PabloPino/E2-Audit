@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
 import services.ConfigurationService;
 import services.CurriculaService;
-import services.HackerService;
+import services.RookieService;
 import services.MiscellaneousDataService;
 import domain.MiscellaneousData;
 
@@ -28,7 +28,7 @@ public class MiscellaneousDataController extends AbstractController {
 	MiscellaneousDataService	miscellaneousDataService;
 
 	@Autowired
-	HackerService				hacekrService;
+	RookieService				hacekrService;
 
 	@Autowired
 	CurriculaService			curriculaService;

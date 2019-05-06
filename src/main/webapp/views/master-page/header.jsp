@@ -73,7 +73,7 @@
 
 
 <div align="center">
-	<a href="#"><img src="${banner}" alt="Acme Hacker Rank Co., Inc."
+	<a href="#"><img src="${banner}" alt="Acme Rookie Rank Co., Inc."
 		width="20%" height="20%" /></a>
 </div>
 <form:form action="${requestURI}" modelAttribute="warning">
@@ -148,8 +148,8 @@
 
 
 
-		<security:authorize access="hasRole('HACKER')">
-			<li><a href="application/hacker/list.do"><spring:message
+		<security:authorize access="hasRole('ROOKIE')">
+			<li><a href="application/rookie/list.do"><spring:message
 						code="master.page.applications" /></a></li>
 
 			<li><a href="position/list.do"><spring:message
@@ -163,9 +163,9 @@
 						code="master.page.finder" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="finder/hacker/update.do"><spring:message
+					<li><a href="finder/rookie/update.do"><spring:message
 								code="master.page.finder.update" /></a></li>
-					<li><a href="finder/hacker/list.do"><spring:message
+					<li><a href="finder/rookie/list.do"><spring:message
 								code="master.page.finder.result" /></a></li>
 
 				</ul></li>
@@ -201,8 +201,8 @@
 					<li class="arrow"></li>
 					<li><a href="company/none/create.do"><spring:message
 								code="master.page.registerascompany" /></a></li>
-					<li><a href="register/actor.do?authority=HACKER"><spring:message
-								code="master.page.registerashacker" /></a></li>
+					<li><a href="register/actor.do?authority=ROOKIE"><spring:message
+								code="master.page.registerasrookie" /></a></li>
 					<li><a href="provider/none/register.do"><spring:message
 								code="master.page.registerasprovider" /></a></li>
 				</ul></li>
@@ -255,8 +255,8 @@
 									code="master.page.profile.deleteActor" /></a></li>
 					</security:authorize>
 
-					<security:authorize access="hasRole('HACKER')">
-						<li><a href="hacker/deleteHacker.do" style="color: yellow"><spring:message
+					<security:authorize access="hasRole('ROOKIE')">
+						<li><a href="rookie/deleteRookie.do" style="color: yellow"><spring:message
 									code="master.page.profile.deleteActor" /></a></li>
 					</security:authorize>
 

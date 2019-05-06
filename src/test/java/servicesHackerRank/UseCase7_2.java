@@ -49,11 +49,11 @@ public class UseCase7_2 extends AbstractTest {
 			//c) analysis of sentence coverage: 100%
 			//d) The user is a registered company
 			}, {
-				"hacker1", null
-			//Este hacker si esta registrado en el sistema y deberia ver las positions(CASO POSITIVO)
+				"rookie1", null
+			//Este rookie si esta registrado en el sistema y deberia ver las positions(CASO POSITIVO)
 			//b) Positive test
 			//c) analysis of sentence coverage: 100%
-			//d) The user is a registered hacker
+			//d) The user is a registered rookie
 			},
 
 		};

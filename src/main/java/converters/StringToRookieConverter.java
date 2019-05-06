@@ -15,20 +15,20 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import repositories.HackerRepository;
-import domain.Hacker;
+import repositories.RookieRepository;
+import domain.Rookie;
 
 @Component
 @Transactional
-public class StringToHackerConverter implements Converter<String, Hacker> {
+public class StringToRookieConverter implements Converter<String, Rookie> {
 
 	@Autowired
-	HackerRepository	hackerRepository;
+	RookieRepository	rookieRepository;
 
 
 	@Override
-	public Hacker convert(final String text) {
-		Hacker result;
+	public Rookie convert(final String text) {
+		Rookie result;
 		int id;
 
 		try {
@@ -36,7 +36,7 @@ public class StringToHackerConverter implements Converter<String, Hacker> {
 				result = null;
 			else {
 				id = Integer.valueOf(text);
-				result = this.hackerRepository.findOne(id);
+				result = this.rookieRepository.findOne(id);
 			}
 		} catch (final Exception oops) {
 			throw new IllegalArgumentException(oops);

@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-import repositories.HackerRepository;
+import repositories.RookieRepository;
 import security.Authority;
 import security.UserAccount;
 import security.UserAccountRepository;
@@ -27,16 +27,16 @@ import domain.Application;
 import domain.CreditCard;
 import domain.Curricula;
 import domain.Finder;
-import domain.Hacker;
+import domain.Rookie;
 import domain.SocialProfile;
-import forms.HackerForm;
+import forms.RookieForm;
 
 @Service
 @Transactional
-public class HackerService {
+public class RookieService {
 
 	@Autowired
-	private HackerRepository			repository;
+	private RookieRepository			repository;
 
 	@Autowired
 	private ActorService				actorService;
@@ -69,30 +69,30 @@ public class HackerService {
 	private MessageService				messageService;
 
 
-	public Hacker findOne(final Integer id) {
+	public Rookie findOne(final Integer id) {
 		this.serviceUtils.checkId(id);
 		return this.repository.findOne(id);
 	}
 
-	public Collection<Hacker> findAll(final Collection<Integer> ids) {
+	public Collection<Rookie> findAll(final Collection<Integer> ids) {
 		this.serviceUtils.checkIds(ids);
 		return this.repository.findAll(ids);
 	}
 
-	public List<Hacker> findAll() {
+	public List<Rookie> findAll() {
 		return this.repository.findAll();
 	}
 
-	public Hacker create() {
+	public Rookie create() {
 		this.serviceUtils.checkNoActor();
-		final Hacker res = new Hacker();
+		final Rookie res = new Rookie();
 		res.setBanned(false);
 		res.setUserAccount(new UserAccount());
 		return res;
 	}
 
-	public Hacker save(final Hacker h) {
-		final Hacker hacker = (Hacker) this.serviceUtils.checkObjectSave(h);
+	public Rookie save(final Rookie h) {
+		final Rookie rookie = (Rookie) this.serviceUtils.checkObjectSave(h);
 
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		final String hash = encoder.encodePassword(h.getUserAccount().getPassword(), null);
@@ -104,30 +104,30 @@ public class HackerService {
 
 		} else {
 			this.serviceUtils.checkAnyAuthority(new String[] {
-				Authority.ADMIN, Authority.HACKER
+				Authority.ADMIN, Authority.ROOKIE
 			});
-			if (this.actorService.findPrincipal() instanceof Hacker) {
-				this.serviceUtils.checkActor(hacker);
-				h.setBanned(hacker.getBanned());
-				h.setSpammer(hacker.getSpammer());
-				//if (hacker.getUserAccount().getPassword() != hash)
+			if (this.actorService.findPrincipal() instanceof Rookie) {
+				this.serviceUtils.checkActor(rookie);
+				h.setBanned(rookie.getBanned());
+				h.setSpammer(rookie.getSpammer());
+				//if (rookie.getUserAccount().getPassword() != hash)
 				//h.getUserAccount().setPassword(hash);
 			} else {
-				h.setEmail(hacker.getEmail());
-				h.setName(hacker.getName());
-				h.setPhone(hacker.getPhone());
-				h.setPhoto(hacker.getPhoto());
-				h.setSurname(hacker.getSurname());
-				h.setUserAccount(hacker.getUserAccount());
-				h.setAddress(hacker.getAddress());
+				h.setEmail(rookie.getEmail());
+				h.setName(rookie.getName());
+				h.setPhone(rookie.getPhone());
+				h.setPhoto(rookie.getPhoto());
+				h.setSurname(rookie.getSurname());
+				h.setUserAccount(rookie.getUserAccount());
+				h.setAddress(rookie.getAddress());
 			}
 		}
 		final UserAccount userAccount = this.userAccountRepository.save(h.getUserAccount());
-		hacker.setUserAccount(userAccount);
-		h.setCreditCard(hacker.getCreditCard());
+		rookie.setUserAccount(userAccount);
+		h.setCreditCard(rookie.getCreditCard());
 		final CreditCard creditCard = this.creditCardService.save(h.getCreditCard());
-		hacker.setCreditCard(creditCard);
-		final Hacker res = this.repository.save(h);
+		rookie.setCreditCard(creditCard);
+		final Rookie res = this.repository.save(h);
 		/*
 		 * if (h.getId() == 0) {
 		 * this.boxService.addSystemBox(res);
@@ -136,14 +136,14 @@ public class HackerService {
 		return res;
 	}
 
-	public void delete(final Hacker h) {
-		final Hacker hacker = (Hacker) this.serviceUtils.checkObject(h);
-		this.serviceUtils.checkActor(hacker);
-		this.repository.delete(hacker);
+	public void delete(final Rookie h) {
+		final Rookie rookie = (Rookie) this.serviceUtils.checkObject(h);
+		this.serviceUtils.checkActor(rookie);
+		this.repository.delete(rookie);
 	}
 
-	public HackerForm construct(final Hacker h) {
-		final HackerForm res = new HackerForm();
+	public RookieForm construct(final Rookie h) {
+		final RookieForm res = new RookieForm();
 		res.setEmail(h.getEmail());
 		res.setName(h.getName());
 		res.setPhone(h.getPhone());
@@ -163,34 +163,34 @@ public class HackerService {
 		return res;
 	}
 
-	public void validateForm(final HackerForm form, final BindingResult binding) {
+	public void validateForm(final RookieForm form, final BindingResult binding) {
 		if (form.getId() == 0 && !form.getAccept()) {
 			/*
-			 * binding.addError(new FieldError("hackerForm", "accept", form.getAccept(), false, new String[] {
-			 * "hackerForm.accept", "accept"
+			 * binding.addError(new FieldError("rookieForm", "accept", form.getAccept(), false, new String[] {
+			 * "rookieForm.accept", "accept"
 			 * }, new Object[] {
 			 * new DefaultMessageSourceResolvable(new String[] {
-			 * "hackerForm.accept", "accept"
+			 * "rookieForm.accept", "accept"
 			 * }, new Object[] {}, "accept")
-			 * }, "hacker.mustaccept"));
+			 * }, "rookie.mustaccept"));
 			 */
 			final Locale locale = LocaleContextHolder.getLocale();
 			final String errorMessage = this.messageSource.getMessage("company.mustaccept", new Object[] {
 				form.getAccept()
 			}, locale);
-			binding.addError(new FieldError("hackerForm", "accept", errorMessage));
+			binding.addError(new FieldError("rookieForm", "accept", errorMessage));
 		}
 		if (!form.getConfirmPassword().equals(form.getPassword())) {
 			final Locale locale = LocaleContextHolder.getLocale();
 			final String errorMessage = this.messageSource.getMessage("company.mustmatch", null, locale);
-			binding.addError(new FieldError("hackerForm", "confirmPassword", errorMessage));
+			binding.addError(new FieldError("rookieForm", "confirmPassword", errorMessage));
 		}
 		if (form.getEmail().endsWith("@") || form.getEmail().endsWith("@>")) {
 			final Locale locale = LocaleContextHolder.getLocale();
 			final String errorMessage = this.messageSource.getMessage("actor.bademail", new Object[] {
 				form.getEmail()
 			}, locale);
-			binding.addError(new FieldError("hackerForm", "email", errorMessage));
+			binding.addError(new FieldError("rookieForm", "email", errorMessage));
 		}
 		final Date date = new Date(System.currentTimeMillis());
 		final Integer year = date.getYear() + 1900;
@@ -202,7 +202,7 @@ public class HackerService {
 			final String errorMessageMonth = this.messageSource.getMessage("actor.creditcardexpired", new Object[] {
 				form.getExpirationMonth()
 			}, locale);
-			final FieldError errorMonth = new FieldError("hackerForm", "expirationMonth", form.getExpirationMonth(), true, new String[] {
+			final FieldError errorMonth = new FieldError("rookieForm", "expirationMonth", form.getExpirationMonth(), true, new String[] {
 				"actor.creditcardexpired"
 			}, new Object[] {
 				form.getExpirationMonth()
@@ -211,7 +211,7 @@ public class HackerService {
 			final String errorMessageYear = this.messageSource.getMessage("actor.creditcardexpired", new Object[] {
 				form.getExpirationYear()
 			}, locale);
-			final FieldError errorYear = new FieldError("hackerForm", "expirationYear", form.getExpirationYear(), true, new String[] {
+			final FieldError errorYear = new FieldError("rookieForm", "expirationYear", form.getExpirationYear(), true, new String[] {
 				"actor.creditcardexpired"
 			}, new Object[] {
 				form.getExpirationYear()
@@ -220,8 +220,8 @@ public class HackerService {
 		}
 	}
 
-	public Hacker deconstruct(final HackerForm form) {
-		Hacker res = null;
+	public Rookie deconstruct(final RookieForm form) {
+		Rookie res = null;
 		if (form.getId() == 0)
 			res = this.create();
 		else {
@@ -251,19 +251,19 @@ public class HackerService {
 		res.setCreditCard(creditCard);
 		final Collection<Authority> authorities = new ArrayList<Authority>();
 		final Authority auth = new Authority();
-		auth.setAuthority(Authority.HACKER);
+		auth.setAuthority(Authority.ROOKIE);
 		authorities.add(auth);
 		res.getUserAccount().setAuthorities(authorities);
 		return res;
 	}
 
-	public void deleteHacker(final Hacker hacker) {
-		Assert.notNull(hacker);
-		this.serviceUtils.checkActor(hacker);
-		this.serviceUtils.checkAuthority("HACKER");
-		final Collection<Application> applications = this.applicationService.findApplicationByHacker(hacker);
-		final Collection<SocialProfile> socialProfiles = this.socialProfileService.findProfileByActorId(hacker.getId());
-		final CreditCard creditCard = this.creditCardService.findCreditCardByActor(hacker.getId());
+	public void deleteRookie(final Rookie rookie) {
+		Assert.notNull(rookie);
+		this.serviceUtils.checkActor(rookie);
+		this.serviceUtils.checkAuthority("ROOKIE");
+		final Collection<Application> applications = this.applicationService.findApplicationByRookie(rookie);
+		final Collection<SocialProfile> socialProfiles = this.socialProfileService.findProfileByActorId(rookie.getId());
+		final CreditCard creditCard = this.creditCardService.findCreditCardByActor(rookie.getId());
 
 		final Finder f = this.finderService.findOneByPrincipal();
 
@@ -277,7 +277,7 @@ public class HackerService {
 			final Collection<Application> applications2 = this.applicationService.findAll();
 			Assert.isTrue(!(applications2.contains(a)));
 		}
-		final Collection<Curricula> curriculas = this.curriculaService.findCurriculasByHackerId(hacker.getId());
+		final Collection<Curricula> curriculas = this.curriculaService.findCurriculasByRookieId(rookie.getId());
 		for (final Curricula c : curriculas)
 			this.curriculaService.delete(c.getId());
 
@@ -287,14 +287,14 @@ public class HackerService {
 			this.finderService.delete(f);
 		if (creditCard != null)
 			this.creditCardService.delete(creditCard);
-		this.repository.delete(hacker.getId());
+		this.repository.delete(rookie.getId());
 		this.repository.flush();
 		final Collection<Actor> actors = this.actorService.findAll();
-		Assert.isTrue(!(actors.contains(hacker)));
+		Assert.isTrue(!(actors.contains(rookie)));
 	}
 
-	public Hacker findHackerByUserAcountId(final int userAccountId) {
-		return this.repository.findHackerByUserAcountId(userAccountId);
+	public Rookie findRookieByUserAcountId(final int userAccountId) {
+		return this.repository.findRookieByUserAcountId(userAccountId);
 	}
 
 }

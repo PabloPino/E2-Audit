@@ -8,7 +8,7 @@
  * http://www.tdg-seville.info/License.html
  */
 
-package controllers.hacker;
+package controllers.rookie;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,21 +30,21 @@ import security.UserAccount;
 import services.ApplicationService;
 import services.ConfigurationService;
 import services.CurriculaService;
-import services.HackerService;
+import services.RookieService;
 import services.PositionService;
 import controllers.AbstractController;
 import domain.Application;
 import domain.Curricula;
-import domain.Hacker;
+import domain.Rookie;
 import domain.PersonalData;
 
 @Controller
-@RequestMapping("/application/hacker")
-public class ApplicationHackerController extends AbstractController {
+@RequestMapping("/application/rookie")
+public class ApplicationRookieController extends AbstractController {
 
 	// Constructors -----------------------------------------------------------
 
-	public ApplicationHackerController() {
+	public ApplicationRookieController() {
 		super();
 	}
 
@@ -64,23 +64,23 @@ public class ApplicationHackerController extends AbstractController {
 	private CurriculaService		curriculaService;
 
 	@Autowired
-	private HackerService			hackerService;
+	private RookieService			rookieService;
 
 
 	//-------------------------- List ----------------------------------
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView modelAndView;
-		final Hacker hacker;
+		final Rookie rookie;
 		UserAccount userAccount;
 
 		userAccount = LoginService.getPrincipal();
-		hacker = this.applicationService.findHackerByUserAccount(userAccount);
-		final Collection<Application> applications = this.applicationService.findApplicationByHacker(hacker);
+		rookie = this.applicationService.findRookieByUserAccount(userAccount);
+		final Collection<Application> applications = this.applicationService.findApplicationByRookie(rookie);
 
 		modelAndView = new ModelAndView("application/list");
 		modelAndView.addObject("applications", applications);
-		modelAndView.addObject("requestURI", "application/hacker/list.do");
+		modelAndView.addObject("requestURI", "application/rookie/list.do");
 		modelAndView.addObject("banner", this.configurationService.findOne().getBanner());
 
 		return modelAndView;
@@ -95,11 +95,11 @@ public class ApplicationHackerController extends AbstractController {
 		final Application application;
 
 		final int userAccountId = LoginService.getPrincipal().getId();
-		final Hacker hacker = this.hackerService.findHackerByUserAcountId(userAccountId);
-		final int hackerId = hacker.getId();
+		final Rookie rookie = this.rookieService.findRookieByUserAcountId(userAccountId);
+		final int rookieId = rookie.getId();
 		application = this.applicationService.findOne(applicationId);
 		Assert.notNull(application);
-		final List<Curricula> curriculas = (List) this.curriculaService.findCurriculasByHackerId(hackerId);
+		final List<Curricula> curriculas = (List) this.curriculaService.findCurriculasByRookieId(rookieId);
 		final List<Curricula> curriculasOriginales = new ArrayList<Curricula>();
 		final List<PersonalData> pds = new ArrayList<PersonalData>();
 		for (final Curricula c : curriculas) {
@@ -145,7 +145,7 @@ public class ApplicationHackerController extends AbstractController {
 		}
 		if (application.getAnswerCode().contains("https://") || (application.getStatus().equals("PENDING") && application.getAnswerCode().equals(""))) {
 			this.applicationService.save(application);
-			modelAndView = new ModelAndView("redirect:/application/hacker/list.do");
+			modelAndView = new ModelAndView("redirect:/application/rookie/list.do");
 			//			modelAndView = this.list();
 		} else {
 			modelAndView = this.createEditModelAndView(application, "application.commit.error");
@@ -165,10 +165,10 @@ public class ApplicationHackerController extends AbstractController {
 		application.setStatus("PENDING");
 
 		final int userAccountId = LoginService.getPrincipal().getId();
-		final Hacker hacker = this.hackerService.findHackerByUserAcountId(userAccountId);
-		final int hackerId = hacker.getId();
+		final Rookie rookie = this.rookieService.findRookieByUserAcountId(userAccountId);
+		final int rookieId = rookie.getId();
 		Assert.notNull(application);
-		final List<Curricula> curriculas = (List) this.curriculaService.findCurriculasByHackerId(hackerId);
+		final List<Curricula> curriculas = (List) this.curriculaService.findCurriculasByRookieId(rookieId);
 		final List<Curricula> curriculasOriginales = new ArrayList<Curricula>();
 		final List<PersonalData> pds = new ArrayList<PersonalData>();
 		for (final Curricula c : curriculas) {
@@ -216,7 +216,7 @@ public class ApplicationHackerController extends AbstractController {
 		result.addObject("isRead", false);
 		result.addObject("banner", this.configurationService.findOne().getBanner());
 
-		result.addObject("requestURI", "application/hacker/edit.do");
+		result.addObject("requestURI", "application/rookie/edit.do");
 
 		return result;
 	}

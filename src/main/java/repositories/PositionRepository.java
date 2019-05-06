@@ -32,8 +32,8 @@ public interface PositionRepository extends JpaRepository<Position, Integer> {
 	@Query("select a from Position a where a.finalMode = true")
 	List<Position> findFinalPosition();
 
-	@Query("select distinct a.position from Application a where a.hacker.id = ?1")
-	List<Position> findPositionByHackerId(final int hackerId);
+	@Query("select distinct a.position from Application a where a.rookie.id = ?1")
+	List<Position> findPositionByRookieId(final int rookieId);
 
 	@Query("select a from Position a where a.deadLine > NOW() and a.finalMode = true")
 	Collection<Position> findFinalPositionWithoutDeadline();

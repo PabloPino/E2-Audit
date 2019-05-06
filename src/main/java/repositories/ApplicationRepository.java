@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import security.UserAccount;
 import domain.Application;
-import domain.Hacker;
+import domain.Rookie;
 import domain.Position;
 import domain.Problem;
 
@@ -27,8 +27,8 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 	@Query("select a from Application a where a.id = ?1")
 	Application findApplicationById(int applicationId);
 
-	@Query("select a from Application a where a.hacker = (select h.id from Hacker h where h = ?1)")
-	List<Application> findApplicationByHacker(Hacker hacker);
+	@Query("select a from Application a where a.rookie = (select h.id from Rookie h where h = ?1)")
+	List<Application> findApplicationByRookie(Rookie rookie);
 
 	@Query("select a from Application a where a.status != 'PENDING' and a.position.company.id = ?1")
 	Collection<Application> findApplicationByStatusAndCompany(int companyId);
@@ -42,26 +42,26 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 	@Query("select c.id from Company c where c.userAccount.id = ?1")
 	int findCompanyIdByUserAccountId(int userAccountId);
 
-	@Query("select h from Hacker h where h.userAccount = (select u.id from UserAccount u where u = ?1)")
-	Hacker findHackerByUserAccount(UserAccount userAccount);
+	@Query("select h from Rookie h where h.userAccount = (select u.id from UserAccount u where u = ?1)")
+	Rookie findRookieByUserAccount(UserAccount userAccount);
 
 	@Query("select p from Problem p where p.finalMode = true and p.position = (select p.id from Position p where p = ?1) order by rand()")
 	List<Problem> findRandomFinalProblem(Position position);
 
 	//QUERY DASHBOARD---------------------------------------------------------------------------
-	@Query("select avg(1.0 * (select count(a) from 	Application a where a.hacker.id = h.id)) from Hacker h")
+	@Query("select avg(1.0 * (select count(a) from 	Application a where a.rookie.id = h.id)) from Rookie h")
 	Double queryC2AVG();
 
-	@Query("select max(1.0 * (select count(a) from 	Application a where a.hacker.id = h.id)) from Hacker h")
+	@Query("select max(1.0 * (select count(a) from 	Application a where a.rookie.id = h.id)) from Rookie h")
 	Double queryC2MAX();
 
-	@Query("select min(1.0 * (select count(a) from 	Application a where a.hacker.id = h.id)) from Hacker h")
+	@Query("select min(1.0 * (select count(a) from 	Application a where a.rookie.id = h.id)) from Rookie h")
 	Double queryC2MIN();
 
-	@Query("select stddev(1.0 * (select count(a) from 	Application a where a.hacker.id = h.id)) from Hacker h")
+	@Query("select stddev(1.0 * (select count(a) from 	Application a where a.rookie.id = h.id)) from Rookie h")
 	Double queryC2STDDEV();
 
-	@Query("select a.hacker.name from Application a  group by a.hacker.id order by count(a) desc")
+	@Query("select a.rookie.name from Application a  group by a.rookie.id order by count(a) desc")
 	List<String> queryC4();
 
 }

@@ -181,7 +181,7 @@ public class ActorForm extends DomainEntity {
 	}
 
 	@NotBlank
-	@Pattern(regexp = "^" + Authority.ADMIN + "|" + Authority.COMPANY + "|" + Authority.HACKER + "|" + Authority.AUDITOR + "|" + Authority.PROVIDER + "|" + "$")
+	@Pattern(regexp = "^" + Authority.ADMIN + "|" + Authority.COMPANY + "|" + Authority.ROOKIE + "|" + Authority.AUDITOR + "|" + Authority.PROVIDER + "|" + "$")
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getAuthority() {
 		return this.authority;

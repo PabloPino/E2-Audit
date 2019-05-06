@@ -77,7 +77,7 @@ public class AdministratorDashboardController extends AbstractController {
 
 		result.addObject("banner", this.configurationService.findOne().getBanner());
 
-		//DASHBOARD ACME-HackerRank
+		//DASHBOARD ACME-RookieRank
 		//QueryC1
 		final Double queryC1AVG = this.positionService.queryC1AVG();
 		final Double queryC1MAX = this.positionService.queryC1MAX();

@@ -47,7 +47,7 @@ public class UseCase18_1 extends AbstractTest {
 		System.out.println("=====DISPLAY=====");
 		final Object testingData[][] = {
 			{
-				"hacker1", IllegalArgumentException.class
+				"rookie1", IllegalArgumentException.class
 			//Probamos con un usuario que no es un admin(CASO NEGATIVO)
 			//b) Negative test
 			//c) analysis of sentence coverage: 100%

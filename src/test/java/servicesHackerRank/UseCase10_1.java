@@ -18,8 +18,8 @@ import services.PositionService;
 import utilities.AbstractTest;
 import domain.Application;
 import domain.Company;
-import domain.Hacker;
 import domain.Position;
+import domain.Rookie;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -57,18 +57,18 @@ public class UseCase10_1 extends AbstractTest {
 				"FalseBoy", "TEST", IllegalArgumentException.class
 			//				InvalidDataAccessResourceUsageException.class
 
-			//Probamos con un user hacker que no exista y que no debia editar sus datos(CASO NEGATIVO)
+			//Probamos con un user rookie que no exista y que no debia editar sus datos(CASO NEGATIVO)
 			//b) Negative test
 			//c) analysis of sentence coverage: 100%
 			//d) This user doesn't exists, so it cannot manage it positions
 			}, {
-				"hacker1", "TEST", null
+				"rookie1", "TEST", null
 			//Este usuario si esta registrado en el sistema y puede editar sus applications(CASO POSITIVO)
 			//b) Positive test
 			//c) analysis of sentence coverage: 100%
 			//d) A company should manage their positions, which includes listing, showing, creating, updating, and deleting them
 			}, {
-				"hacker2", "TEST", null
+				"rookie2", "TEST", null
 			//Este usuario si esta registrado en el sistema y puede editar sus applications(CASO POSITIVO)
 			//b) Positive test
 			//c) analysis of sentence coverage: 100%
@@ -87,13 +87,13 @@ public class UseCase10_1 extends AbstractTest {
 			//Nos autenticamos
 			this.authenticate(username);
 			//Encontramos el actor cuyo nombre de usuario es igual a que pasamos por parámetros
-			final Hacker a = (Hacker) this.actorService.findActorByUsername(username);
+			final Rookie a = (Rookie) this.actorService.findActorByUsername(username);
 
 			//			Sacamos una company
 			final Company company = this.companyService.findAll().get(0);
 
 			//			Sacamos la lista de las application que pertenecen a esa company
-			final List<Application> apps = this.applicationService.findApplicationByHacker(a);
+			final List<Application> apps = this.applicationService.findApplicationByRookie(a);
 			//			Sacamos la lista de las position que pertenecen a esa company
 			final List<Position> pos = (List<Position>) this.positionService.findPositionsByCompanyId(company.getId());
 

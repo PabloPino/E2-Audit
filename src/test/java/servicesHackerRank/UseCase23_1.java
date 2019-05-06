@@ -49,7 +49,7 @@ public class UseCase23_1 extends AbstractTest {
 			//c) analysis of sentence coverage: 96.8%
 			//d) A company should manage their positions, which includes listing, showing, creating, updating, and deleting them
 			}, {
-				"hacker1", "TEST", null
+				"rookie1", "TEST", null
 			//Este usuario si esta registrado en el sistema y puede editar sus applications(CASO POSITIVO)
 			//b) Positive test
 			//c) analysis of sentence coverage: 96.8%

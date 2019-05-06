@@ -80,7 +80,7 @@ public class UseCase23_2 extends AbstractTest {
 		try {
 			final Message newMessage = this.messageService.create();
 			final Collection<String> tags = newMessage.getTags();
-			final Actor receiver = this.actorService.findOne(super.getEntityId("hacker1"));
+			final Actor receiver = this.actorService.findOne(super.getEntityId("rookie1"));
 			tags.add("newTag");
 			newMessage.setBody("body");
 			newMessage.setReceiver(receiver);

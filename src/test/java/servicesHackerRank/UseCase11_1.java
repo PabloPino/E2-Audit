@@ -14,7 +14,7 @@ import repositories.DomainEntityRepository;
 import services.ActorService;
 import services.AdministratorService;
 import services.CreditCardService;
-import services.HackerService;
+import services.RookieService;
 import utilities.AbstractTest;
 import domain.Administrator;
 import domain.CreditCard;
@@ -35,7 +35,7 @@ public class UseCase11_1 extends AbstractTest {
 	@Autowired
 	private AdministratorService	administratorService;
 	@Autowired
-	private HackerService			hackerService;
+	private RookieService			rookieService;
 	@Autowired
 	private ActorService			actorService;
 	@Autowired

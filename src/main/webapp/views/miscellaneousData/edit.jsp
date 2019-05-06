@@ -27,8 +27,8 @@
 
 <security:authentication property="principal.username" var="username" />
 <jstl:if
-	test='${miscellaneousData.curricula.hacker.userAccount.username == username || miscellaneousData.id == 0}'>
-	<security:authorize access="hasRole('HACKER')">
+	test='${miscellaneousData.curricula.rookie.userAccount.username == username || miscellaneousData.id == 0}'>
+	<security:authorize access="hasRole('ROOKIE')">
 		<div>
 
 			<form:form action="miscellaneousData/edit.do" method="post"
@@ -76,7 +76,7 @@
 
 </jstl:if>
 <jstl:if
-	test='${miscellaneousData.curricula.hacker.userAccount.username != username}'>
+	test='${miscellaneousData.curricula.rookie.userAccount.username != username}'>
 	<h1>
 		<b><spring:message code="curricula.permissions"></spring:message></b>
 	</h1>

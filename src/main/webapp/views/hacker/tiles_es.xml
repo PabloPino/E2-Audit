@@ -16,24 +16,24 @@
       
 <tiles-definitions>
 
-	<definition name="hacker/action-1" extends="master.page">	
-		<put-attribute name="title" value="Hacker: Acción 1" />
-		<put-attribute name="body" value="/views/hacker/action-1.jsp" />
+	<definition name="rookie/action-1" extends="master.page">	
+		<put-attribute name="title" value="Rookie: Acción 1" />
+		<put-attribute name="body" value="/views/rookie/action-1.jsp" />
 	</definition>
 	
-	<definition name="hacker/action-2" extends="master.page">	
-		<put-attribute name="title" value="Hacker: Acción 2" />
-		<put-attribute name="body" value="/views/hacker/action-2.jsp" />
+	<definition name="rookie/action-2" extends="master.page">	
+		<put-attribute name="title" value="Rookie: Acción 2" />
+		<put-attribute name="body" value="/views/rookie/action-2.jsp" />
 	</definition>
 	
-	<definition name="hacker/display" extends="master.page">	
-		<put-attribute name="title" value="Mostrar Hacker" />
-		<put-attribute name="body" value="/views/hacker/display.jsp" />
+	<definition name="rookie/display" extends="master.page">	
+		<put-attribute name="title" value="Mostrar Rookie" />
+		<put-attribute name="body" value="/views/rookie/display.jsp" />
 	</definition>
 	
-	<definition name="hacker/list" extends="master.page">	
-		<put-attribute name="title" value="Listar Hackers" />
-		<put-attribute name="body" value="/views/hacker/list.jsp" />
+	<definition name="rookie/list" extends="master.page">	
+		<put-attribute name="title" value="Listar Rookies" />
+		<put-attribute name="body" value="/views/rookie/list.jsp" />
 	</definition>
 	
 </tiles-definitions>

@@ -14,7 +14,7 @@ import org.hibernate.validator.constraints.URL;
 import security.Authority;
 import domain.DomainEntity;
 
-public class HackerForm extends DomainEntity {
+public class RookieForm extends DomainEntity {
 
 	private String	name;
 	private String	middleName;
@@ -181,7 +181,7 @@ public class HackerForm extends DomainEntity {
 	}
 
 	@NotBlank
-	@Pattern(regexp = "^" + Authority.ADMIN + "|" + Authority.COMPANY + "|" + Authority.HACKER + "|" + "$")
+	@Pattern(regexp = "^" + Authority.ADMIN + "|" + Authority.COMPANY + "|" + Authority.ROOKIE + "|" + "$")
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getAuthority() {
 		return this.authority;

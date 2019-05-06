@@ -23,7 +23,7 @@ import domain.Position;
 @Transactional
 public class UseCase17_2 extends AbstractTest {
 
-	//17. An actor who is authenticated as a hacker must be able to:
+	//17. An actor who is authenticated as a rookie must be able to:
 	//	2.	Manage his or her finder, which involves updating the
 	//		search criteria, listing its contents, and clearing it.
 
@@ -40,10 +40,10 @@ public class UseCase17_2 extends AbstractTest {
 		System.out.println("=====FINDER UPDATING=====");
 		final Object testingData[][] = {
 			{
-				"hacker1", "", null
+				"rookie1", "", null
 
 			}, {
-				"hacker1", "Aux", null
+				"rookie1", "Aux", null
 			}, {
 				null, "google", IllegalArgumentException.class
 			}
