@@ -171,7 +171,10 @@ public class CompanyService {
 		res.setAddress(b.getAddress());
 		res.setCompanyName(b.getComercialName());
 		res.setVATNumber(b.getVATNumber());
-		res.setScore(b.getScore());
+		if (b.getScore() == null)
+			res.setScore(0.);
+		else
+			res.setScore(b.getScore());
 		if (b.getCreditCard() != null) {
 			res.setCVVCode(b.getCreditCard().getCVVCode());
 			res.setExpirationMonth(b.getCreditCard().getExpirationMonth());
