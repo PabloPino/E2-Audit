@@ -1649,6 +1649,61 @@
 			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
 		<property name="provider" ref="provider2" />
 	</bean>
+	
+	<bean id="item3" class="domain.Item">
+		<property name="name" value="Item3" />
+		<property name="description" value="Biblioteca" />
+		<property name="link" value="https://link3.com" />
+		<property name="pictures"
+			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
+		<property name="provider" ref="provider1" />
+	</bean>
+
+	<bean id="item4" class="domain.Item">
+		<property name="name" value="Item4" />
+		<property name="description" value="Parque" />
+		<property name="link" value="https://link4.com" />
+		<property name="pictures"
+			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
+		<property name="provider" ref="provider2" />
+	</bean>
+	
+	<bean id="item5" class="domain.Item">
+		<property name="name" value="Item5" />
+		<property name="description" value="Terraza" />
+		<property name="link" value="https://link5.com" />
+		<property name="pictures"
+			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
+		<property name="provider" ref="provider1" />
+	</bean>
+
+	<bean id="item6" class="domain.Item">
+		<property name="name" value="Item6" />
+		<property name="description" value="Bar" />
+		<property name="link" value="https://link6.com" />
+		<property name="pictures"
+			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
+		<property name="provider" ref="provider2" />
+	</bean>
+	
+	<bean id="item7" class="domain.Item">
+		<property name="name" value="Item7" />
+		<property name="description" value="Discoteca" />
+		<property name="link" value="https://link7.com" />
+		<property name="pictures"
+			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
+		<property name="provider" ref="provider1" />
+	</bean>
+
+	<bean id="item8" class="domain.Item">
+		<property name="name" value="Item8" />
+		<property name="description" value="Piscina" />
+		<property name="link" value="https://link8.com" />
+		<property name="pictures"
+			value="http://1.bp.blogspot.com/-ShwlTH_PTvk/Uf6goC1eneI/AAAAAAAALvY/gb_UBcA6GQU/s1600/bruja-escoba-luna-miedo-dibujo-sin-derechos-autor.png" />
+		<property name="provider" ref="provider2" />
+	</bean>
+	
 	<!-- Sponsorship -->
 
 	<bean id="sponsorship1" class="domain.Sponsorship">
