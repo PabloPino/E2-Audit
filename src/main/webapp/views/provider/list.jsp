@@ -27,7 +27,7 @@
 
 	<acme:column value="${row.email}" code="company.email" />
 
-	<acme:column value="${row.photo}" image="true" alt="${row.photo}" />
+	<acme:column value="${row.photo}" image="true" alt="${row.photo}" width="153px" height="100px" />
 
 	<acme:column value="${row.phone}" code="company.phone" />
 

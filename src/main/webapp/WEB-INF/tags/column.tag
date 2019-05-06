@@ -23,6 +23,8 @@
 <%@ attribute name="sortable" required="false" %>
 <%@ attribute name="test" required="false" %>
 <%@ attribute name="formatDate" required="false" %>
+<%@ attribute name="height" required="false" %>
+<%@ attribute name="width" required="false" %>
 
 <%@ attribute name="readonly" required="false"%>
 
@@ -51,7 +53,7 @@
 		<jstl:when test="${image}">
 			<display:column title="${titleKey}" sortable="${sortable}">
 				<jstl:if test="${test}">
-					<img src="${value}" alt='<jstl:out value="${alt}" />' />
+					<img src="${value}" width="${width}" height="${height}" alt='<jstl:out value="${alt}" />' />
 				</jstl:if>
 			</display:column>
 		</jstl:when>
