@@ -96,7 +96,6 @@ public class CompanyService {
 		final Company res = new Company();
 		res.setBanned(false);
 		res.setUserAccount(new UserAccount());
-		res.setScore(0.);
 		return res;
 	}
 
@@ -171,10 +170,7 @@ public class CompanyService {
 		res.setAddress(b.getAddress());
 		res.setCompanyName(b.getComercialName());
 		res.setVATNumber(b.getVATNumber());
-		if (b.getScore() == null)
-			res.setScore(0.);
-		else
-			res.setScore(b.getScore());
+		res.setScore(b.getScore());
 		if (b.getCreditCard() != null) {
 			res.setCVVCode(b.getCreditCard().getCVVCode());
 			res.setExpirationMonth(b.getCreditCard().getExpirationMonth());

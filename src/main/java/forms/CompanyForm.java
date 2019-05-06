@@ -35,13 +35,13 @@ public class CompanyForm extends DomainEntity {
 	private int		expirationMonth;
 	private int		expirationYear;
 	private int		CVVCode;
-	private double	score;
+	private Double	score;
 
 
-	public double getScore() {
+	public Double getScore() {
 		return this.score;
 	}
-	public void setScore(final double score) {
+	public void setScore(final Double score) {
 		this.score = score;
 	}
 
