@@ -95,7 +95,7 @@
 
 	<bean id="userAccount3" class="security.UserAccount">
 		<property name="username" value="rookie1" />
-		<property name="password" value="2ba2a8ac968a7a2b0a7baa7f2fef18d2" />
+		<property name="password" value="9701eb1802a4c63f51e1501512fbdd30" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -107,7 +107,7 @@
 
 	<bean id="userAccount4" class="security.UserAccount">
 		<property name="username" value="rookie2" />
-		<property name="password" value="91af68b69a50a98dbc0800942540342c" />
+		<property name="password" value="124be4fa2a59341a1d7e965ac49b2923" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -119,7 +119,7 @@
 
 	<bean id="userAccount5" class="security.UserAccount">
 		<property name="username" value="rookie3" />
-		<property name="password" value="c6ae6edca1ad45f42e619ec91a32b636" />
+		<property name="password" value="b723fa2fd1c2dc65d166df3e7f83e329" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
