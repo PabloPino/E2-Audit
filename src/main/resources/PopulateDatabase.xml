@@ -1388,7 +1388,7 @@
 		<!-- https://i.ibb.co/xYkd9rX/IMG-0696.jpg https://i.ibb.co/MZ6qL84/wwwww.png -->
 		<property name="banner" value="https://i.ibb.co/GxW2K0d/Rookies.png" />
 		<property name="welcomeMessageEN"
-			value="Welcome to Acme hacker Rookies! We're IT hacker's favourite job marketplace!" />
+			value="Welcome to Acme Rookies! We're IT hacker's favourite job marketplace!" />
 		<property name="welcomeMessageES"
 			value="¡Bienvenidos a Acme Rookies! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!" />
 		<property name="securityMessageEN"
