@@ -26,7 +26,8 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-
+	<form:hidden path="hasRebranded" />
+	
 	<jstl:if test="${isRead==true}">
 		<img src="${configuration.banner}" height="20%" width="20%" />
 		<br />
@@ -82,4 +83,9 @@
 		<acme:cancel url="configuration/administrator/list.do"
 			code="conf.back" />
 	</jstl:if>
+	
 </form:form>
+
+<jstl:if test="${!configuration.hasRebranded}">
+	<acme:cancel url="configuration/administrator/notify-rebranding.do" code="conf.notifyrebranding" />
+</jstl:if>

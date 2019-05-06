@@ -249,6 +249,19 @@ public class MessageService {
 		this.messageRepository.save(message);
 	}
 
+	public void notificationRebranding() {
+		this.configurationService.findOne();
+		final Message message = this.create();
+		message.setSender(this.actorService.findActorByUsername("system"));
+		message.setBody("The system has been rebranded to \"Acme-Rookies\" \r\n" + "El sistema ha cambiado de nombre a \"Acme-Rookies\" \r\n");
+		message.setSubject("Rebranding // Cambio de nombre");
+		final Collection<String> tags = message.getTags();
+		tags.add("NOTIFICATION");
+		tags.add("REBRANDING");
+		message.setTags(tags);
+		this.saveBroadcast(message);
+	}
+
 	public void deleteMyMessages() {
 		final Collection<Message> messages = this.findMyMessages();
 		for (final Message m : messages)

@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ConfigurationService;
+import services.MessageService;
 import controllers.AbstractController;
 import domain.Configuration;
-import services.ConfigurationService;
 
 @Controller
 @RequestMapping("/configuration/administrator")
@@ -23,7 +24,9 @@ public class ConfigurationAdministratorController extends AbstractController {
 	//Service----------------------------------------------------------------
 
 	@Autowired
-	private ConfigurationService configurationService;
+	private ConfigurationService	configurationService;
+	@Autowired
+	private MessageService			messageService;
 
 
 	//Constructor------------------------------------------------------------
@@ -95,6 +98,25 @@ public class ConfigurationAdministratorController extends AbstractController {
 				else
 					result = this.createEditModelAndView(configuration, "conf.commint.error");
 			}
+		return result;
+	}
+
+	// Rebranding
+
+	@RequestMapping("notify-rebranding")
+	public ModelAndView rebrand() {
+		ModelAndView result;
+		try {
+			this.configurationService.saveWhenRebranding();
+			this.messageService.notificationRebranding();
+			result = new ModelAndView("redirect:/configuration/administrator/list.do");
+		} catch (final Throwable oops) {
+			final Configuration configuration = this.configurationService.findOne();
+			if (oops.getMessage().equals("noAdmin"))
+				result = this.createEditModelAndView(configuration, "conf.noAdmin");
+			else
+				result = this.createEditModelAndView(configuration, "conf.commint.error");
+		}
 		return result;
 	}
 

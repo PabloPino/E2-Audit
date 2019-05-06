@@ -1395,6 +1395,7 @@
 			value="A security fault has occurred! The system is in maintenance." />
 		<property name="securityMessageES"
 			value="¡Se ha producido un fallo de seguridad! El sistema se encuentra en mantenimiento." />
+		<property name="hasRebranded" value="false" />
 		<property name="spamWordsEN">
 			<list>
 				<value>sex</value>

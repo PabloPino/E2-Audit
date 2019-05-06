@@ -245,6 +245,8 @@
 
 		<security:intercept-url pattern="/actor/administrator/show.do"
 			access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/configuration/administrator/**"
+			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/configuration/administrator/list.do"
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/configuration/administrator/edit.do"

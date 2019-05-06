@@ -12,8 +12,8 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import domain.Configuration;
 import repositories.ConfigurationRepository;
+import domain.Configuration;
 
 @Service
 @Transactional
@@ -39,12 +39,20 @@ public class ConfigurationService {
 
 	public Configuration save(final Configuration configuration) {
 		Assert.notNull(configuration);
+		final Configuration oldConfiguration = this.configurationRepository.findOne(configuration.getId());
+		configuration.setHasRebranded(oldConfiguration.isHasRebranded());
 		Assert.isTrue(this.administratorService.isPrincipalAdmin(), "noAdmin");
-
 		configuration.setMakeName(this.makeNameUpper(configuration));
 
 		final Configuration saved = this.configurationRepository.save(configuration);
 
+		return saved;
+	}
+
+	public Configuration saveWhenRebranding() {
+		final Configuration oldConfiguration = this.findOne();
+		oldConfiguration.setHasRebranded(true);
+		final Configuration saved = this.save(oldConfiguration);
 		return saved;
 	}
 

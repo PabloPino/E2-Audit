@@ -76,6 +76,11 @@
 	:
 	<jstl:out value="${company.VATNumber}" />
 </p>
+<p>
+	<spring:message code="company.score"/>
+	:
+	<jstl:out value="${company.score}" />
+</p>
 
 
 <jstl:if test="${isPrincipalAuthorizedEdit}">

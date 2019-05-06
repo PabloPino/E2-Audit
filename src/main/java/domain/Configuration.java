@@ -44,6 +44,7 @@ public class Configuration extends DomainEntity {
 	private String			securityMessageES;
 	private String			securityMessageEN;
 	private boolean			failSystem;
+	private boolean			hasRebranded;
 
 
 	@NotBlank
@@ -216,6 +217,13 @@ public class Configuration extends DomainEntity {
 
 	public void setFailSystem(final boolean failSystem) {
 		this.failSystem = failSystem;
+	}
+
+	public boolean isHasRebranded() {
+		return this.hasRebranded;
+	}
+	public void setHasRebranded(final boolean hasRebranded) {
+		this.hasRebranded = hasRebranded;
 	}
 
 }
