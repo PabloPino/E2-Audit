@@ -47,7 +47,10 @@ public class ItemService {
 
 	public Item save(final Item item) {
 		Assert.notNull(item);
-		this.checkPrincipal(item);
+
+		this.serviceUtils.checkActor(item.getProvider());
+		this.serviceUtils.checkAuthority("PROVIDER");
+		this.serviceUtils.checkIdSave(item);
 
 		final Item saved = this.itemRepository.save(item);
 
@@ -68,7 +71,9 @@ public class ItemService {
 	}
 
 	public void delete(final Item item) {
-		this.checkPrincipal(item);
+		this.serviceUtils.checkActor(item.getProvider());
+		this.serviceUtils.checkAuthority("PROVIDER");
+		this.serviceUtils.checkIdSave(item);
 		this.itemRepository.delete(item);
 	}
 

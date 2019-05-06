@@ -84,9 +84,12 @@ public class ItemProviderController extends AbstractController {
 	public ModelAndView save(@Valid final Item item, final BindingResult binding) {
 		ModelAndView result;
 
-		if (binding.hasErrors())
-			result = this.createEditModelAndView(item);
-		else
+		if (binding.hasErrors()) {
+			if (binding.getAllErrors().toString().contains("URL"))
+				result = this.createEditModelAndView(item, "item.commit.error.url");
+			else
+				result = this.createEditModelAndView(item);
+		} else
 			try {
 				this.itemService.save(item);
 				result = new ModelAndView("redirect:/item/provider/list.do");
