@@ -143,7 +143,7 @@ public class ApplicationHackerController extends AbstractController {
 			application.setStatus(null);
 			application.setStatus("SUBMITTED");
 		}
-		if (application.getAnswerCode().contains("https://") || application.getStatus().equals("PENDING")) {
+		if (application.getAnswerCode().contains("https://") || (application.getStatus().equals("PENDING") && application.getAnswerCode().equals(""))) {
 			this.applicationService.save(application);
 			modelAndView = new ModelAndView("redirect:/application/hacker/list.do");
 			//			modelAndView = this.list();
