@@ -25,12 +25,12 @@
 	</definition>
 	
 	<definition name="audit/list" extends="master.page">
-		<put-attribute name="title" value="Lista de revisions" />
+		<put-attribute name="title" value="Lista de revisiones" />
 		<put-attribute name="body" value="/views/audit/list.jsp" />
 	</definition>
 	
 	<definition name="audit/myList" extends="master.page">
-		<put-attribute name="title" value="Mis revisions" />
+		<put-attribute name="title" value="Mis revisiones" />
 		<put-attribute name="body" value="/views/audit/myList.jsp" />
 	</definition>
 
