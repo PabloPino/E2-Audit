@@ -99,6 +99,7 @@ public class SponsorshipService {
 	public void delete(final Sponsorship sponsorship) {
 		this.serviceUtils.checkActor(sponsorship.getProvider());
 		this.serviceUtils.checkAuthority("PROVIDER");
+		this.serviceUtils.checkIdSave(sponsorship);
 		this.sponsorshipRepository.delete(sponsorship);
 	}
 
