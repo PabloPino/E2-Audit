@@ -56,11 +56,14 @@ public class SponsorshipService {
 	public Sponsorship save(final Sponsorship sponsorship) {
 		Assert.notNull(sponsorship);
 
-		this.serviceUtils.checkActor(sponsorship.getProvider());
-		this.serviceUtils.checkAuthority("PROVIDER");
-		this.serviceUtils.checkIdSave(sponsorship);
+		this.sponsorshipRepository.flush();
+		final Sponsorship sSave = this.sponsorshipRepository.findOne(sponsorship.getId());
 
-		final Sponsorship res = this.sponsorshipRepository.save(sponsorship);
+		this.serviceUtils.checkActor(sSave.getProvider());
+		this.serviceUtils.checkAuthority("PROVIDER");
+		this.serviceUtils.checkIdSave(sSave);
+
+		final Sponsorship res = this.sponsorshipRepository.save(sSave);
 		return res;
 
 	}
@@ -95,14 +98,19 @@ public class SponsorshipService {
 		final int n = rand.nextInt(sponsorships.size());
 		return sponsorships.get(n);
 	}
-
-	public void delete(final Sponsorship sponsorship) {
-		this.serviceUtils.checkActor(sponsorship.getProvider());
-		this.serviceUtils.checkAuthority("PROVIDER");
-		this.serviceUtils.checkIdSave(sponsorship);
-		this.sponsorshipRepository.delete(sponsorship);
+	public void flush() {
+		this.sponsorshipRepository.flush();
 	}
 
+	public void delete(final Sponsorship sponsorship) {
+		Assert.notNull(sponsorship);
+		this.sponsorshipRepository.flush();
+		final Sponsorship sDelete = this.sponsorshipRepository.findOne(sponsorship.getId());
+		this.serviceUtils.checkActor(sDelete.getProvider());
+		this.serviceUtils.checkAuthority("PROVIDER");
+		this.serviceUtils.checkIdSave(sDelete);
+		this.sponsorshipRepository.delete(sDelete);
+	}
 	public void delete1(final Sponsorship sponsorship) {
 		this.sponsorshipRepository.delete(sponsorship);
 	}
