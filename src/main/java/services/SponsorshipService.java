@@ -54,16 +54,20 @@ public class SponsorshipService {
 	}
 
 	public Sponsorship save(final Sponsorship sponsorship) {
+		Sponsorship res = new Sponsorship();
 		Assert.notNull(sponsorship);
 
-		this.sponsorshipRepository.flush();
-		final Sponsorship sSave = this.sponsorshipRepository.findOne(sponsorship.getId());
+		if (sponsorship.getId() != 0) {
+			this.sponsorshipRepository.flush();
+			final Sponsorship sSave = this.sponsorshipRepository.findOne(sponsorship.getId());
+			Assert.notNull(sSave);
+		}
 
-		this.serviceUtils.checkActor(sSave.getProvider());
+		this.serviceUtils.checkActor(sponsorship.getProvider());
 		this.serviceUtils.checkAuthority("PROVIDER");
-		this.serviceUtils.checkIdSave(sSave);
+		this.serviceUtils.checkIdSave(sponsorship);
 
-		final Sponsorship res = this.sponsorshipRepository.save(sSave);
+		res = this.sponsorshipRepository.save(sponsorship);
 		return res;
 
 	}
