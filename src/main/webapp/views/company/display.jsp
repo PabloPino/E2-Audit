@@ -79,7 +79,12 @@
 <p>
 	<spring:message code="company.score"/>
 	:
-	<jstl:out value="${company.score}" />
+	<jstl:if test="${conpany.score == null}">
+		<jstl:out value="N/A" />
+	</jstl:if>
+	<jstl:if test="${conpany.score != null}">
+		<jstl:out value="${company.score}" />
+	</jstl:if>
 </p>
 
 

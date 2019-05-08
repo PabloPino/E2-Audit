@@ -4,8 +4,6 @@ package controllers;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -64,7 +62,7 @@ public class MessageController extends AbstractController {
 	}
 
 	@RequestMapping(value = "actor/send", method = RequestMethod.POST, params = "save")
-	public ModelAndView send(@Valid final MessageForm messageForm, final BindingResult binding) {
+	public ModelAndView send(final MessageForm messageForm, final BindingResult binding) {
 		ModelAndView res = null;
 		final Message message = this.messageService.deconstruct(messageForm, false, binding);
 		if (binding.hasErrors())
@@ -89,7 +87,7 @@ public class MessageController extends AbstractController {
 	}
 
 	@RequestMapping(value = "administrator/broadcast", method = RequestMethod.POST, params = "save")
-	public ModelAndView broadcast(@Valid final MessageForm messageForm, final BindingResult binding) {
+	public ModelAndView broadcast(final MessageForm messageForm, final BindingResult binding) {
 		ModelAndView res = null;
 		final Message message = this.messageService.deconstruct(messageForm, true, binding);
 		if (binding.hasErrors())

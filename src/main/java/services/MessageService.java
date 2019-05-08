@@ -22,9 +22,9 @@ import domain.Actor;
 import domain.Application;
 import domain.Company;
 import domain.Finder;
-import domain.Rookie;
 import domain.Message;
 import domain.Position;
+import domain.Rookie;
 import forms.MessageForm;
 
 @Service
@@ -66,7 +66,7 @@ public class MessageService {
 
 	public Message create() {
 		final Message res = new Message();
-		res.setMoment(new Date(System.currentTimeMillis()));
+		res.setMoment(new Date(System.currentTimeMillis() - 3000));
 		res.setSender(this.actorService.findPrincipal());
 		res.setTags(new ArrayList<String>());
 		return res;
