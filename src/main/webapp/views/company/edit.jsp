@@ -60,7 +60,7 @@
 		<acme:textbox path="CVVCode" code="creditcard.cvvcode" />
 		<acme:textbox path="VATNumber" code="creditcard.vatnumber" />
 
-		<jstl:if test="${actor.id == 0}">
+		<jstl:if test="${companyForm.id == 0}">
 			<acme:checkbox code="company.accept" path="accept" />
 		</jstl:if>
 		

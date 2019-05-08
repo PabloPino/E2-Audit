@@ -60,7 +60,10 @@
 		<acme:textbox path="CVVCode" code="creditcard.cvvcode" />
 		<acme:textbox path="VATNumber" code="creditcard.vatnumber" />
 
-		<acme:checkbox code="company.accept" path="accept" />
+		<jstl:if test="${providerForm.id == 0}">
+			<acme:checkbox code="company.accept" path="accept" />
+		</jstl:if>
+
 		<a href="law/terminosYCondiciones.do"><spring:message
 				code="company.consultTermsAndConditions" /></a>
 		<br />
