@@ -325,9 +325,11 @@ public class CompanyService {
 		for (final SocialProfile s : socialProfiles)
 			this.socialProfileService.delete(s);
 
-		if (creditCard != null)
-			this.creditCardService.delete(creditCard);
 		this.repository.delete(company.getId());
+
+		if (creditCard != null)
+			this.creditCardService.delete1(creditCard);
+
 		this.repository.flush();
 		final Collection<Actor> actors = this.actorService.findAll();
 		Assert.isTrue(!(actors.contains(company)));

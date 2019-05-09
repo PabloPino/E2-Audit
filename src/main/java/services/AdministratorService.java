@@ -204,13 +204,16 @@ public class AdministratorService {
 			this.socialProfileService.delete(s);
 		}
 		this.messageService.deleteMyMessages();
-		if (creditCard != null)
-			this.creditCardService.delete(creditCard);
+
 		this.administratorRepository.delete(admin.getId());
+
+		if (creditCard != null)
+			this.creditCardService.delete1(creditCard);
 
 		final Collection<Actor> actors = this.actorService.findAll();
 		Assert.isTrue(!(actors.contains(admin)));
 	}
+
 	public void generateAllSpammers() {
 		this.serviceUtils.checkAuthority(Authority.ADMIN);
 		final Collection<Actor> res = this.actorService.findAllTypes();

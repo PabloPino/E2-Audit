@@ -283,11 +283,12 @@ public class RookieService {
 
 		for (final SocialProfile s : socialProfiles)
 			this.socialProfileService.delete(s);
+
+		this.repository.delete(rookie.getId());
 		if (f != null)
 			this.finderService.delete(f);
 		if (creditCard != null)
-			this.creditCardService.delete(creditCard);
-		this.repository.delete(rookie.getId());
+			this.creditCardService.delete1(creditCard);
 		this.repository.flush();
 		final Collection<Actor> actors = this.actorService.findAll();
 		Assert.isTrue(!(actors.contains(rookie)));
