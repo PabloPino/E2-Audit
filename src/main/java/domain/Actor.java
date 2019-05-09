@@ -141,7 +141,7 @@ public class Actor extends DomainEntity {
 	}
 
 	@Valid
-	@OneToOne(optional = true)
+	@OneToOne(optional = false)
 	public CreditCard getCreditCard() {
 		return this.creditCard;
 	}

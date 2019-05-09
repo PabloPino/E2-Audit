@@ -277,18 +277,19 @@ public class ProviderService {
 
 		for (final Sponsorship s : sponsorships) {
 			final CreditCard c = s.getCreditCard();
-			this.creditCardService.delete1(c);
 			this.sponsorshipService.delete(s);
+			this.creditCardService.delete1(c);
 		}
 		this.messageService.deleteMyMessages();
 
 		for (final SocialProfile s : socialProfiles)
 			this.socialProfileService.delete(s);
 
-		if (a != null)
-			this.creditCardService.delete(a);
+		this.providerRepository.delete(provider);
 
-		this.providerRepository.delete(provider.getId());
+		if (a != null)
+			this.creditCardService.delete1(a);
+
 		this.providerRepository.flush();
 
 	}
