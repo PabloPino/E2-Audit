@@ -260,8 +260,8 @@ public class AuditorService {
 		for (final SocialProfile s : socialProfiles)
 			this.socialProfileService.delete(s);
 
-		this.creditCardService.delete(creditCard);
 		this.auditorRepository.delete(auditor.getId());
+		this.creditCardService.delete1(creditCard);
 		this.auditorRepository.flush();
 		final Collection<Actor> actors = this.actorService.findAll();
 		Assert.isTrue(!(actors.contains(auditor)));

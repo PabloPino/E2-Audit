@@ -285,7 +285,7 @@ public class ProviderService {
 		for (final SocialProfile s : socialProfiles)
 			this.socialProfileService.delete(s);
 
-		this.providerRepository.delete(provider);
+		this.providerRepository.delete(provider.getId());
 
 		if (a != null)
 			this.creditCardService.delete1(a);
