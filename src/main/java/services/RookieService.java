@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import javax.transaction.Transactional;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -24,6 +25,7 @@ import security.UserAccount;
 import security.UserAccountRepository;
 import domain.Actor;
 import domain.Application;
+import domain.Configuration;
 import domain.CreditCard;
 import domain.Curricula;
 import domain.Finder;
@@ -36,37 +38,31 @@ import forms.RookieForm;
 public class RookieService {
 
 	@Autowired
-	private RookieRepository			repository;
+	private RookieRepository		repository;
 
 	@Autowired
-	private ActorService				actorService;
+	private ActorService			actorService;
 	@Autowired
-	private CreditCardService			creditCardService;
+	private CreditCardService		creditCardService;
 	@Autowired
-	private UserAccountRepository		userAccountRepository;
+	private UserAccountRepository	userAccountRepository;
 	@Autowired
-	private ServiceUtils				serviceUtils;
+	private ServiceUtils			serviceUtils;
 	@Autowired
-	private MessageSource				messageSource;
+	private MessageSource			messageSource;
 	@Autowired
-	private SocialProfileService		socialProfileService;
+	private SocialProfileService	socialProfileService;
 	@Autowired
-	private ApplicationService			applicationService;
+	private ApplicationService		applicationService;
 	@Autowired
-	private CurriculaService			curriculaService;
+	private CurriculaService		curriculaService;
 	@Autowired
-	private PositionDataService			positionDataService;
+	private FinderService			finderService;
 	@Autowired
-	private MiscellaneousDataService	miscellaneousDataService;
-	@Autowired
-	private EducationDataService		educationDataService;
-	@Autowired
-	private PersonalDataService			personalDataService;
-	@Autowired
-	private FinderService				finderService;
+	private ConfigurationService	configurationService;
 
 	@Autowired
-	private MessageService				messageService;
+	private MessageService			messageService;
 
 
 	public Rookie findOne(final Integer id) {
@@ -94,8 +90,13 @@ public class RookieService {
 	public Rookie save(final Rookie h) {
 		final Rookie rookie = (Rookie) this.serviceUtils.checkObjectSave(h);
 
+		if ((!h.getPhone().startsWith("+")) && StringUtils.isNumeric(h.getPhone()) && h.getPhone().length() > 3) {
+			final Configuration configuration = this.configurationService.findOne();
+			h.setPhone(configuration.getCountryCode() + h.getPhone());
+		}
+
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-		final String hash = encoder.encodePassword(h.getUserAccount().getPassword(), null);
+		encoder.encodePassword(h.getUserAccount().getPassword(), null);
 		if (h.getId() == 0) {
 			this.serviceUtils.checkNoActor();
 			h.setBanned(false);

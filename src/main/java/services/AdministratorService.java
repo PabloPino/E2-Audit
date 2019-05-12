@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-import org.springframework.validation.Validator;
 
 import repositories.AdministratorRepository;
 import security.Authority;
@@ -51,9 +50,6 @@ public class AdministratorService {
 
 	@Autowired
 	private ServiceUtils			serviceUtils;
-
-	@Autowired(required = false)
-	private Validator				validator;
 
 	@Autowired
 	private MessageService			messageService;
@@ -104,6 +100,11 @@ public class AdministratorService {
 		//comprobamos que el customer que nos pasan no sea nulo
 		Assert.notNull(administrator);
 		Boolean isCreating = null;
+
+		if ((!administrator.getPhone().startsWith("+")) && StringUtils.isNumeric(administrator.getPhone()) && administrator.getPhone().length() > 3) {
+			final Configuration configuration = this.configurationService.findOne();
+			administrator.setPhone(configuration.getCountryCode() + administrator.getPhone());
+		}
 
 		//Si el admin que estamos guardando es nuevo (no está en la base de datos) le ponemos todos sus atributos vacíos
 		if (administrator.getId() == 0) {

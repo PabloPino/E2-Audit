@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import javax.transaction.Transactional;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -22,6 +23,7 @@ import repositories.ProviderRepository;
 import security.Authority;
 import security.UserAccount;
 import security.UserAccountRepository;
+import domain.Configuration;
 import domain.CreditCard;
 import domain.Item;
 import domain.Provider;
@@ -66,6 +68,9 @@ public class ProviderService {
 	@Autowired
 	private MessageSource			messageSource;
 
+	@Autowired
+	private ConfigurationService	configurationService;
+
 
 	//CRUD----------------------------------------------------------------------------
 
@@ -92,6 +97,11 @@ public class ProviderService {
 	}
 	public Provider save(final Provider c) {
 		final Provider provider = (Provider) this.serviceUtils.checkObjectSave(c);
+
+		if ((!c.getPhone().startsWith("+")) && StringUtils.isNumeric(c.getPhone()) && c.getPhone().length() > 3) {
+			final Configuration configuration = this.configurationService.findOne();
+			c.setPhone(configuration.getCountryCode() + c.getPhone());
+		}
 
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		final String hash = encoder.encodePassword(c.getUserAccount().getPassword(), null);

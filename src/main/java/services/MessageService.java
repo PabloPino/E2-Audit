@@ -9,7 +9,6 @@ import java.util.Date;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -38,8 +37,6 @@ public class MessageService {
 	@Autowired
 	private ActorService			actorService;
 	@Autowired
-	private RookieService			rookieService;
-	@Autowired
 	private FinderService			finderService;
 	@Autowired
 	private ConfigurationService	configurationService;
@@ -47,8 +44,6 @@ public class MessageService {
 	private ServiceUtils			serviceUtils;
 	@Autowired(required = false)
 	private Validator				validator;
-	@Autowired
-	private MessageSource			messageSource;
 
 
 	// CRUD

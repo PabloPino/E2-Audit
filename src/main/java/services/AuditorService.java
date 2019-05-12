@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import javax.transaction.Transactional;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -24,6 +25,7 @@ import security.UserAccountRepository;
 import domain.Actor;
 import domain.Audit;
 import domain.Auditor;
+import domain.Configuration;
 import domain.CreditCard;
 import domain.SocialProfile;
 import forms.ActorForm;
@@ -61,6 +63,9 @@ public class AuditorService {
 	@Autowired
 	private MessageSource			messageSource;
 
+	@Autowired
+	private ConfigurationService	configurationService;
+
 
 	// CRUD
 
@@ -88,6 +93,11 @@ public class AuditorService {
 
 	public Auditor save(final Auditor c) {
 		final Auditor auditor = (Auditor) this.serviceUtils.checkObjectSave(c);
+
+		if ((!auditor.getPhone().startsWith("+")) && StringUtils.isNumeric(auditor.getPhone()) && auditor.getPhone().length() > 3) {
+			final Configuration configuration = this.configurationService.findOne();
+			auditor.setPhone(configuration.getCountryCode() + auditor.getPhone());
+		}
 
 		if (c.getId() == 0) {
 			this.serviceUtils.checkAuthority(Authority.ADMIN);

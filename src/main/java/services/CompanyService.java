@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import javax.transaction.Transactional;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -17,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.Validator;
 
 import repositories.CompanyRepository;
 import security.Authority;
@@ -27,6 +27,7 @@ import domain.Actor;
 import domain.Application;
 import domain.Audit;
 import domain.Company;
+import domain.Configuration;
 import domain.CreditCard;
 import domain.Position;
 import domain.Problem;
@@ -50,8 +51,6 @@ public class CompanyService {
 	@Autowired
 	private ServiceUtils			serviceUtils;
 
-	@Autowired(required = false)
-	private Validator				validator;
 	@Autowired
 	private MessageSource			messageSource;
 
@@ -75,6 +74,9 @@ public class CompanyService {
 
 	@Autowired
 	private AuditService			auditService;
+
+	@Autowired
+	private ConfigurationService	configurationService;
 
 
 	public Company findOne(final Integer id) {
@@ -101,6 +103,11 @@ public class CompanyService {
 
 	public Company save(final Company c) {
 		final Company company = (Company) this.serviceUtils.checkObjectSave(c);
+
+		if ((!c.getPhone().startsWith("+")) && StringUtils.isNumeric(c.getPhone()) && c.getPhone().length() > 3) {
+			final Configuration configuration = this.configurationService.findOne();
+			c.setPhone(configuration.getCountryCode() + c.getPhone());
+		}
 
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		final String hash = encoder.encodePassword(c.getUserAccount().getPassword(), null);

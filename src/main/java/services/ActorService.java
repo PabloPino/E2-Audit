@@ -49,11 +49,12 @@ import domain.Application;
 import domain.Audit;
 import domain.Auditor;
 import domain.Company;
+import domain.Configuration;
 import domain.CreditCard;
-import domain.Rookie;
 import domain.Item;
 import domain.Problem;
 import domain.Provider;
+import domain.Rookie;
 import domain.Sponsorship;
 import forms.ActorForm;
 
@@ -159,6 +160,12 @@ public class ActorService {
 	public Actor save(final Actor actor) {
 
 		Assert.notNull(actor);
+
+		if ((!actor.getPhone().startsWith("+")) && StringUtils.isNumeric(actor.getPhone()) && actor.getPhone().length() > 3) {
+			final Configuration configuration = this.configurationService.findOne();
+			actor.setPhone(configuration.getCountryCode() + actor.getPhone());
+		}
+
 		final Actor saved = this.actorRepository.save(actor);
 
 		return saved;
