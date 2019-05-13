@@ -30,9 +30,9 @@ public class UseCase3_2 extends AbstractTest {
 
 	//9. An actor who is authenticated as a company must be able to:
 	/*
-	 * 2. Manage their database of problems, which includes listing,
-	 * showing, creating, updating, and deleting them. Problems can be saved in draft mode;
-	 * once they are saved in final mode, they cannot not be edited.
+	 * 2. Manage their database of audits, which includes listing,
+	 * showing, creating, updating, and deleting them. An audit can be updated or deleted as long as its
+	 * saved in draft mode
 	 */
 	//Services---------------------------------------------------------------------
 
