@@ -13,13 +13,17 @@ import org.springframework.util.Assert;
 import repositories.DomainEntityRepository;
 import services.ActorService;
 import services.AdministratorService;
+import services.AuditorService;
 import services.CompanyService;
 import services.CreditCardService;
+import services.ProviderService;
 import services.RookieService;
 import utilities.AbstractTest;
 import domain.Administrator;
+import domain.Auditor;
 import domain.Company;
 import domain.CreditCard;
+import domain.Provider;
 import domain.Rookie;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,6 +43,10 @@ public class UseCase8_2 extends AbstractTest {
 	private CompanyService			companyService;
 	@Autowired
 	private RookieService			rookieService;
+	@Autowired
+	private AuditorService			auditorService;
+	@Autowired
+	private ProviderService			providerService;
 	@Autowired
 	private ActorService			actorService;
 	@Autowired
@@ -65,6 +73,14 @@ public class UseCase8_2 extends AbstractTest {
 		this.editAdminDriver("admin1", null);
 		// Un administrator edita los datos personales de otro administrator (NEGATIVO)
 		this.editAdminDriver("admin2", IllegalArgumentException.class);
+		// Un auditor edita sus datos personales (POSITIVO)
+		this.editAuditorDriver("auditor1", null);
+		// Un auditor edita los datos personales de otro auditor (NEGATIVO)
+		this.editAuditorDriver("auditor2", IllegalArgumentException.class);
+		// Un provider edita sus datos personales (POSITIVO)
+		this.editProviderDriver("provider1", null);
+		// Un provider edita los datos personales de otro provider (NEGATIVO)
+		this.editProviderDriver("provider2", IllegalArgumentException.class);
 	}
 
 	// Drivers
@@ -175,4 +191,78 @@ public class UseCase8_2 extends AbstractTest {
 		}
 		super.unauthenticate();
 	}
+
+	private void editAuditorDriver(final String username, final Class<?> expected) {
+		super.authenticate(username);
+		Class<?> caught = null;
+		try {
+			final Auditor auditor = this.auditorService.findOne(super.getEntityId("auditor1"));
+			final CreditCard creditCard = auditor.getCreditCard();
+			final Integer auditorVersionBefore = auditor.getVersion();
+			final Integer creditCardVersionBefore = creditCard.getVersion();
+			auditor.setAddress("address");
+			auditor.setEmail("email@email.com");
+			auditor.setName("name");
+			auditor.setPhone("phone");
+			auditor.setPhoto("http://photo");
+			auditor.setSurname("surname");
+			auditor.setVATNumber("vATNumber");
+			auditor.getUserAccount().setPassword("newAuditor" + UseCase8_2.uniqueness);
+			UseCase8_2.uniqueness++;
+			creditCard.setCVVCode(123);
+			creditCard.setExpirationMonth(12);
+			creditCard.setExpirationYear(2021);
+			creditCard.setHolderName("holderName");
+			creditCard.setMakeName("makeName");
+			creditCard.setNumber("1111222233334444");
+			auditor.setCreditCard(creditCard);
+			final Auditor savedAuditor = this.auditorService.save(auditor);
+			this.flushRep.flush();
+			Assert.notNull(this.auditorService.findOne(savedAuditor.getId()));
+			Assert.isTrue(savedAuditor.getVersion() > auditorVersionBefore);
+			Assert.isTrue(savedAuditor.getCreditCard().getVersion() > creditCardVersionBefore);
+		} catch (final Throwable t) {
+			caught = t.getClass();
+			super.checkExceptions(expected, caught);
+		}
+		super.unauthenticate();
+	}
+
+	private void editProviderDriver(final String username, final Class<?> expected) {
+		super.authenticate(username);
+		Class<?> caught = null;
+		try {
+			final Provider provider = this.providerService.findOne(super.getEntityId("provider1"));
+			final CreditCard creditCard = provider.getCreditCard();
+			final Integer providerVersionBefore = provider.getVersion();
+			final Integer creditCardVersionBefore = creditCard.getVersion();
+			provider.setAddress("address");
+			provider.setEmail("email@email.com");
+			provider.setName("name");
+			provider.setPhone("phone");
+			provider.setPhoto("http://photo");
+			provider.setSurname("surname");
+			provider.setVATNumber("vATNumber");
+			provider.setMake("make");
+			provider.getUserAccount().setPassword("newProvider" + UseCase8_2.uniqueness);
+			UseCase8_2.uniqueness++;
+			creditCard.setCVVCode(123);
+			creditCard.setExpirationMonth(12);
+			creditCard.setExpirationYear(2021);
+			creditCard.setHolderName("holderName");
+			creditCard.setMakeName("makeName");
+			creditCard.setNumber("1111222233334444");
+			provider.setCreditCard(creditCard);
+			final Provider savedProvider = this.providerService.save(provider);
+			this.flushRep.flush();
+			Assert.notNull(this.providerService.findOne(savedProvider.getId()));
+			Assert.isTrue(savedProvider.getVersion() > providerVersionBefore);
+			Assert.isTrue(savedProvider.getCreditCard().getVersion() > creditCardVersionBefore);
+		} catch (final Throwable t) {
+			caught = t.getClass();
+			super.checkExceptions(expected, caught);
+		}
+		super.unauthenticate();
+	}
+
 }

@@ -281,4 +281,8 @@ public class AuditorService {
 		return this.auditorRepository.findOne(id);
 	}
 
+	public void flush() {
+		this.auditorRepository.flush();
+	}
+
 }
