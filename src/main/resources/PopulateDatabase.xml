@@ -885,7 +885,7 @@
 		<property name="title" value="1Conflicto de librerias " />
 		<property name="statement" value="Fallo de compatibilidad" />
 		<property name="hint" value="librerias html" />
-		<property name="finalMode" value="false" />
+		<property name="finalMode" value="true" />
 		<property name="attachments">
 			<list>
 				<value>https://github.com/unic/neba</value>
