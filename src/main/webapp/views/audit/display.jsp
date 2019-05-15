@@ -61,7 +61,7 @@
 
 
 <jstl:if test="${audit.auditor.userAccount.username != username}">
-	<acme:cancel url="audit/list.do" code="audit.back" />
+	<acme:cancel url="position/list.do" code="audit.backTo" />
 </jstl:if>
 
 
