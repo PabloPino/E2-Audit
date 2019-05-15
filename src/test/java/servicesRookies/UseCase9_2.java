@@ -40,19 +40,19 @@ public class UseCase9_2 extends AbstractTest {
 				"company56", java.lang.IllegalArgumentException.class
 			//Probamos con un usuario que no exista y por lo tanto no debe mostrar los items(CASO NEGATIVO)
 			//b) Negative test
-			//c) analysis of sentence coverage:
+			//c) analysis of sentence coverage: 100
 			//d) Using a non existent actor, who is a company, so the user cannot see any items
 			}, {
 				null, null
 			//Un actor que no esta registrado deberia ver los items(CASO POSITIVO)
 			//b) Positive test
-			//c) analysis of sentence coverage:
+			//c) analysis of sentence coverage:100
 			//d) The user is a not registered user
 			}, {
 				"rookie1", null
 			//Este rookie si esta registrado en el sistema y deberia ver los items(CASO POSITIVO)
 			//b) Positive test
-			//c) analysis of sentence coverage:
+			//c) analysis of sentence coverage:100
 			//d) The user is a registered rookie
 			},
 
