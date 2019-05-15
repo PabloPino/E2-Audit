@@ -23,7 +23,7 @@ import domain.Provider;
 })
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class ListProviderThenItems extends AbstractTest {
+public class UseCase9_1 extends AbstractTest {
 
 	@Autowired
 	private ProviderService	providerService;
@@ -33,9 +33,9 @@ public class ListProviderThenItems extends AbstractTest {
 
 	@Test
 	public void listProviderThenItemsTest() {
-		// An actor list the providers, then it list a provider's items
+		// Un usuario lista los proveedores, después lista los items de uno de los proveedores (POSITIVO)
 		this.listProviderThenItemsDriver(null, null, null);
-		// An actor list the providers, then it list a nonexistent provider's items
+		// Un usuario lista los proveedores, después lista los items de un proveedor que no existe (NEGATIVO)
 		this.listProviderThenItemsDriver(1, null, NullPointerException.class);
 	}
 

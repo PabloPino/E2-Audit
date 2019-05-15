@@ -10,21 +10,21 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
+import services.AuditorService;
 import services.CreditCardService;
-import services.ProviderService;
 import utilities.AbstractTest;
+import domain.Auditor;
 import domain.CreditCard;
-import domain.Provider;
 
 @ContextConfiguration(locations = {
 	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
 })
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-public class RegisterProvider extends AbstractTest {
+public class UseCase4_2 extends AbstractTest {
 
 	@Autowired
-	private ProviderService		providerService;
+	private AuditorService		auditorService;
 
 	@Autowired
 	private CreditCardService	creditCardService;
@@ -33,18 +33,18 @@ public class RegisterProvider extends AbstractTest {
 
 
 	@Test
-	public void registerProviderTest() {
-		// An unauthenticated user registers as a provider
-		this.registerProviderDriver(null, null);
-		// An authenticated actor registers as a provider
-		this.registerProviderDriver("admin1", IllegalArgumentException.class);
+	public void registerAuditorTest() {
+		// An administrator registers an auditor
+		this.registerAuditorDriver("admin1", null);
+		// An unauthenticated user registers an auditor
+		this.registerAuditorDriver(null, IllegalArgumentException.class);
 	}
 
-	public void registerProviderDriver(final String username, final Class<?> expected) {
+	public void registerAuditorDriver(final String username, final Class<?> expected) {
 		Class<?> caught = null;
 		try {
 			super.authenticate(username);
-			final Provider provider = this.providerService.create();
+			final Auditor auditor = this.auditorService.create();
 			final CreditCard creditCard = this.creditCardService.create();
 			creditCard.setCVVCode(100);
 			creditCard.setExpirationMonth(12);
@@ -52,24 +52,23 @@ public class RegisterProvider extends AbstractTest {
 			creditCard.setHolderName("holderName");
 			creditCard.setMakeName("makeName");
 			creditCard.setNumber("1111222233334444");
-			provider.getUserAccount().setPassword("newProvider" + RegisterProvider.randomInt);
-			provider.getUserAccount().setUsername("newProvider" + RegisterProvider.randomInt);
-			provider.setAddress("address");
-			provider.setMake("make");
-			provider.setCreditCard(creditCard);
-			provider.setEmail("email@email");
-			provider.setName("anme");
-			provider.setPhone("1234");
-			provider.setPhoto("http://photo");
-			provider.setSurname("surname");
-			provider.setVATNumber("100");
-			final Provider savedProvider = this.providerService.save(provider);
-			Assert.notNull(this.providerService.findOne(savedProvider.getId()));
+			auditor.getUserAccount().setPassword("newAuditor" + UseCase4_2.randomInt);
+			auditor.getUserAccount().setUsername("newAuditor" + UseCase4_2.randomInt);
+			auditor.setAddress("address");
+			auditor.setCreditCard(creditCard);
+			auditor.setEmail("email@email");
+			auditor.setName("anme");
+			auditor.setPhone("1234");
+			auditor.setPhoto("http://photo");
+			auditor.setSurname("surname");
+			auditor.setVATNumber("100");
+			final Auditor savedAuditor = this.auditorService.save(auditor);
+			Assert.notNull(this.auditorService.findOne(savedAuditor.getId()));
 			super.unauthenticate();
 		} catch (final Throwable oops) {
 			caught = oops.getClass();
 		}
 		super.checkExceptions(expected, caught);
-		RegisterProvider.randomInt++;
+		UseCase4_2.randomInt++;
 	}
 }
