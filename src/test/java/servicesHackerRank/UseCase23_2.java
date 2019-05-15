@@ -44,16 +44,34 @@ public class UseCase23_2 extends AbstractTest {
 	@Test
 	public void testsUseCase23_2() {
 		// Un usuario autenticado filtra sus mensajes por etiqueta (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 97.8%
+		//d) An authenticated user can list his/her messages by tag
 		this.driverListByTag("admin1", null);
 		// Un usuario no autenticado filtra sus mensajes por etiqueta (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 97.8%
+		//d) An unauthenticated user can't list his/her messages by tag because he/she doesn't have any
 		this.driverListByTag(null, IllegalArgumentException.class);
-		// Un usuario autenticado manda un mensaje
+		// Un usuario autenticado manda un mensaje (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 86.4%
+		//d) An authenticated user can send messages to another user
 		this.driverSend("admin1", null);
-		// Un usuario no autenticado manda un mensaje
+		// Un usuario no autenticado manda un mensaje (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 86.4%
+		//d) An unauthenticated user can't send messages to another user because the message doesn't have any sender
 		this.driverSend("admin1", IllegalArgumentException.class);
-		// Un usuario autenticado elimina uno de sus mensajes
+		// Un usuario autenticado elimina uno de sus mensajes (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 100%
+		//d) An authenticated user can delete his/her messages
 		this.driverDelete("admin1", "message1", null);
-		// Un usuario autenticado elimina un mensaje que no es suyo
+		// Un usuario autenticado elimina un mensaje que no es suyo (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 100%
+		//d) An unauthenticated user can't delete his/her messages because he/she doesn't have any
 		this.driverDelete("company1", "message2", IllegalArgumentException.class);
 	}
 

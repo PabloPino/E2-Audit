@@ -62,24 +62,54 @@ public class UseCase8_2 extends AbstractTest {
 	@Test
 	public void testUseCase8_2() {
 		// Una company edita sus datos personales (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 98.4%
+		//d) A company can edit its personal data
 		this.editCompanyDriver("company1", null);
 		// Una company edita los datos personales de otra company (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 98.4%
+		//d) A company cannot edit the personal data of other company
 		this.editCompanyDriver("company2", IllegalArgumentException.class);
 		// Un rookie edita sus datos personales (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 98.4%
+		//d) A rookie can edit his/her personal data
 		this.editRookieDriver("rookie1", null);
 		// Un rookie edita los datos personales de otro rookie (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 98.4%
+		//d) A rookie cannot edit the personal data of other rookie
 		this.editRookieDriver("rookie2", IllegalArgumentException.class);
 		// Un administrator edita sus datos personales (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 98.4%
+		//d) An administrator can edit his/her personal data
 		this.editAdminDriver("admin1", null);
 		// Un administrator edita los datos personales de otro administrator (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 98.4%
+		//d) An administrator cannot edit the personal data of other administrator
 		this.editAdminDriver("admin2", IllegalArgumentException.class);
 		// Un auditor edita sus datos personales (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 98.4%
+		//d) An auditor can edit his/her personal data
 		this.editAuditorDriver("auditor1", null);
 		// Un auditor edita los datos personales de otro auditor (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 98.4%
+		//d) An auditor can't edit other auditor's personal data
 		this.editAuditorDriver("auditor2", IllegalArgumentException.class);
 		// Un provider edita sus datos personales (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 98.5%
+		//d) A provider can edit his/her personal data
 		this.editProviderDriver("provider1", null);
 		// Un provider edita los datos personales de otro provider (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 98.5%
+		//d) A provider can't edit other provider's personal data
 		this.editProviderDriver("provider2", IllegalArgumentException.class);
 	}
 

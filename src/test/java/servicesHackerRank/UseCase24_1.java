@@ -40,8 +40,14 @@ public class UseCase24_1 extends AbstractTest {
 	@Test
 	public void testsUseCase23_2() {
 		// Un adminstrador manda un mensaje de broadcast (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 98.8%
+		//d) An administrator can send broadcast messages
 		this.driverBroadcast("admin1", null);
 		// Un usuario no administrador manda un mensaje de broadcast (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 98.8%
+		//d) An non administrator user can't send broadcast messages because he/she doesn't have the needed permissions
 		this.driverBroadcast("rookie1", IllegalArgumentException.class);
 	}
 

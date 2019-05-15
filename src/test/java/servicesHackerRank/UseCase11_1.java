@@ -49,8 +49,14 @@ public class UseCase11_1 extends AbstractTest {
 	@Test
 	public void testUseCase11_1() {
 		// Un usuario autenticado como administrador crea una cuenta de admnistrador (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 100%
+		//d) An administrator can create new administrator accounts
 		this.registerAsAdminDriver("admin1", null);
 		// Un usuario no autenticado crea una cuenta como administrador, no puede porque tiene que ser un administrador (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 100%
+		//d) An user who is not an administrator can't register new administrator accounts
 		this.registerAsAdminDriver(null, IllegalArgumentException.class);
 	}
 
