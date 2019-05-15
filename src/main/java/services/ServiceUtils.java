@@ -213,4 +213,8 @@ public class ServiceUtils {
 		binding.addError(new FieldError(objectName, fieldName, errorMessage));
 	}
 
+	public void flush() {
+		this.domainEntityRepository.flush();
+	}
+
 }

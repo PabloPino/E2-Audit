@@ -23,6 +23,8 @@ import domain.Provider;
 @Transactional
 public class UseCase9_3 extends AbstractTest {
 
+	// Un usuario no autenticado en el sistema puede registrarse como proveedor
+
 	@Autowired
 	private ProviderService		providerService;
 
@@ -34,9 +36,15 @@ public class UseCase9_3 extends AbstractTest {
 
 	@Test
 	public void registerProviderTest() {
-		// An unauthenticated user registers as a provider
+		// Un usuario sin autenticar se registra como proveedor (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 100%
+		//d) An unauthenticated user can register in the system as a provider
 		this.registerProviderDriver(null, null);
-		// An authenticated actor registers as a provider
+		// Un usuario autenticado se registra como provedor (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 100%
+		//d) An authenticated user can't register in the system as a provider because he/she already has an account
 		this.registerProviderDriver("admin1", IllegalArgumentException.class);
 	}
 

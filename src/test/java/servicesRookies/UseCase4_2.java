@@ -23,6 +23,9 @@ import domain.CreditCard;
 @Transactional
 public class UseCase4_2 extends AbstractTest {
 
+	// 4.2 Un usuario autenticado como administrador debe ser capaz de crear cuentas de usuario
+	// para nuevos auditors
+
 	@Autowired
 	private AuditorService		auditorService;
 
@@ -34,9 +37,15 @@ public class UseCase4_2 extends AbstractTest {
 
 	@Test
 	public void registerAuditorTest() {
-		// An administrator registers an auditor
+		// Un administrador registra un auditor (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 100%
+		//d) An administrator can create a new auditor account
 		this.registerAuditorDriver("admin1", null);
-		// An unauthenticated user registers an auditor
+		// Un usuario no autenticado registra un auditor (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 100%
+		//d) An unauthenticated user can't create a new auditor account because he/she doesn't have the required permissions
 		this.registerAuditorDriver(null, IllegalArgumentException.class);
 	}
 

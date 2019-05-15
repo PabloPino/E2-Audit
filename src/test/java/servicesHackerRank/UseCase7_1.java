@@ -50,12 +50,24 @@ public class UseCase7_1 extends AbstractTest {
 	@Test
 	public void testUseCase7_1() {
 		// Un usuario anónimo se registra como company (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 100%
+		//d) An unauthenticated user can register in the system as a company
 		this.registerAsCompanyDriver(null, null);
 		// Un usuario registrado se registra como company, no puede porque ya tiene una cuenta (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 100%
+		//d) An authenticated user can't register in the system as a company because he/she already has an account
 		this.registerAsCompanyDriver("company1", IllegalArgumentException.class);
 		// Un usuario anónimo se registra como rookie (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 100%
+		//d) An unauthenticated user can register in the system as a rookie
 		this.registerAsRookieDriver(null, null);
 		// Un usuario registrado se registra como rookie, no puede porque ya tiene una cuenta (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 100%
+		//d) An authenticated user can't register in the system as a rookie because he/she already has an account
 		this.registerAsRookieDriver("rookie1", IllegalArgumentException.class);
 	}
 

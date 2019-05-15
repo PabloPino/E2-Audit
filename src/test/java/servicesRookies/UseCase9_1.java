@@ -25,6 +25,8 @@ import domain.Provider;
 @Transactional
 public class UseCase9_1 extends AbstractTest {
 
+	// Un usuario puede navegar a la lista de proveedores y navegar a sus items
+
 	@Autowired
 	private ProviderService	providerService;
 	@Autowired
@@ -34,8 +36,14 @@ public class UseCase9_1 extends AbstractTest {
 	@Test
 	public void listProviderThenItemsTest() {
 		// Un usuario lista los proveedores, después lista los items de uno de los proveedores (POSITIVO)
+		//b) Positive test
+		//c) analysis of sentence coverage: 100%
+		//d) A user lists the providers and then, he/she lists the items of one of them
 		this.listProviderThenItemsDriver(null, null, null);
 		// Un usuario lista los proveedores, después lista los items de un proveedor que no existe (NEGATIVO)
+		//b) Negative test
+		//c) analysis of sentence coverage: 100%
+		//d) A user lists the providers and then, he/she lists the items of one of them that doesn't exist
 		this.listProviderThenItemsDriver(1, null, NullPointerException.class);
 	}
 
