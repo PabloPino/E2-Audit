@@ -10,11 +10,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
-import repositories.DomainEntityRepository;
 import services.ActorService;
 import services.CompanyService;
 import services.CreditCardService;
 import services.RookieService;
+import services.ServiceUtils;
 import utilities.AbstractTest;
 import domain.Company;
 import domain.CreditCard;
@@ -31,18 +31,18 @@ public class UseCase7_1 extends AbstractTest {
 
 	// Services
 
-	private static Integer			uniqueness	= 10;
+	private static Integer		uniqueness	= 10;
 
 	@Autowired
-	private CompanyService			companyService;
+	private CompanyService		companyService;
 	@Autowired
-	private RookieService			rookieService;
+	private RookieService		rookieService;
 	@Autowired
-	private ActorService			actorService;
+	private ActorService		actorService;
 	@Autowired
-	private CreditCardService		creditCardService;
+	private CreditCardService	creditCardService;
 	@Autowired
-	private DomainEntityRepository	flushRep;
+	private ServiceUtils		serviceUtils;
 
 
 	// Tests
@@ -130,7 +130,7 @@ public class UseCase7_1 extends AbstractTest {
 			creditCard.setNumber("1111222233334444");
 			rookie.setCreditCard(creditCard);
 			final Rookie savedRookie = this.rookieService.save(rookie);
-			this.flushRep.flush();
+			this.serviceUtils.flush();
 			Assert.notNull(this.rookieService.findOne(savedRookie.getId()));
 		} catch (final Throwable t) {
 			caught = t.getClass();

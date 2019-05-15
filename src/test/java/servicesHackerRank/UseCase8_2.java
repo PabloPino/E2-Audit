@@ -10,14 +10,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
-import repositories.DomainEntityRepository;
-import services.ActorService;
 import services.AdministratorService;
 import services.AuditorService;
 import services.CompanyService;
-import services.CreditCardService;
 import services.ProviderService;
 import services.RookieService;
+import services.ServiceUtils;
 import utilities.AbstractTest;
 import domain.Administrator;
 import domain.Auditor;
@@ -48,13 +46,9 @@ public class UseCase8_2 extends AbstractTest {
 	@Autowired
 	private ProviderService			providerService;
 	@Autowired
-	private ActorService			actorService;
-	@Autowired
-	private CreditCardService		creditCardService;
-	@Autowired
 	private AdministratorService	administratorService;
 	@Autowired
-	private DomainEntityRepository	flushRep;
+	private ServiceUtils			serviceUtils;
 
 
 	// Tests
@@ -175,7 +169,7 @@ public class UseCase8_2 extends AbstractTest {
 			creditCard.setNumber("1111222233334444");
 			rookie.setCreditCard(creditCard);
 			final Rookie savedRookie = this.rookieService.save(rookie);
-			this.flushRep.flush();
+			this.serviceUtils.flush();
 			Assert.notNull(this.rookieService.findOne(savedRookie.getId()));
 			Assert.isTrue(savedRookie.getVersion() > rookieVersionBefore);
 			Assert.isTrue(savedRookie.getCreditCard().getVersion() > creditCardVersionBefore);
@@ -211,7 +205,7 @@ public class UseCase8_2 extends AbstractTest {
 			creditCard.setNumber("1111222233334444");
 			administrator.setCreditCard(creditCard);
 			final Administrator savedAdministrator = this.administratorService.save(administrator);
-			this.flushRep.flush();
+			this.serviceUtils.flush();
 			Assert.notNull(this.administratorService.findOne(savedAdministrator.getId()));
 			Assert.isTrue(savedAdministrator.getVersion() > administratorVersionBefore);
 			Assert.isTrue(savedAdministrator.getCreditCard().getVersion() > creditCardVersionBefore);
@@ -247,7 +241,7 @@ public class UseCase8_2 extends AbstractTest {
 			creditCard.setNumber("1111222233334444");
 			auditor.setCreditCard(creditCard);
 			final Auditor savedAuditor = this.auditorService.save(auditor);
-			this.flushRep.flush();
+			this.serviceUtils.flush();
 			Assert.notNull(this.auditorService.findOne(savedAuditor.getId()));
 			Assert.isTrue(savedAuditor.getVersion() > auditorVersionBefore);
 			Assert.isTrue(savedAuditor.getCreditCard().getVersion() > creditCardVersionBefore);
@@ -284,7 +278,7 @@ public class UseCase8_2 extends AbstractTest {
 			creditCard.setNumber("1111222233334444");
 			provider.setCreditCard(creditCard);
 			final Provider savedProvider = this.providerService.save(provider);
-			this.flushRep.flush();
+			this.serviceUtils.flush();
 			Assert.notNull(this.providerService.findOne(savedProvider.getId()));
 			Assert.isTrue(savedProvider.getVersion() > providerVersionBefore);
 			Assert.isTrue(savedProvider.getCreditCard().getVersion() > creditCardVersionBefore);

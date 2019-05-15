@@ -10,11 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
-import repositories.DomainEntityRepository;
-import services.ActorService;
 import services.AdministratorService;
 import services.CreditCardService;
-import services.RookieService;
 import utilities.AbstractTest;
 import domain.Administrator;
 import domain.CreditCard;
@@ -35,13 +32,7 @@ public class UseCase11_1 extends AbstractTest {
 	@Autowired
 	private AdministratorService	administratorService;
 	@Autowired
-	private RookieService			rookieService;
-	@Autowired
-	private ActorService			actorService;
-	@Autowired
 	private CreditCardService		creditCardService;
-	@Autowired
-	private DomainEntityRepository	flushRep;
 
 
 	// Tests
