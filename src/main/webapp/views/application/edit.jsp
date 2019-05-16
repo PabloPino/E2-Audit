@@ -51,15 +51,8 @@
 						value="${pds.curricula.id}" />
 				</jstl:forEach>
 			</form:select>
-			<%-- <form:select id="curricula" path="curricula">
-				<form:options items="${curriculas}" itemLabel="${statements}"
-						itemValue="${statements}" />
-				<form:options items="${curriculas}" itemLabel="id"
-						itemValue="id" />
-			</form:select> --%>
 			<br>
 			<br>
-			<%-- 			<acme:select items="${curriculas}" itemLabel="${curriculas}" code="app.curricula" path="curricula"/>--%>
 		</jstl:if>
 
 
@@ -73,7 +66,6 @@
 		<br>
 		<acme:textbox code="app.submitMoment" path="submitMoment" />
 		<br>
-		<%-- <acme:textbox code="app.curricula" path="${pd.statement}" /> --%>
 		<form:label path="curricula">
 			<spring:message code="app.curricula"></spring:message>
 		</form:label>

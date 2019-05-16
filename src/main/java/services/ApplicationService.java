@@ -15,9 +15,9 @@ import repositories.ApplicationRepository;
 import security.LoginService;
 import security.UserAccount;
 import domain.Application;
-import domain.Rookie;
 import domain.Position;
 import domain.Problem;
+import domain.Rookie;
 
 @Service
 @Transactional
@@ -75,15 +75,19 @@ public class ApplicationService {
 		if (application.getStatus().equals("SUBMITTED")) {
 			application.setSubmitMoment(new Date(System.currentTimeMillis() - 1000));
 			application.setPublishMoment(oldApplication.getPublishMoment());
+			application.setCurricula(oldApplication.getCurricula());
 		}
 		if (application.getStatus().equals("ACCEPTED") || application.getStatus().equals("REJECTED")) {
 			application.setSubmitMoment(oldApplication.getSubmitMoment());
 			application.setPublishMoment(oldApplication.getPublishMoment());
 			application.setAnswerCode(oldApplication.getAnswerCode());
 			application.setAnswerExplanation(oldApplication.getAnswerExplanation());
+			application.setCurricula(oldApplication.getCurricula());
 		}
-		if (application.getStatus().equals("PENDING"))
+		if (application.getStatus().equals("PENDING")) {
 			application.setPublishMoment(new Date(System.currentTimeMillis() - 1000));
+			application.setCurricula(oldApplication.getCurricula());
+		}
 		this.applicationRepository.save(application);
 
 		return application;
