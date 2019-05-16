@@ -625,16 +625,24 @@ public class ActorService {
 	}
 
 	public Image urlToImage(final URL url) throws IOException, BadElementException {
-		final HttpURLConnection httpURLCon = (HttpURLConnection) url.openConnection();
-		httpURLCon.addRequestProperty("User-Agent", "Mozilla/4.76");
-		final BufferedImage c = ImageIO.read(httpURLCon.getInputStream());
+		BufferedImage c = null;
+		try {
+			final HttpURLConnection httpURLCon = (HttpURLConnection) url.openConnection();
+			httpURLCon.addRequestProperty("User-Agent", "Mozilla/4.76");
+			c = ImageIO.read(httpURLCon.getInputStream());
+		} catch (final IOException ioexc) {
+			final String urlPath = "http://" + url.getHost() + url.getPath();
+			final URL newUrl = new URL(urlPath);
+			final HttpURLConnection httpURLCon = (HttpURLConnection) newUrl.openConnection();
+			httpURLCon.addRequestProperty("User-Agent", "Mozilla/4.76");
+			c = ImageIO.read(httpURLCon.getInputStream());
+		}
 		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ImageIO.write(c, "png", baos);
 		final Image iTextImage = Image.getInstance(baos.toByteArray());
 		iTextImage.scaleToFit(100f, 200f);
 		return iTextImage;
 	}
-
 	public Document docCompany(final Document document, final Company company) throws DocumentException, MalformedURLException, IOException {
 
 		final List<Problem> problems = new ArrayList<>(this.problemService.findProblemsByCompanyId(company.getId()));
