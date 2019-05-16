@@ -51,6 +51,8 @@ public class ConfigurationService {
 
 	public Configuration saveWhenRebranding() {
 		final Configuration oldConfiguration = this.findOne();
+		Assert.isTrue(this.administratorService.isPrincipalAdmin(), "noAdmin");
+		Assert.isTrue(!oldConfiguration.isHasRebranded());
 		oldConfiguration.setHasRebranded(true);
 		final Configuration saved = this.save(oldConfiguration);
 		return saved;

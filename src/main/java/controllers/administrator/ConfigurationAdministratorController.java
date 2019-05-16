@@ -115,7 +115,7 @@ public class ConfigurationAdministratorController extends AbstractController {
 			if (oops.getMessage().equals("noAdmin"))
 				result = this.createEditModelAndView(configuration, "conf.noAdmin");
 			else
-				result = this.createEditModelAndView(configuration, "conf.commint.error");
+				result = this.createEditModelAndView(configuration, "conf.commit.error");
 		}
 		return result;
 	}
