@@ -270,14 +270,16 @@ public class AdministratorService {
 		this.serviceUtils.checkAuthority(Authority.ADMIN);
 		final Collection<Company> allCompanies = this.companyService.findAll();
 		for (final Company c : allCompanies) {
-			Double finalValue;
+			System.out.println("=====COMPANY===================>>" + c.getName());
+			Double finalValue = null;
 			Double value = 0.0;
 
 			final Collection<Position> positionFinish = this.positionService.findPositionsByCompanyIdFinals(c.getId());
 			for (final Position p : positionFinish) {
+				System.out.println("=====Position===================>>" + p.getTitle());
 				final Collection<Audit> audits = this.auditService.findAuditsByPosition(p.getId());
 				if (audits.size() == 0)
-					finalValue = null;
+					System.out.println(p.getTitle() + "-----> No tiene audits");
 				else {
 					for (final Audit a : audits)
 						value += a.getScore();
@@ -287,9 +289,9 @@ public class AdministratorService {
 					finalValue = ((value / 10) * 1) + 0;
 				}
 
-				c.setScore(finalValue);
-				this.companyService.saveForAdmins(c);
 			}
+			c.setScore(finalValue);
+			this.companyService.saveForAdmins(c);
 
 		}
 	}
