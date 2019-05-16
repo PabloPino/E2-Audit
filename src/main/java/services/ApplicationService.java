@@ -75,18 +75,21 @@ public class ApplicationService {
 		if (application.getStatus().equals("SUBMITTED")) {
 			application.setSubmitMoment(new Date(System.currentTimeMillis() - 1000));
 			application.setPublishMoment(oldApplication.getPublishMoment());
-			application.setCurricula(oldApplication.getCurricula());
+			if (oldApplication != null)
+				application.setCurricula(oldApplication.getCurricula());
 		}
 		if (application.getStatus().equals("ACCEPTED") || application.getStatus().equals("REJECTED")) {
 			application.setSubmitMoment(oldApplication.getSubmitMoment());
 			application.setPublishMoment(oldApplication.getPublishMoment());
 			application.setAnswerCode(oldApplication.getAnswerCode());
 			application.setAnswerExplanation(oldApplication.getAnswerExplanation());
-			application.setCurricula(oldApplication.getCurricula());
+			if (oldApplication != null)
+				application.setCurricula(oldApplication.getCurricula());
 		}
 		if (application.getStatus().equals("PENDING")) {
 			application.setPublishMoment(new Date(System.currentTimeMillis() - 1000));
-			application.setCurricula(oldApplication.getCurricula());
+			if (oldApplication != null)
+				application.setCurricula(oldApplication.getCurricula());
 		}
 		this.applicationRepository.save(application);
 
