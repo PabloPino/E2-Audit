@@ -22,6 +22,9 @@
 	<import resource="config/i18n-l10n.xml" />
 	
 	<import resource="messages.xml" />
+	
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"> <qualifier value="validator"/> </bean>
+	
 	<import resource="datasource.xml" />	
 	<import resource="validator.xml" />
 	

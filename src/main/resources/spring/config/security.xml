@@ -334,6 +334,14 @@
 		<security:intercept-url pattern="/item/listByProvider.do"
 			access="permitAll" />
 
+		
+		<security:intercept-url pattern="/entityexam/rookie/**"
+			access="hasRole('ROOKIE')" />
+			
+		<security:intercept-url pattern="/entityexam/company/**"
+			access="hasRole('COMPANY')" />
+
+
 		<security:intercept-url pattern="/**"
 			access="hasRole('NONE')" />
 

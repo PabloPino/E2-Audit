@@ -42,8 +42,9 @@
 		<value>/views/audit/tiles.xml</value>
 		<value>/views/item/tiles.xml</value>
 		<value>/views/sponsorship/tiles.xml</value>
-
-
+		
+		
+		<value>/views/entityexam/tiles.xml</value>
 
 
 	</util:list>

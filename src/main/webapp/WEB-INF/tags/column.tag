@@ -25,6 +25,7 @@
 <%@ attribute name="formatDate" required="false" %>
 <%@ attribute name="height" required="false" %>
 <%@ attribute name="width" required="false" %>
+<%@ attribute name="cssClass" required="false" %>
 
 <%@ attribute name="readonly" required="false"%>
 
@@ -51,28 +52,28 @@
 </jstl:if>
 	<jstl:choose>
 		<jstl:when test="${image}">
-			<display:column title="${titleKey}" sortable="${sortable}">
+			<display:column title="${titleKey}" sortable="${sortable}" class="${cssClass}" >
 				<jstl:if test="${test}">
 					<img src="${value}" width="${width}" height="${height}" alt='<jstl:out value="${alt}" />' />
 				</jstl:if>
 			</display:column>
 		</jstl:when>
 		<jstl:when test="${url}">
-			<display:column title="${titleKey}" sortable="${sortable}">
+			<display:column title="${titleKey}" sortable="${sortable}" class="${cssClass}" >
 				<jstl:if test="${test}">
 					<a href='<jstl:out value="${value}" />'><jstl:out value="${alt}" /></a>
 				</jstl:if>
 			</display:column>
 		</jstl:when>
 		<jstl:when test="${formatDate != null}">
-			<display:column title="${titleKey}" sortable="${sortable}">
+			<display:column title="${titleKey}" sortable="${sortable}" class="${cssClass}" >
 				<jstl:if test="${test}">
 					<fmt:formatDate value="${value}" pattern="${formatDate}" var="dateValue" />
 				</jstl:if>
 			</display:column>
 		</jstl:when>
 		<jstl:otherwise>
-			<display:column title="${titleKey}" sortable="${sortable}">
+			<display:column title="${titleKey}" sortable="${sortable}" class="${cssClass}" >
 				<jstl:if test="${test}">
 					<jstl:out value="${value}" />
 				</jstl:if>

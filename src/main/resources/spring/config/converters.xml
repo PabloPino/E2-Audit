@@ -79,6 +79,9 @@
 
 		<bean class="converters.CreditCardToStringConverter" />
 		<bean class="converters.StringToCreditCardConverter" />		
+		
+		<bean class="converters.EntityExamToStringConverter" />
+		<bean class="converters.StringToEntityExamConverter" />
 
 	</util:list>
 
