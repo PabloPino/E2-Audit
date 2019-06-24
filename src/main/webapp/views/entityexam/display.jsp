@@ -27,11 +27,10 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <security:authentication property="principal.username" var="username" />
-<jstl:set value="${entityExam.application.rookie.userAccount.username}" var="usernameRookie" />
-<jstl:set value="${entityExam.application.position.company.userAccount.username}" var="usernameCompany" />
+<jstl:set value="${entityExam.audit.auditor.userAccount.username}" var="usernameAuditor" />
 
 <jstl:choose>
-<jstl:when test="${username == usernameRookie or username == usernameCompany}">
+<jstl:when test="${username == usernameAuditor}">
 
 	<%
 
@@ -86,11 +85,11 @@
 			
 		</div>	
 		
-		<security:authorize access="hasRole('COMPANY')">
+		<%-- <security:authorize access="hasRole('COMPANY')">
 			<acme:cancel url="entityexam/company/list.do?applicationId=${entityExam.application.id}" code="entityexam.back" />
-		</security:authorize>
-		<security:authorize access="hasRole('ROOKIE')">
-			<acme:cancel url="entityexam/rookie/list.do?applicationId=${entityExam.application.id}" code="entityexam.back" />
+		</security:authorize> --%>
+		<security:authorize access="hasRole('AUDITOR')">
+			<acme:cancel url="entityexam/auditor/list.do?auditId=${entityExam.audit.id}" code="entityexam.back" />
 		</security:authorize>
 
 	

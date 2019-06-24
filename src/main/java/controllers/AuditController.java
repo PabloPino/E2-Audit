@@ -1,7 +1,6 @@
 
 package controllers;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -16,14 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
+import services.ActorService;
 import services.AuditService;
 import services.AuditorService;
 import services.CompanyService;
 import services.ConfigurationService;
-import services.RookieService;
 import services.MessageService;
 import services.PositionService;
 import services.ProblemService;
+import services.RookieService;
 import services.ServiceUtils;
 import domain.Audit;
 import domain.Auditor;
@@ -37,6 +37,9 @@ public class AuditController extends AbstractController {
 
 	@Autowired
 	AuditService			auditService;
+
+	@Autowired
+	ActorService			actorService;
 
 	@Autowired
 	AuditorService			auditorService;
@@ -68,6 +71,7 @@ public class AuditController extends AbstractController {
 	public ModelAndView list(@RequestParam(required = false) final Integer auditorId) {
 		ModelAndView modelAndView;
 		final Auditor auditor = this.auditorService.findAuditorByUserAcountId(LoginService.getPrincipal().getId());
+
 		final List<Audit> audits = this.auditService.findAuditsByAuditor(auditor);
 
 		modelAndView = new ModelAndView("audit/list");
@@ -78,16 +82,19 @@ public class AuditController extends AbstractController {
 		return modelAndView;
 
 	}
-
 	//-------------------------- ListAudits ----------------------------------
 	@RequestMapping(value = "/listAudits", method = RequestMethod.GET)
 	public ModelAndView listAudits(@RequestParam final int positionId) {
 		ModelAndView modelAndView;
-
-		final Collection<Audit> audits = this.auditService.findAuditsByPosition(positionId);
+		Integer principalId = null;
+		try {
+			principalId = this.actorService.findPrincipal().getId();
+		} catch (final Throwable t) {
+			principalId = 0;
+		}
 
 		modelAndView = new ModelAndView("audit/list");
-		modelAndView.addObject("audits", audits);
+		modelAndView.addObject("audits", this.auditService.findAuditsByPosition2(positionId, principalId));
 		modelAndView.addObject("requestURI", "audit/listAudits.do");
 		modelAndView.addObject("banner", this.configurationService.findOne().getBanner());
 

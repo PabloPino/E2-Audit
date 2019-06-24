@@ -92,13 +92,15 @@ public class UseCase3_1 extends AbstractTest {
 			audit.setScore(5);
 			audit.setText("TEST");
 			//Guardo la revision
-			this.auditService.save(audit);
+			final Audit saved = this.auditService.save(audit);
 			//comprobamos que los valores coinciden
 			Assert.isTrue(result.equals(audit.getText()));
 			Assert.isTrue(audit.getScore() == 5);
 
+			this.auditService.flush();
+
 			//Borro una revision
-			this.auditService.delete(audit);
+			this.auditService.delete(saved);
 
 		} catch (final Throwable oops) {
 			caught = oops.getClass();

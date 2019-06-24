@@ -95,13 +95,15 @@ public class UseCase3_2 extends AbstractTest {
 			audit.setScore(9);
 			audit.setText("TEST");
 			//Guardo un problem
-			this.auditService.save(audit);
+			final Audit saved = this.auditService.save(audit);
 
 			Assert.isTrue(result.equals(audit.getText()));
 			Assert.isTrue(audit.getScore() == 9);
 
+			this.auditService.flush();
+
 			//Borro una position
-			this.auditService.delete(audit);
+			this.auditService.delete(saved);
 
 		} catch (final Throwable oops) {
 			caught = oops.getClass();

@@ -340,6 +340,15 @@
 			
 		<security:intercept-url pattern="/entityexam/company/**"
 			access="hasRole('COMPANY')" />
+			
+		<security:intercept-url pattern="/entityexam/actor/**"
+			access="isAuthenticated()" />
+			
+		<security:intercept-url pattern="/entityexam/auditor/**"
+			access="hasRole('AUDITOR')" />
+			
+		<security:intercept-url pattern="/entityexam/all/**"
+			access="permitAll()" />
 
 
 		<security:intercept-url pattern="/**"

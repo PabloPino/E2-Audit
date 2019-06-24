@@ -24,11 +24,11 @@
 
 <security:authentication property="principal.username" var="username" />
 
-<security:authorize access="hasRole('ROOKIE')">
+<security:authorize access="hasRole('AUDITOR')">
 
-	<jstl:if test="${(entityExam.id == 0 or (entityExam.application.rookie.userAccount.username == username)) and isDraft}">
+	<jstl:if test="${(entityExam.id == 0 or (auditorUsername == username)) and isDraft}">
 		
-		<form:form action="entityexam/rookie/edit.do" modelAttribute="entityExam">
+		<form:form action="entityexam/auditor/edit.do" modelAttribute="entityExam">
 		
 			<form:hidden path="id" />
 			<form:hidden path="version" />
@@ -36,7 +36,7 @@
 			<acme:textarea path="body" code="entityexam.body" />
 			<acme:textbox path="picture" code="entityexam.picture" />
 			
-			<acme:select path="application" code="entityexam.application" items="${applications}" itemLabel="position.title" />
+			<acme:select path="audit" code="entityexam.audit" items="${audits}" itemLabel="position.title" />
 			
 			<jstl:if test="${entityExam.id > 0}">
 				<acme:checkbox path="draft" code="entityexam.draft" />
@@ -47,17 +47,17 @@
 		</form:form>
 		
 		<jstl:choose>
-			<jstl:when test="${entityExam.application.id > 0}">
-				<acme:cancel url="entityexam/rookie/list.do?applicationId=${entityExam.application.id}" code="entityexam.back" />
+			<jstl:when test="${entityExam.audit.id > 0}">
+				<acme:cancel url="audit/list.do" code="entityexam.back" />
 			</jstl:when>
 			<jstl:otherwise>
-				<acme:cancel url="application/rookie/list.do" code="entityexam.back" />
+				<acme:cancel url="audit/list.do" code="entityexam.back" />
 			</jstl:otherwise>
 		</jstl:choose>
 
 	</jstl:if>
 	
-	<jstl:if test="${not (entityExam.id == 0 or (entityExam.application.rookie.userAccount.username == username)) or not isDraft}">
+	<jstl:if test="${not (entityExam.id == 0 or (auditorUsername == username)) or not isDraft}">
 	
 		<acme:cancel url="" code="entityexam.back" />
 	
@@ -65,7 +65,7 @@
 	
 </security:authorize>
 
-<security:authorize access="!hasRole('ROOKIE')">
+<security:authorize access="!hasRole('AUDITOR')">
 
 	<acme:cancel url="" code="entityexam.back" />
 

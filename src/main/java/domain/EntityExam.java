@@ -76,17 +76,17 @@ public class EntityExam extends DomainEntity {
 	}
 
 
-	private Application	application;
+	private Audit	audit;
 
 
 	@ManyToOne(optional = false)
 	@Valid
 	@NotNull
-	public Application getApplication() {
-		return this.application;
+	public Audit getAudit() {
+		return this.audit;
 	}
-	public void setApplication(final Application application) {
-		this.application = application;
+	public void setAudit(final Audit audit) {
+		this.audit = audit;
 	}
 
 }

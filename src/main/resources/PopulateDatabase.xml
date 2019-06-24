@@ -1812,14 +1812,14 @@
 		<property name="body" value="The 1st exam entity TEST" />
 		<property name="picture" value="https://clicteq.com/wp-content/uploads/2017/03/testing.jpg" />
 		<property name="draft" value="false" />
-		<property name="application" ref="application6" />
+		<property name="audit" ref="audit2" />
 	</bean>
 	
 	<bean id="entityExam2TEST" class="domain.EntityExam">
 		<property name="ticker" value="190613-QWER" />
 		<property name="body" value="The 2nd exam entity TEST" />
 		<property name="draft" value="true" />
-		<property name="application" ref="application6" />
+		<property name="audit" ref="audit2" />
 	</bean>
 	
 	<bean id="entityExam3TEST" class="domain.EntityExam">
@@ -1828,7 +1828,7 @@
 		<property name="body" value="The 3rd exam entity TEST" />
 		<property name="picture" value="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fartonourmind.files.wordpress.com%2F2014%2F03%2Fmonty-pythons-life-of-brian.jpg" />
 		<property name="draft" value="false" />
-		<property name="application" ref="application2" />
+		<property name="audit" ref="audit5" />
 	</bean>
 	
 	<bean id="entityExam4TEST" class="domain.EntityExam">
@@ -1836,7 +1836,7 @@
 		<property name="publicationMoment" value="June 13, 2019 00:00" />
 		<property name="body" value="The 4th exam entity TEST" />
 		<property name="draft" value="false" />
-		<property name="application" ref="application2" />
+		<property name="audit" ref="audit5" />
 	</bean>
 	
 </beans>

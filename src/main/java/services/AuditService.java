@@ -24,20 +24,26 @@ public class AuditService {
 	//Repository---------------------------------------------------------------
 
 	@Autowired
-	private AuditRepository	auditRepository;
+	private AuditRepository		auditRepository;
 
 	//Services------------------------------------------------------------------
 	@Autowired
-	ServiceUtils			serviceUtils;
+	ServiceUtils				serviceUtils;
 
 	@Autowired
-	private CompanyService	companyService;
+	private CompanyService		companyService;
 
 	@Autowired
-	private AuditorService	auditorService;
+	private ActorService		actorService;
 
 	@Autowired
-	private PositionService	positionService;
+	private AuditorService		auditorService;
+
+	@Autowired
+	private PositionService		positionService;
+
+	@Autowired
+	private EntityExamService	entityExamService;
 
 
 	//CRUD----------------------------------------------------------------------
@@ -80,7 +86,7 @@ public class AuditService {
 		//this.positionService.saveForAudits(a);
 		this.serviceUtils.checkActor(audit.getAuditor());
 		Assert.isTrue(audit.isFinalMode() == false);
-
+		this.entityExamService.deleteAllAudit(audit);
 		this.auditRepository.delete(audit);
 
 	}
@@ -88,7 +94,6 @@ public class AuditService {
 	public void delete1(final Audit audit) {
 		Assert.notNull(audit);
 		this.auditRepository.delete(audit);
-
 	}
 
 	public Audit findOne(final int auditId) {
@@ -156,13 +161,16 @@ public class AuditService {
 
 	public Audit findAuditById(final int auditId) {
 		final Audit res = this.auditRepository.findAuditById(auditId);
-
 		return res;
 
 	}
 
 	public List<Audit> findAuditsByPosition(final int positionId) {
 		return this.auditRepository.findAuditsByPosition(positionId);
+	}
+
+	public List<Audit> findAuditsByPosition2(final int positionId, final int principalId) {
+		return this.auditRepository.findAuditsByPositionPrincipal(positionId, principalId);
 	}
 
 	public List<Audit> findAuditsByAuditor(final Auditor auditor) {
@@ -205,4 +213,9 @@ public class AuditService {
 
 		return res;
 	}
+
+	public void flush() {
+		this.auditRepository.flush();
+	}
+
 }

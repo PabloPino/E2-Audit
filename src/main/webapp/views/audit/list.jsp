@@ -19,27 +19,24 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-
-
-
 <display:table name="audits" id="audit"
 	requestURI="audit/list.do" pagesize="${numResults}"  class="displaytag">
-
+	
 	<%--  Primero compruebo que es un brotherhood --%>
 	<security:authorize access="hasRole('AUDITOR')">
 		<security:authentication property="principal.username" var="username" />
 
-		<jstl:if test='${audit.auditor.userAccount.username == username}'>
 
 
 			<%--  La columna que va a la vista edit de las miscellaneousRecord --%>
 			<display:column>
+				<jstl:if test='${audit.auditor.userAccount.username == username}'>
 				<jstl:if test="${audit.finalMode == false}">
 				<a href="audit/edit.do?auditId=${audit.id}"><spring:message
 						code="audit.edit"></spring:message></a>
 				</jstl:if>
+				</jstl:if>
 			</display:column>
-		</jstl:if>
 
 	</security:authorize>
 
@@ -63,7 +60,21 @@
 	<jstl:if test="${audit.position.title == null}">
 		<acme:column code="audit.position" value="Position nula"></acme:column>
 	</jstl:if>	
-
+	
+	<spring:message code="entityexam.list" var="altEntityExam" />
+	<security:authorize access="hasRole('AUDITOR')">
+		<jstl:if test="${username == audit.auditor.userAccount.username}">
+			<acme:column value="entityexam/auditor/list.do?auditId=${audit.id}" alt="${altEntityExam}" url="true" />
+		</jstl:if>
+	</security:authorize>
+	<security:authorize access="isAuthenticated()">
+		<jstl:if test="${not (username == audit.auditor.userAccount.username)}">
+			<acme:column value="entityexam/all/list.do?auditId=${audit.id}" alt="${altEntityExam}" url="true" />
+		</jstl:if>
+	</security:authorize>
+	<security:authorize access="!isAuthenticated()">
+		<acme:column value="entityexam/all/list.do?auditId=${audit.id}" alt="${altEntityExam}" url="true" />
+	</security:authorize>
 
 
 </display:table>

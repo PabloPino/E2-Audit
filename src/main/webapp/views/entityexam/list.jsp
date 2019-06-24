@@ -25,17 +25,20 @@
 <%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<security:authentication property="principal.username" var="username" />
-<jstl:set value="${application.rookie.userAccount.username}" var="usernameRookie" />
-<jstl:set value="${application.position.company.userAccount.username}" var="usernameCompany" />
+<security:authorize access="isAuthenticated()">
+	<security:authentication property="principal.username" var="username" />
+</security:authorize>
+<security:authorize access="!isAuthenticated()">
+	<jstl:set value="${null}" var="username" />
+</security:authorize>
+
+<jstl:set value="${audit.auditor.userAccount.username}" var="usernameAuditor" />
 
 <jstl:choose>
-<jstl:when test="${username == usernameRookie or username == usernameCompany}">
+<jstl:when test="${(audit.finalMode) or (username == usernameAuditor)}">
 
 	<display:table name="entityExams" id="row" requestURI="${requestURI}"
 		pagesize="5" class="displaytag">
-	
-		
 
 	<%
 
@@ -81,22 +84,23 @@
 		<acme:column value="${publicationMoment}" code="entityexam.publicationmoment" cssClass="${cssClass}" />
 		<spring:message code="entityexam.edit" var="altEntityExamEdit" />
 		<spring:message code="entityexam.display" var="altEntityExamDisplay" />
-		<security:authorize access="hasRole('ROOKIE')">
-			<acme:column value="entityexam/rookie/edit.do?entityExamId=${row.id}" url="true" alt="${altEntityExamEdit}" 
-				test="${row.application.rookie.userAccount.username == username and row.draft}" cssClass="${cssClass}" />
-			<acme:column value="entityexam/rookie/display.do?entityExamId=${row.id}" url="true" alt="${altEntityExamDisplay}" 
-				test="${row.application.rookie.userAccount.username == username}" cssClass="${cssClass}" />
+		<security:authorize access="hasRole('AUDITOR')">
+			<acme:column value="entityexam/auditor/edit.do?entityExamId=${row.id}" url="true" alt="${altEntityExamEdit}" 
+				test="${row.audit.auditor.userAccount.username == username and row.draft}" cssClass="${cssClass}" />
+			<acme:column value="entityexam/auditor/display.do?entityExamId=${row.id}" url="true" alt="${altEntityExamDisplay}" 
+				test="${row.audit.auditor.userAccount.username == username}" cssClass="${cssClass}" />
 		</security:authorize>
 		
 	</display:table>
 	
-	<acme:cancel url="entityexam/rookie/create.do" code="entityexam.create" />
-	
-	<security:authorize access="hasRole('ROOKIE')">
-		<acme:cancel url="application/rookie/list.do" code="entityexam.back" />
-	</security:authorize>
-	<security:authorize access="hasRole('COMPANY')">
-		<acme:cancel url="application/company/list.do" code="entityexam.back" />
+	<jstl:if test="${username == usernameAuditor}">
+		<acme:cancel url="entityexam/auditor/create.do" code="entityexam.create" />
+	</jstl:if>
+	<security:authorize access="hasRole('AUDITOR')">
+		<acme:cancel url="audit/list.do" code="entityexam.back" />
+	</security:authorize>	
+	<security:authorize access="!hasRole('AUDITOR')">
+		<acme:cancel url="audit/listAudits.do?positionId=${audit.position.id}" code="entityexam.back" />
 	</security:authorize>
 	
 </jstl:when>

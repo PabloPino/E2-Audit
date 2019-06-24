@@ -14,9 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.EntityExamRepository;
-import domain.Application;
+import domain.Audit;
 import domain.EntityExam;
-import forms.EntityExamForm;
 
 @Service
 @Transactional
@@ -30,7 +29,7 @@ public class EntityExamService {
 	// Services
 
 	@Autowired
-	private ApplicationService		applicationService;
+	private AuditService			auditService;
 	@Autowired
 	private ServiceUtils			serviceUtils;
 
@@ -62,9 +61,9 @@ public class EntityExamService {
 
 	public EntityExam save(final EntityExam ee) {
 		final EntityExam entityExam = (EntityExam) this.serviceUtils.checkObjectSave(ee);
-		// Se comprueba que tanto la application fuente con destino pertenecen al principal
-		this.serviceUtils.checkActor(ee.getApplication().getRookie());
-		this.serviceUtils.checkActor(entityExam.getApplication().getRookie());
+		// Se comprueba que tanto la audit fuente como destino pertenecen al principal
+		this.serviceUtils.checkActor(ee.getAudit().getAuditor());
+		this.serviceUtils.checkActor(entityExam.getAudit().getAuditor());
 		// Para ser modificado debe estar en borrador
 		Assert.isTrue(entityExam.isDraft());
 		// Si es nuevo se ponen parámetros por defecto
@@ -75,7 +74,7 @@ public class EntityExamService {
 		}
 		// Si se está editando, hay que tener en cuenta los parámetros no editables
 		else {
-			ee.setApplication(entityExam.getApplication());
+			ee.setAudit(entityExam.getAudit());
 			ee.setPublicationMoment(entityExam.getPublicationMoment());
 			ee.setTicker(entityExam.getTicker());
 		}
@@ -87,8 +86,8 @@ public class EntityExamService {
 	}
 	public void delete(final EntityExam ee) {
 		final EntityExam entityExam = (EntityExam) this.serviceUtils.checkObject(ee);
-		// Se comprueba que tanto la application pertenece al principal
-		this.serviceUtils.checkActor(entityExam.getApplication().getRookie());
+		// Se comprueba que tanto la audit pertenece al principal
+		this.serviceUtils.checkActor(entityExam.getAudit().getAuditor());
 		// Para ser eliminado debe estar en borrador
 		Assert.isTrue(entityExam.isDraft());
 		this.repository.delete(entityExam);
@@ -126,32 +125,6 @@ public class EntityExamService {
 		return res;
 	}
 
-	public EntityExamForm deconstruct(final EntityExam entityExam) {
-		final EntityExamForm form = new EntityExamForm();
-		form.setBody(entityExam.getBody());
-		form.setDraft(entityExam.isDraft());
-		form.setPicture(entityExam.getPicture());
-		form.setId(entityExam.getId());
-		form.setVersion(entityExam.getVersion());
-		return form;
-	}
-
-	public EntityExam reconstruct(final EntityExamForm form, final BindingResult binding) {
-		EntityExam entityExam = null;
-		if (form.getId() == 0)
-			entityExam = this.create();
-		else {
-			entityExam = this.findOne(form.getId());
-			Assert.notNull(entityExam);
-		}
-		entityExam.setApplication(form.getApplication());
-		entityExam.setBody(form.getBody());
-		entityExam.setDraft(form.isDraft());
-		entityExam.setPicture(form.getPicture());
-		this.validator.validate(entityExam, binding);
-		return entityExam;
-	}
-
 	public EntityExam reconstructPruned(final EntityExam ee, final BindingResult binding) {
 		if (ee.getId() == 0) {
 			ee.setDraft(true);
@@ -169,23 +142,28 @@ public class EntityExamService {
 		return ee;
 	}
 
-	public Collection<EntityExam> findAllByApplicationWithoutDraft(final Integer applicationId) {
-		Assert.notNull(this.applicationService.findOne(applicationId));
-		return this.repository.findAllByApplicationWithoutDraft(applicationId);
+	public Collection<EntityExam> findAllByAuditWithoutDraft(final Integer auditId) {
+		Assert.notNull(this.auditService.findOne(auditId));
+		return this.repository.findAllByAuditWithoutDraft(auditId);
 	}
 
-	public Collection<EntityExam> findAllByApplication(final Integer applicationId) {
-		Assert.notNull(this.applicationService.findOne(applicationId));
-		return this.repository.findAllByApplication(applicationId);
+	public Collection<EntityExam> findAllByAuditPrincipal(final Integer auditId, final Integer principalId) {
+		Assert.notNull(this.auditService.findOne(auditId));
+		return this.repository.findAllByAuditPrincipal(auditId, principalId);
+	}
+
+	public Collection<EntityExam> findAllByAudit(final Integer auditId) {
+		Assert.notNull(this.auditService.findOne(auditId));
+		return this.repository.findAllByAudit(auditId);
 	}
 
 	public EntityExam findByTicker(final String ticker) {
 		return this.repository.findByTicker(ticker);
 	}
 
-	public void deleteAllApplication(final Application a) {
-		final Application application = (Application) this.serviceUtils.checkObject(a);
-		for (final EntityExam entityExam : this.findAllByApplication(application.getId()))
+	public void deleteAllAudit(final Audit a) {
+		final Audit audit = (Audit) this.serviceUtils.checkObject(a);
+		for (final EntityExam entityExam : this.findAllByAudit(audit.getId()))
 			this.repository.delete(entityExam);
 	}
 

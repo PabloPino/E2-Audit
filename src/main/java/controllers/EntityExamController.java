@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
-import services.ApplicationService;
+import services.AuditService;
 import services.ConfigurationService;
 import services.EntityExamService;
 import domain.Actor;
-import domain.Application;
+import domain.Audit;
+import domain.Auditor;
 import domain.EntityExam;
-import domain.Rookie;
 
 @Controller
 @RequestMapping("entityexam")
@@ -26,48 +26,60 @@ public class EntityExamController extends AbstractController {
 	@Autowired
 	private EntityExamService		entityExamService;
 	@Autowired
-	private ApplicationService		applicationService;
+	private AuditService			auditService;
 	@Autowired
 	private ActorService			actorService;
 	@Autowired
 	private ConfigurationService	configurationService;
 
 
-	@RequestMapping("company/list")
-	public ModelAndView list(@RequestParam(required = true) final Integer applicationId) {
+	@RequestMapping("all/list")
+	public ModelAndView list(@RequestParam(required = true) final Integer auditId) {
 		final ModelAndView res = new ModelAndView("entityexam/list");
-		final Application application = this.applicationService.findOne(applicationId);
-		res.addObject("entityExams", this.entityExamService.findAllByApplicationWithoutDraft(applicationId));
-		res.addObject("requestURI", "entityexam/company/list.do?applicationId=" + applicationId);
-		res.addObject("application", application);
+		final Audit audit = this.auditService.findOne(auditId);
+		Integer principalId = null;
+		try {
+			principalId = this.actorService.findPrincipal().getId();
+		} catch (final Throwable t) {
+			principalId = 0;
+		}
+		res.addObject("entityExams", this.entityExamService.findAllByAuditPrincipal(auditId, principalId));
+		res.addObject("requestURI", "entityexam/actor/list.do?auditId=" + auditId);
+		res.addObject("audit", audit);
 		res.addObject("banner", this.configurationService.findOne().getBanner());
 		return res;
 	}
 
-	@RequestMapping("rookie/list")
-	public ModelAndView listDraftIncluded(@RequestParam(required = true) final Integer applicationId) {
+	@RequestMapping("auditor/list")
+	public ModelAndView listDraftIncluded(@RequestParam(required = true) final Integer auditId) {
 		final ModelAndView res = new ModelAndView("entityexam/list");
-		final Application application = this.applicationService.findOne(applicationId);
-		res.addObject("entityExams", this.entityExamService.findAllByApplication(applicationId));
-		res.addObject("requestURI", "entityexam/rookie/list.do?applicationId=" + applicationId);
-		res.addObject("application", application);
+		final Audit audit = this.auditService.findOne(auditId);
+		Integer principalId = null;
+		try {
+			principalId = this.actorService.findPrincipal().getId();
+		} catch (final Throwable t) {
+			principalId = 0;
+		}
+		res.addObject("entityExams", this.entityExamService.findAllByAuditPrincipal(auditId, principalId));
+		res.addObject("requestURI", "entityexam/auditor/list.do?auditId=" + auditId);
+		res.addObject("audit", audit);
 		res.addObject("banner", this.configurationService.findOne().getBanner());
 		return res;
 	}
 
-	@RequestMapping("rookie/create")
+	@RequestMapping("auditor/create")
 	public ModelAndView create() {
 		return this.createEditModelAndView(this.entityExamService.create(), true);
 	}
 
-	@RequestMapping("rookie/edit")
+	@RequestMapping("auditor/edit")
 	public ModelAndView edit(@RequestParam(required = true) final Integer entityExamId) {
 		final EntityExam entityExam = this.entityExamService.findOne(entityExamId);
 		Assert.notNull(entityExam);
 		return this.createEditModelAndView(entityExam, false);
 	}
 
-	@RequestMapping(value = "rookie/edit", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "auditor/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView edit(final EntityExam ee, final BindingResult binding) {
 		ModelAndView res = null;
 		final boolean creating = ee.getId() == 0;
@@ -77,26 +89,25 @@ public class EntityExamController extends AbstractController {
 		else
 			try {
 				final EntityExam saved = this.entityExamService.save(entityExam);
-				res = new ModelAndView("redirect:list.do?applicationId=" + saved.getApplication().getId());
+				res = new ModelAndView("redirect:list.do?auditId=" + saved.getAudit().getId());
 			} catch (final Throwable t) {
 				res = this.createEditModelAndView(entityExam, "cannot.commit.error", creating);
 			}
 		return res;
 	}
 
-	@RequestMapping(value = "rookie/edit", method = RequestMethod.POST, params = "delete")
+	@RequestMapping(value = "auditor/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView edit(final EntityExam ee) {
 		ModelAndView res = null;
 		try {
 			this.entityExamService.delete(ee);
-			res = new ModelAndView("redirect:list.do?applicationId=" + ee.getApplication().getId());
+			res = new ModelAndView("redirect:/audit/list.do");
 		} catch (final Throwable t) {
 			res = this.createEditModelAndView(ee, "cannot.commit.error", false);
 		}
 		return res;
 	}
-
-	@RequestMapping("rookie/display")
+	@RequestMapping("auditor/display")
 	public ModelAndView display(@RequestParam(required = true) final Integer entityExamId) {
 		final ModelAndView res = new ModelAndView("entityexam/display");
 		final EntityExam entityExam = this.entityExamService.findOne(entityExamId);
@@ -120,13 +131,21 @@ public class EntityExamController extends AbstractController {
 		final Actor principal = this.actorService.findPrincipal();
 		res.addObject("entityExam", entityExam);
 		res.addObject("message", message);
-		res.addObject("applications", this.applicationService.findApplicationByRookie((Rookie) principal));
+		res.addObject("audits", this.auditService.findAuditsByAuditor((Auditor) principal));
 		res.addObject("banner", this.configurationService.findOne().getBanner());
 		try {
 			if (entityExam.getId() > 0)
 				isDraft = this.entityExamService.findOne(entityExam.getId()).isDraft();
 		} catch (final Throwable t) {
 		}
+		String auditorUsername = null;
+		try {
+			final EntityExam saved = this.entityExamService.findOne(entityExam.getId());
+			auditorUsername = saved.getAudit().getAuditor().getUserAccount().getUsername();
+		} catch (final Throwable t) {
+			auditorUsername = "";
+		}
+		res.addObject("auditorUsername", auditorUsername);
 		res.addObject("isDraft", isDraft);
 		return res;
 	}

@@ -122,14 +122,12 @@ public class ApplicationService {
 	public void delete1(final Application application) {
 		Assert.notNull(application);
 		this.serviceUtils.checkActor(application.getRookie());
-		this.entityExamService.deleteAllApplication(application);
 		this.applicationRepository.delete(application);
 	}
 
 	public void delete(final Application application) {
 		Assert.notNull(application);
 		this.serviceUtils.checkActor(application.getPosition().getCompany());
-		this.entityExamService.deleteAllApplication(application);
 		this.applicationRepository.delete(application);
 	}
 

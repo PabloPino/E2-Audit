@@ -74,13 +74,6 @@
 				</a>
 			</display:column>
 		</security:authorize>
-		<spring:message code="entityexam.list" var="altEntityExam" />
-		<security:authorize access="hasRole('ROOKIE')">
-			<acme:column value="entityexam/rookie/list.do?applicationId=${row.id}" alt="${altEntityExam}" url="true" />
-		</security:authorize>
-		<security:authorize access="hasRole('COMPANY')">
-			<acme:column value="entityexam/company/list.do?applicationId=${row.id}" alt="${altEntityExam}" url="true" />
-		</security:authorize>
 
 	</security:authorize>
 </display:table>
